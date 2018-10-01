@@ -3,18 +3,13 @@
 
 int f_input()
 {
+
 	if (_kbhit())
 	{
-		switch (fgetc(stdin))
-		{
-		case 'W':
-			printf("W has been hit");
-			return 'W';
-			break;
-		default:
-			printf("wrong input");
-			break;
-		}
+		int temp = _getch();
+		printf("input get: %d" , temp);
+		return temp;
 	}
+	/*printf("No input");*/
 	return 0;
 }

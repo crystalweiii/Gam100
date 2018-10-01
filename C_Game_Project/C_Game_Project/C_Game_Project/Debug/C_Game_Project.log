@@ -1,9 +1,9 @@
 ﻿  Source.c
-c:\users\unifi\documents\digipen\gam100\c_game_project\c_game_project\c_game_project\header.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-c:\users\unifi\documents\digipen\gam100\c_game_project\c_game_project\c_game_project\header.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-c:\users\unifi\documents\digipen\gam100\c_game_project\c_game_project\c_game_project\header.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-c:\users\unifi\documents\digipen\gam100\c_game_project\c_game_project\c_game_project\header.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-c:\users\unifi\documents\digipen\gam100\c_game_project\c_game_project\c_game_project\textreader.h(12): warning C4047: '!=': 'errno_t' differs in levels of indirection from 'void *'
-c:\users\unifi\documents\digipen\gam100\c_game_project\c_game_project\c_game_project\header.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-c:\users\unifi\documents\digipen\gam100\c_game_project\c_game_project\c_game_project\source.c(8): warning C4013: 'system' undefined; assuming extern returning int
-  C_Game_Project.vcxproj -> C:\Users\unifi\Documents\Digipen\GAM100\C_Game_Project\C_Game_Project\Debug\C_Game_Project.exe
+c:\users\crystalwei\desktop\twfolder\digipen\gam 100\game project\gam100\c_game_project\c_game_project\c_game_project\header.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+c:\users\crystalwei\desktop\twfolder\digipen\gam 100\game project\gam100\c_game_project\c_game_project\c_game_project\header.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+c:\users\crystalwei\desktop\twfolder\digipen\gam 100\game project\gam100\c_game_project\c_game_project\c_game_project\header.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+c:\users\crystalwei\desktop\twfolder\digipen\gam 100\game project\gam100\c_game_project\c_game_project\c_game_project\graphic.h(28): warning C4013: 'F_ReadFromText' undefined; assuming extern returning int
+c:\users\crystalwei\desktop\twfolder\digipen\gam 100\game project\gam100\c_game_project\c_game_project\c_game_project\graphic.h(51): warning C4047: '!=': 'errno_t' differs in levels of indirection from 'void *'
+c:\users\crystalwei\desktop\twfolder\digipen\gam 100\game project\gam100\c_game_project\c_game_project\c_game_project\header.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+c:\users\crystalwei\desktop\twfolder\digipen\gam 100\game project\gam100\c_game_project\c_game_project\c_game_project\header.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  C_Game_Project.vcxproj -> C:\Users\crystalwei\Desktop\TWFolder\DIGIPEN\GAM 100\Game Project\Gam100\C_Game_Project\C_Game_Project\Debug\C_Game_Project.exe
