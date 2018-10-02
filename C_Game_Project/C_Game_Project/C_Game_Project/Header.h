@@ -9,9 +9,9 @@
 
 #define d_maxchar 1000
 
-#define d_map_amount 1
+#define d_map_amount 2
 #define txt_DGPLogo "txt_file/DigipenLogo.txt"
-
+#define txt_Map1 "txt_file/Map1.txt"
 
 
 #endif // !Header.h

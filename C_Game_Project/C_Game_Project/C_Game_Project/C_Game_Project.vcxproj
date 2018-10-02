@@ -122,6 +122,7 @@
     <ClInclude Include="TextReader.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Graphic.c" />
     <ClCompile Include="Source.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
