@@ -25,19 +25,22 @@ void F_GameMain()
 	/*Game Logic*/
 	if (v_gamestate == Running)
 	{
-		F_Map_Print();
+		/*F_Map_Print();*/
 		
 		while (v_gamestate == Running)
 		{
 			temp_c_input = f_input();
-			if(temp_c_input == 'W' || temp_c_input == 'w')
+			if(temp_c_input == 'P' || temp_c_input == 'p')
 				v_gamestate = Pause;
 			if (temp_c_input == 'C' || temp_c_input == 'c') /*clear screen*/
 				F_Map_Empty();
+			if (temp_c_input == 'T' || temp_c_input == 't') /*reset screen*/
+			{
+				F_Map_Set_And_Print(1);
+			}
 			if (temp_c_input == 'R' || temp_c_input == 'r') /*reset screen*/
 			{
-				F_Map_Empty();
-				F_Map_Set_And_Print();
+				F_Map_Set_And_Print(0);
 			}
 		}
 	}
