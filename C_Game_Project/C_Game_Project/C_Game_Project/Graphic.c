@@ -17,7 +17,6 @@ void F_Graphic_Init()
 	SMALL_RECT windowSize = { 0 , 0 ,  lx/1.5-1 , ly/1.5-1 }; //change the values
 	SetConsoleWindowInfo(wHnd, TRUE, &windowSize);
 
-
 }
 
 

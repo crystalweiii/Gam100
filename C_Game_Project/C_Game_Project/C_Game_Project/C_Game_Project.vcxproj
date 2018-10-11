@@ -115,7 +115,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="GameMain.h" />
+    <ClInclude Include="GameBase.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="Graphic.h" />
     <ClInclude Include="Header.h" />
@@ -124,10 +124,11 @@
     <ClInclude Include="TextReader.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="GameBase.c" />
     <ClCompile Include="GameManager.c" />
     <ClCompile Include="Graphic.c" />
     <ClCompile Include="Map.c" />
-    <ClCompile Include="Source.c" />
+    <ClCompile Include="Main.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

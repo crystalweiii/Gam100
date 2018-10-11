@@ -2,10 +2,10 @@
 #include "Header.h"
 #include "Graphic.h"
 
-COORD v_top;
-COORD v_btm ;
-COORD v_buffer ;
+COORD v_border_top;
+COORD v_border_btm;
 
+COORD v_map_buffer;
 COORD v_map_top ;
 
 
@@ -39,6 +39,11 @@ void F_Map_Empty(); /*clear screen*/
 void F_Map_Print();
 void F_Map_Set_And_Print(int index);
 
-void F_Map_DrawBorder(COORD btm, COORD top, COORD buffer);
+/*Drawing border, Using top and btm coordinate only*/
+void F_Map_DrawBorder(COORD btm, COORD top);
 
-void F_PrintNote();
+
+/*Drawing border with specific ascicode*/
+/*void F_Map_DrawBorder(COORD top, COORD btm, int ascicode);*/
+
+void F_Map_Instruction_Printout();

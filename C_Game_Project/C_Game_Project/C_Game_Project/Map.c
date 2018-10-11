@@ -1,14 +1,20 @@
 #include "Map.h"
 
-COORD v_top = { 3,4 };
-COORD v_btm = { d_game_width , d_game_height };
-COORD v_buffer = { 4, 2 };
+COORD v_border_top = { 3,4 };
 
+
+/*COORD v_border_btm;*/
+
+COORD v_map_buffer = { 4, 2 };
 COORD v_map_top = { 3 + 2, 4 + 1 };
 
 void F_Map_Init()
 {
-	F_Map_DrawBorder(v_top, v_btm, v_buffer);
+	/*Init border btm with the buffers*/
+	COORD v_temp_border_btm = { d_game_width + v_map_buffer.X, d_game_height + v_map_buffer.Y };
+	v_border_btm = v_temp_border_btm;
+
+	F_Map_DrawBorder(v_border_top, v_border_btm);
 
 	F_ReadFromTextAndStore(txt_DGPLogo , s_map_db[0].V_Map_Array);
 	F_ReadFromTextAndStore(txt_Map1, s_map_db[1].V_Map_Array);
@@ -19,38 +25,63 @@ void F_Map_Init()
 	
 	F_Map_Set_And_Print(s_map_index.v_selected);
 
-	F_PrintNote();
+	F_Map_Instruction_Printout();
 	
 	/*F_Map_Set_And_Print(s_map_index.v_current);*/
 }
 
-void F_Map_DrawBorder(COORD top, COORD btm, COORD buffer)
+void F_Map_DrawBorder(COORD top, COORD btm)
 {
 	int i, j;
-	gotoxy( (top.X+btm.X+buffer.X) / 3 , 2);
-	printf("Set Your Game Logic in following Area.");
 
 	//Top border line...
 	gotoxy(top.X, top.Y);
-	for (j = 0; j < btm.X + buffer.X; j++)
+	for (j = 0; j < btm.X; j++)
 		printf("%c", 223);
-	
+
 	//Bottom border line... 
-	gotoxy(top.X, top.Y + btm.Y + buffer.Y);
-	for (j = 0; j < btm.X + buffer.X; j++)
+	gotoxy(top.X, top.Y + btm.Y);
+	for (j = 0; j < btm.X; j++)
 		printf("%c", 223);
 
 	//Left and Right border line...
-	for (j = 0; j < btm.Y + buffer.Y; j++)
+	for (j = 0; j < btm.Y; j++)
 	{
 		gotoxy(top.X, top.Y + j);
 		printf("%c", 219);
 
-		gotoxy(top.X + btm.X + buffer.X, top.Y + j);
+		gotoxy(top.X + btm.X, top.Y + j);
 		printf("%c", 219);
 	}
 	printf("\n");
 }
+
+/*
+void F_Map_DrawBorder(COORD top, COORD btm, int ascicode)
+{
+	int i, j;
+	//Top border line...
+	gotoxy(top.X, top.Y);
+	for (j = 0; j < btm.X; j++)
+		printf("%c", ascicode);
+	
+	//Bottom border line... 
+	gotoxy(top.X, top.Y + btm.Y );
+	for (j = 0; j < btm.X; j++)
+		printf("%c", ascicode);
+
+	//Left and Right border line...
+	for (j = 0; j < btm.Y ; j++)
+	{
+		gotoxy(top.X, top.Y + j);
+		printf("%c", ascicode);
+
+		gotoxy(top.X + btm.X, top.Y + j);
+		printf("%c", ascicode);
+	}
+	printf("\n");
+}
+*/
 
 
 void F_Map_Set(int index) /*set index to the current map*/
@@ -103,9 +134,14 @@ void F_Map_Set_And_Print(int index)
 	}
 }
 
-void F_PrintNote()
+void F_Map_Instruction_Printout()
 {
-	gotoxy(v_top.X+v_btm.X+v_buffer.X*3 , (v_top.Y+v_btm.Y+v_buffer.X*3) / 3);
+	gotoxy(d_game_width / 2, 2);
+	printf("Welcome to GGPEN");
 
+	/*
+	COORD v_temp_startSpot = { (v_border_btm.Y) / 3 , v_border_btm.X + 3 };
+	gotoxy(v_temp_startSpot.X, v_temp_startSpot.Y);
 	printf("Press R to reset");
+	*/
 }
