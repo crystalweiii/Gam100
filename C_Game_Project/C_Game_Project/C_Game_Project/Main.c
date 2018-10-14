@@ -4,6 +4,7 @@
 
 int main()
 {
+	
 	F_GameBase();
 	system("pause");
 	return 0;

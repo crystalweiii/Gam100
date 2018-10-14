@@ -1,8 +1,20 @@
 #include "GameManager.h"
 
-int v_gamestate = Running;
-int temp_c_input = 0;
+enum GameState
+{
+	Running = 0,
+	InitialLoad,
+	MainMenu,
+	MainGame,
+	Pause,
+	End
+};
 
+
+int v_current_gs = Running;
+int v_previous_gs = Running;
+
+int temp_c_input = 0;
 
 int f_input()
 {
@@ -21,53 +33,86 @@ void F_GSManager_Init()
 
 void F_GSManager_ChangeState(int state)
 {
-	v_gamestate = state;
+	v_previous_gs = v_current_gs;
+	v_current_gs = state;
 	/*Transition*/
 }
 
-int F_GSManager_RunningState()
+int F_GSManager_RunningState(int* dt)
 {
-	if (v_gamestate == Running)
+	COORD v_temp_startSpot = { v_border_btm.X + 5 , (v_border_btm.Y) / 2.5 };
+
+	while (v_current_gs == v_previous_gs)
 	{
-		while (v_gamestate == Running)
+		*dt = time(NULL) / 3600;
+		gotoxy(v_temp_startSpot.X, v_temp_startSpot.Y + 3);
+		printf("Seconds went pass: %d", *dt);
+		
+		switch (v_current_gs)
+		{
+		case Running:
+			F_GSManager_Running();
+			break;
+		case Pause:
+			F_GSManager_ChangeState(End);
+			break;
+		case End:
+			break;
+
+		}
+	}
+
+	/*
+	if (v_current_gs == Running)
+	{
+		while (v_current_gs == Running)
 		{
 			F_GSManager_Running();
 		}
 		F_GSManager_RunningState();
 		return 1;
 	}
-	else if (v_gamestate == Pause)
+	else if (v_current_gs == Pause)
 	{
 
-		while (v_gamestate == Pause)
+		while (v_current_gs == Pause)
 		{
 			printf("pause\n");
-			v_gamestate = End;
+			v_current_gs = End;
 		}
 		F_GSManager_RunningState();
 		return 1;
 	}
-	else if (v_gamestate == End)
+	else if (v_current_gs == End)
 	{
 		return 0;
 	}
 	return 1;
+	*/
 }
 
 void F_GSManager_Running()
 {
-	temp_c_input = f_input();
-	if (temp_c_input == 'P' || temp_c_input == 'p')
-		v_gamestate = Pause;
-	if (temp_c_input == 'C' || temp_c_input == 'c') /*clear screen*/
-		F_Map_Empty();
-	if (temp_c_input == 'T' || temp_c_input == 't') /*reset screen*/
+	/*Checking of input for running*/
+	switch(f_input())
 	{
-		F_Map_Set_And_Print(1);
-	}
-	if (temp_c_input == 'R' || temp_c_input == 'r') /*reset screen*/
-	{
-		F_Map_Set_And_Print(0);
+		case 'P':
+		case 'p':
+			F_GSManager_ChangeState(Pause);
+			break;
+		case 'C':
+		case 'c':
+			F_Map_Empty();
+			break;
+		case 'T':
+		case 't':
+			F_Map_Set_And_Print(1);
+			/*F_GSManager_ChangeState(MainGame);*/
+			break;
+		case 'R':
+		case 'r':
+			F_Map_Set_And_Print(0);
+			/*F_GSManager_ChangeState(InitialLoad);*/
 	}
 
 }

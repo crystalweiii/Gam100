@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <conio.h>
 #include <windows.h>
+#include <time.h>
 
 #define d_game_width 90
 #define d_game_height 20

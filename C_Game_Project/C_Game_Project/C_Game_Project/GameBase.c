@@ -3,12 +3,14 @@
 
 void F_GameBase()
 {
+	dt = time(NULL) / 3600;
+
 	F_Graphic_Init();
 	F_Map_Init();
 	F_GSManager_Init();
 
 	F_Basic_Instruction_Printout();
-	F_GSManager_RunningState();
+	F_GSManager_RunningState(&dt);
 }
 
 void F_Basic_Instruction_Printout()
@@ -22,4 +24,8 @@ void F_Basic_Instruction_Printout()
 
 	gotoxy(v_temp_startSpot.X, v_temp_startSpot.Y + 2);
 	printf("Press T for second map");
+	/*
+	gotoxy(v_temp_startSpot.X, v_temp_startSpot.Y + 3);
+	printf("Seconds went pass: %d", dt);
+	*/
 }
