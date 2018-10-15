@@ -1,9 +1,1 @@
-﻿  Graphic.c
-c1 : fatal error C1083: Cannot open source file: 'Graphic.c': No such file or directory
-  Source.c
-c:\users\unifi\documents\digipen\gam100\gam100_project\c_game_project\c_game_project\c_game_project\header.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-c:\users\unifi\documents\digipen\gam100\gam100_project\c_game_project\c_game_project\c_game_project\header.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-c:\users\unifi\documents\digipen\gam100\gam100_project\c_game_project\c_game_project\c_game_project\header.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-c:\users\unifi\documents\digipen\gam100\gam100_project\c_game_project\c_game_project\c_game_project\header.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-c:\users\unifi\documents\digipen\gam100\gam100_project\c_game_project\c_game_project\c_game_project\header.h(2): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  Generating Code...
+﻿
