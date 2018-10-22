@@ -121,6 +121,7 @@
     <ClInclude Include="Header.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="TextReader.h" />
   </ItemGroup>
   <ItemGroup>
@@ -129,6 +130,7 @@
     <ClCompile Include="Graphic.c" />
     <ClCompile Include="Map.c" />
     <ClCompile Include="Main.c" />
+    <ClCompile Include="Menu.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

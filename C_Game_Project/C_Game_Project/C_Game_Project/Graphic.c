@@ -10,11 +10,10 @@ void F_Graphic_Init()
 	int lx,ly;
 	WindowsHelper_GetLargestConsoleWindowSize(&lx, &ly);
 
-	
-	COORD bufferSize = { lx/1.5, lx/1.5 };
+	COORD bufferSize = { lx/1.2, lx/1.2 };
 	SetConsoleScreenBufferSize(wHnd, bufferSize);
 	
-	SMALL_RECT windowSize = { 0 , 0 ,  lx/1.5-1 , ly/1.5-1 }; //change the values
+	SMALL_RECT windowSize = { 0 , 0 ,  lx/1.2-1 , ly/1.2-1 }; //change the values
 	SetConsoleWindowInfo(wHnd, TRUE, &windowSize);
 
 }

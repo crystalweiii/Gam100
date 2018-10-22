@@ -1,6 +1,5 @@
 #include "Header.h"
 
-
 HANDLE wHnd;    /* Handle to write to the console.*/
 HANDLE rHnd;    /* Handle to read from the console.*/
 /*void gotoxy(int x, int y);*/
@@ -12,3 +11,4 @@ void gotoxy(int x, int y);
 
 void WindowsHelper_GetLargestConsoleWindowSize(int *width, int* height);
 void WindowsHelper_FullScreen();
+

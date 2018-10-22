@@ -1,13 +1,18 @@
 #pragma once
 #include "Header.h"
 #include "Graphic.h"
+#include "Menu.h"
 
+/*Cordinate for outer border*/
 COORD v_border_top;
 COORD v_border_btm;
 
+/*Space better outer border and map*/
 COORD v_map_buffer;
-COORD v_map_top ;
 
+/*Cordinate for map border top*/
+COORD v_map_top;
+COORD v_map_btm;
 
 struct S_MapIndex /*to keep track of the maps*/
 {
@@ -36,11 +41,14 @@ void F_Map_Init();
 
 void F_Map_Set(int index); /*set index to the current map*/
 void F_Map_Empty(); /*clear screen*/
+void F_Map_EmptySlow();
+
 void F_Map_Print();
 void F_Map_Set_And_Print(int index);
 
 /*Drawing border, Using top and btm coordinate only*/
 void F_Map_DrawBorder(COORD btm, COORD top);
+void F_Map_DrawBorder_Asc(COORD btm, COORD top, int ascicode);
 
 
 /*Drawing border with specific ascicode*/
