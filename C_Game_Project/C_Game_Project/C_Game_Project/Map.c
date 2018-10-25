@@ -14,9 +14,16 @@ void F_Map_Init()
 {
 	/*Init border btm with the buffers*/
 	COORD v_temp_border_btm = { d_game_width + v_map_buffer.X, d_game_height + v_map_buffer.Y };
+	
+	COORD v_Text_border_Top = { v_border_top.X ,  v_temp_border_btm.Y + 3 };
+	COORD v_Text_border_Btm = { d_game_width + v_map_buffer.X , 10 };
+	
 	v_border_btm = v_temp_border_btm;
 
+
 	F_Map_DrawBorder(v_border_top, v_border_btm);
+	F_Map_DrawBorder(v_Text_border_Top, v_Text_border_Btm);
+
 
 	F_ReadFromTextAndStore(txt_DGPLogo , s_map_db[0].V_Map_Array);
 	F_Main_Menu_Print(s_map_db[1].V_Map_Array);
@@ -35,57 +42,6 @@ void F_Map_Init()
 	/*F_Map_Set_And_Print(s_map_index.v_current);*/
 }
 
-void F_Map_DrawBorder(COORD top, COORD btm)
-{
-	int j;
-
-	//Top border line...
-	gotoxy(top.X, top.Y);
-	for (j = 0; j < btm.X; j++)
-		printf("%c", 223);
-
-	//Bottom border line... 
-	gotoxy(top.X, top.Y + btm.Y);
-	for (j = 0; j < btm.X; j++)
-		printf("%c", 223);
-
-	//Left and Right border line...
-	for (j = 0; j < btm.Y; j++)
-	{
-		gotoxy(top.X, top.Y + j);
-		printf("%c", 219);
-
-		gotoxy(top.X + btm.X, top.Y + j);
-		printf("%c", 219);
-	}
-	printf("\n");
-}
-
-
-void F_Map_DrawBorder_Asc(COORD top, COORD btm, int ascicode)
-{
-	int i, j;
-	//Top border line...
-	gotoxy(top.X, top.Y);
-	for (j = 0; j < btm.X; j++)
-		printf("%c", ascicode);
-	
-	//Bottom border line... 
-	gotoxy(top.X, top.Y + btm.Y );
-	for (j = 0; j < btm.X; j++)
-		printf("%c", ascicode);
-
-	//Left and Right border line...
-	for (j = 0; j < btm.Y ; j++)
-	{
-		gotoxy(top.X, top.Y + j);
-		printf("%c", ascicode);
-
-		gotoxy(top.X + btm.X, top.Y + j);
-		printf("%c", ascicode);
-	}
-	printf("\n");
-}
 
 
 

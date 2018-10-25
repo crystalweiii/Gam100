@@ -46,9 +46,6 @@ void F_Map_EmptySlow();
 void F_Map_Print();
 void F_Map_Set_And_Print(int index);
 
-/*Drawing border, Using top and btm coordinate only*/
-void F_Map_DrawBorder(COORD btm, COORD top);
-void F_Map_DrawBorder_Asc(COORD btm, COORD top, int ascicode);
 
 
 /*Drawing border with specific ascicode*/

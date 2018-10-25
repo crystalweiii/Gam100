@@ -84,3 +84,56 @@ void WindowsHelper_FullScreen()
 	SMALL_RECT windowSize = { 0, 0, width - 1, height - 1 };
 	SetConsoleWindowInfo(wHnd, 1, &windowSize);
 }
+
+
+void F_Map_DrawBorder(COORD top, COORD btm)
+{
+	int j;
+
+	//Top border line...
+	gotoxy(top.X, top.Y);
+	for (j = 0; j < btm.X; j++)
+		printf("%c", 223);
+
+	//Bottom border line... 
+	gotoxy(top.X, top.Y + btm.Y);
+	for (j = 0; j < btm.X; j++)
+		printf("%c", 223);
+
+	//Left and Right border line...
+	for (j = 0; j < btm.Y; j++)
+	{
+		gotoxy(top.X, top.Y + j);
+		printf("%c", 219);
+
+		gotoxy(top.X + btm.X, top.Y + j);
+		printf("%c", 219);
+	}
+	printf("\n");
+}
+
+
+void F_Map_DrawBorder_Asc(COORD top, COORD btm, int ascicode)
+{
+	int i, j;
+	//Top border line...
+	gotoxy(top.X, top.Y);
+	for (j = 0; j < btm.X; j++)
+		printf("%c", ascicode);
+
+	//Bottom border line... 
+	gotoxy(top.X, top.Y + btm.Y);
+	for (j = 0; j < btm.X; j++)
+		printf("%c", ascicode);
+
+	//Left and Right border line...
+	for (j = 0; j < btm.Y; j++)
+	{
+		gotoxy(top.X, top.Y + j);
+		printf("%c", ascicode);
+
+		gotoxy(top.X + btm.X, top.Y + j);
+		printf("%c", ascicode);
+	}
+	printf("\n");
+}

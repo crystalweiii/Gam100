@@ -5,7 +5,10 @@
 int main()
 {
 	
-	F_GameBase();
+	F_Game_Init();
+
+	F_Game_Running();
+
 	system("pause");
 	return 0;
 }

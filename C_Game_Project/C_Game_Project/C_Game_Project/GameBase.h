@@ -4,5 +4,8 @@
 
 int dt;
 
-void F_GameBase();
-void F_Basic_Instruction_Printout();
+void F_Game_Init();
+void F_Game_Running();
+
+
+

@@ -12,3 +12,7 @@ void gotoxy(int x, int y);
 void WindowsHelper_GetLargestConsoleWindowSize(int *width, int* height);
 void WindowsHelper_FullScreen();
 
+
+/*Drawing border, Using top and btm coordinate only*/
+void F_Map_DrawBorder(COORD btm, COORD top);
+void F_Map_DrawBorder_Asc(COORD btm, COORD top, int ascicode);

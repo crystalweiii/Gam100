@@ -20,6 +20,8 @@ int  v_running = 1;
 
 int temp_c_input = 0;
 
+COORD CO_TextPrintOut = { 0 };
+
 int f_input()
 {
 	if (_kbhit())
@@ -32,6 +34,9 @@ int f_input()
 
 void F_GSManager_Init()
 {
+	COORD TextColumn = { v_border_btm.X + 5, (v_border_btm.Y) / 3 };
+	CO_TextPrintOut = TextColumn;
+
 	F_GSManager_ChangeState(InitialLoad);
 	F_GSManager_InitState(InitialLoad);
 
@@ -43,6 +48,9 @@ void F_GSManager_ChangeState(int state)
 	v_current_gs = state;
 	/*Transition*/
 	F_Map_EmptySlow();
+
+	gotoxy(CO_TextPrintOut.X, CO_TextPrintOut.Y - 1);
+	printf("Current Map Index: %d", currentScreenIndex);
 }
 
 void F_GSManager_InitState(int state)
@@ -65,6 +73,7 @@ void F_GSManager_InitState(int state)
 		v_running = 0;
 		break;
 	}
+
 }
 
 
@@ -75,59 +84,7 @@ int F_GSManager_RunningState(int* dt)
 	while (v_running)
 	{
 		F_GSManager_InputCheck();
-		/*
-		switch (v_current_gs)
-		{
-		case Running:
-			F_GSManager_Running();
-			break;
-		case InitialLoad:
-			break;
-		case MainMenu:
-			break;
-		case MainGame:
-			break;
-		case Pause:
-			break;
-		case End:
-			break;
-		}
-		*/
-		/*
-		*dt = time(NULL) / 3600;
-		gotoxy(v_temp_startSpot.X, v_temp_startSpot.Y + 3);
-		printf("Seconds went pass: %d", *dt);
-		*/
-
 	}
-
-	/*
-	if (v_current_gs == Running)
-	{
-		while (v_current_gs == Running)
-		{
-			F_GSManager_Running();
-		}
-		F_GSManager_RunningState();
-		return 1;
-	}
-	else if (v_current_gs == Pause)
-	{
-
-		while (v_current_gs == Pause)
-		{
-			printf("pause\n");
-			v_current_gs = End;
-		}
-		F_GSManager_RunningState();
-		return 1;
-	}
-	else if (v_current_gs == End)
-	{
-		return 0;
-	}
-	return 1;
-	*/
 }
 
 void F_GSManager_InputCheck()
@@ -146,6 +103,7 @@ void F_GSManager_InputCheck()
 			break;
 		case 'T':
 		case 't':
+			currentScreenIndex = MainGame;
 			/*F_Map_Set_And_Print(1);*/
 			F_GSManager_ChangeState(MainGame);
 			F_GSManager_InitState(MainGame);
@@ -153,12 +111,12 @@ void F_GSManager_InputCheck()
 		case 'R':
 		case 'r':
 			/*F_Map_Set_And_Print(0);*/
+			currentScreenIndex = InitialLoad;
 			F_GSManager_ChangeState(InitialLoad);
 			F_GSManager_InitState(InitialLoad);
 			break;
 
-		case 'N':
-		case 'n':
+		case '1':
 			if (currentScreenIndex < d_map_amount-1)
 				currentScreenIndex++;
 			else
@@ -166,8 +124,38 @@ void F_GSManager_InputCheck()
 
 			F_GSManager_ChangeState(currentScreenIndex);
 			F_GSManager_InitState(currentScreenIndex);
+			break;
+		case '2':
+			if (currentScreenIndex > 0)
+				currentScreenIndex--;
+			else
+				currentScreenIndex = d_map_amount-1;
+
+			F_GSManager_ChangeState(currentScreenIndex);
+			F_GSManager_InitState(currentScreenIndex);
+			break;
+
 	}
 
 }
 
 
+void F_Basic_Instruction_Printout()
+{
+	COORD v_temp_startSpot = { v_border_btm.X + 5 , (v_border_btm.Y) / 3 };
+	gotoxy(CO_TextPrintOut.X, CO_TextPrintOut.Y);
+	printf("'P' to quit");
+
+	gotoxy(CO_TextPrintOut.X, CO_TextPrintOut.Y + 1);
+	printf("'R' for first map");
+
+	gotoxy(CO_TextPrintOut.X, CO_TextPrintOut.Y + 2);
+	printf("'T' for second map");
+
+	gotoxy(CO_TextPrintOut.X, CO_TextPrintOut.Y + 3);
+	printf("'1' for next map");
+
+	gotoxy(CO_TextPrintOut.X, CO_TextPrintOut.Y + 4);
+	printf("'2' for previous map");
+
+}
