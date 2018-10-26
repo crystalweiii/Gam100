@@ -22,6 +22,10 @@ int temp_c_input = 0;
 
 COORD CO_TextPrintOut = { 0 };
 
+
+/*Each key check will be stored here*/
+
+
 int f_input()
 {
 	if (_kbhit())
@@ -89,7 +93,9 @@ int F_GSManager_RunningState(int* dt)
 
 void F_GSManager_InputCheck()
 {
+	
 	/*Checking of input for running*/
+	/*
 	switch(f_input())
 	{
 		case 'P':
@@ -104,13 +110,11 @@ void F_GSManager_InputCheck()
 		case 'T':
 		case 't':
 			currentScreenIndex = MainGame;
-			/*F_Map_Set_And_Print(1);*/
 			F_GSManager_ChangeState(MainGame);
 			F_GSManager_InitState(MainGame);
 			break;
 		case 'R':
 		case 'r':
-			/*F_Map_Set_And_Print(0);*/
 			currentScreenIndex = InitialLoad;
 			F_GSManager_ChangeState(InitialLoad);
 			F_GSManager_InitState(InitialLoad);
@@ -136,6 +140,38 @@ void F_GSManager_InputCheck()
 			break;
 
 	}
+	*/
+
+	/*Check for number 1 key hit*/
+	a_key_check[0x31] = GetKeyState(0x31);
+	if (a_key_check[0x31] != 0 && a_key_check[0x31] != 1)
+	{
+		if (currentScreenIndex < d_map_amount - 1)
+			currentScreenIndex++;
+		else
+			currentScreenIndex = 0;
+
+		F_GSManager_ChangeState(currentScreenIndex);
+		F_GSManager_InitState(currentScreenIndex);
+
+		gotoxy(CO_TextPrintOut.X, CO_TextPrintOut.Y + 5);
+		printf("Input Key Set: %4d", a_key_check[0x31]);
+	}
+
+
+	/*Check for number 2 key hit*/
+	a_key_check[0x32] = GetKeyState(0x32);
+	if (a_key_check[0x32] != 0 && a_key_check[0x32] != 1)
+	{
+		if (currentScreenIndex > 0)
+			currentScreenIndex--;
+		else
+			currentScreenIndex = d_map_amount - 1;
+
+		F_GSManager_ChangeState(currentScreenIndex);
+		F_GSManager_InitState(currentScreenIndex);
+	}
+
 
 }
 
@@ -157,5 +193,7 @@ void F_Basic_Instruction_Printout()
 
 	gotoxy(CO_TextPrintOut.X, CO_TextPrintOut.Y + 4);
 	printf("'2' for previous map");
+
+
 
 }
