@@ -1,4 +1,6 @@
-#ifndef Header.h
+#ifndef HEADER_H
+#define HEADER_H
+
 #include <stdio.h>
 #include <conio.h>
 #include <windows.h>
@@ -13,6 +15,12 @@
 #define d_map_amount 3
 #define txt_DGPLogo "txt_file/DigipenLogo.txt"
 #define txt_Map1 "txt_file/Map1.txt"
+
+typedef struct
+{
+	int active;
+	COORD position;
+}GameObject;
 
 #endif // !Header.h
 

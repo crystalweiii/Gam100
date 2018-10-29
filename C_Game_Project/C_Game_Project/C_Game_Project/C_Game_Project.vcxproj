@@ -117,22 +117,23 @@
   <ItemGroup>
     <ClInclude Include="GameBase.h" />
     <ClInclude Include="GameManager.h" />
-    <ClInclude Include="GamePlay.h" />
     <ClInclude Include="Graphic.h" />
     <ClInclude Include="Header.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="TextReader.h" />
+    <ClInclude Include="UiHandler.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameBase.c" />
     <ClCompile Include="GameManager.c" />
-    <ClCompile Include="GamePlay.cpp" />
     <ClCompile Include="Graphic.c" />
+    <ClCompile Include="Input.c" />
     <ClCompile Include="Map.c" />
     <ClCompile Include="Main.c" />
     <ClCompile Include="Menu.c" />
+    <ClCompile Include="UiHandler.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
