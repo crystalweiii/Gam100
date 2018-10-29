@@ -26,16 +26,6 @@ COORD CO_TextPrintOut = { 0 };
 /*Each key check will be stored here*/
 
 
-int f_input()
-{
-	if (_kbhit())
-	{
-		int temp = _getch();
-		return temp;
-	}
-	return 0;
-}
-
 void F_GSManager_Init()
 {
 	COORD TextColumn = { v_border_btm.X + 5, (v_border_btm.Y) / 3 };
@@ -143,8 +133,7 @@ void F_GSManager_InputCheck()
 	*/
 
 	/*Check for number 1 key hit*/
-	a_key_check[0x31] = GetKeyState(0x31);
-	if (a_key_check[0x31] != 0 && a_key_check[0x31] != 1)
+	if (f_Check_KeyDown(0x31))
 	{
 		if (currentScreenIndex < d_map_amount - 1)
 			currentScreenIndex++;
@@ -160,8 +149,7 @@ void F_GSManager_InputCheck()
 
 
 	/*Check for number 2 key hit*/
-	a_key_check[0x32] = GetKeyState(0x32);
-	if (a_key_check[0x32] != 0 && a_key_check[0x32] != 1)
+	if (f_Check_KeyDown(0x32))
 	{
 		if (currentScreenIndex > 0)
 			currentScreenIndex--;
@@ -172,7 +160,12 @@ void F_GSManager_InputCheck()
 		F_GSManager_InitState(currentScreenIndex);
 	}
 
-
+	/*Check for P small and P caps*/
+	if (f_Check_KeyDown(0x70) || f_Check_KeyDown(0x50))
+	{
+		F_GSManager_ChangeState(Pause);
+		F_GSManager_InitState(Pause);
+	}
 }
 
 

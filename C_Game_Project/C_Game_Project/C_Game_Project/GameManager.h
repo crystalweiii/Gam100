@@ -4,8 +4,6 @@
 #include "Map.h"
 #include "Header.h"
 
-int f_input();
-
 void F_GSManager_Init();
 
 /*For transition and other fancy stuff*/
