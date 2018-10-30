@@ -7,8 +7,10 @@ HANDLE rHnd;    /* Handle to read from the console.*/
 void F_Graphic_Init();
 
 int F_ReadFromTextAndStore(char* url, char dc_array[d_game_width][d_game_height]);
+
 void gotoxy(int x, int y);
 
+/*Window helper*/
 void WindowsHelper_GetLargestConsoleWindowSize(int *width, int* height);
 void WindowsHelper_FullScreen();
 

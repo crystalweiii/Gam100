@@ -13,43 +13,67 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\GameState">
+      <UniqueIdentifier>{03b99d6e-92fc-4f2f-8974-279d67d6258b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameState">
+      <UniqueIdentifier>{0c60c79e-8ac7-41ad-9e95-1a314f56d260}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Engine">
+      <UniqueIdentifier>{3045972f-e785-4f75-bf03-01cd9b5c2182}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Engine">
+      <UniqueIdentifier>{651aabb5-df48-4710-842c-61153f8689fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Helper">
+      <UniqueIdentifier>{5e29d24c-80a8-425f-ae68-1ef4b300bd46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Test">
+      <UniqueIdentifier>{26a59965-790b-4419-829b-1c40c7fd496c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Test">
+      <UniqueIdentifier>{7ccf37d4-ce46-495b-9d3f-cb645d007f91}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Graphic.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Header.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Input.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TextReader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Map.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GameManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GameBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GS_StartUp.h">
+      <Filter>Header Files\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="GS_MainMenu.h">
+      <Filter>Header Files\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="GS_GamePlay.h">
+      <Filter>Header Files\GameState</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="TextReader.h">
+      <Filter>Header Files\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="Header.h">
+      <Filter>Header Files\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphic.h">
+      <Filter>Header Files\Engine</Filter>
+    </ClInclude>
     <ClInclude Include="Menu.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Test</Filter>
     </ClInclude>
     <ClInclude Include="UiHandler.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Test</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Graphic.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Map.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GameManager.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -59,14 +83,29 @@
     <ClCompile Include="GameBase.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Menu.c">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="GS_StartUp.c">
+      <Filter>Source Files\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="GS_MainMenu.c">
+      <Filter>Source Files\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="GS_GamePlay.c">
+      <Filter>Source Files\GameState</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphic.c">
+      <Filter>Source Files\Engine</Filter>
     </ClCompile>
     <ClCompile Include="Input.c">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.c">
+      <Filter>Source Files\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.c">
+      <Filter>Source Files\Test</Filter>
     </ClCompile>
     <ClCompile Include="UiHandler.c">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Test</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

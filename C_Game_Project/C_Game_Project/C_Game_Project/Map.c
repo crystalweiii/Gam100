@@ -112,7 +112,6 @@ void F_Map_Set_And_Print(int index)
 			printf("%c", s_current_map.V_Map_Array[gw_generate][gh_generate]);
 			
 		}
-		Sleep(10);
 		++y;
 	}
 }
@@ -121,10 +120,4 @@ void F_Map_Instruction_Printout()
 {
 	gotoxy(d_game_width / 2, 2);
 	printf("Welcome to GGPEN");
-
-	/*
-	COORD v_temp_startSpot = { (v_border_btm.Y) / 3 , v_border_btm.X + 3 };
-	gotoxy(v_temp_startSpot.X, v_temp_startSpot.Y);
-	printf("Press R to reset");
-	*/
 }

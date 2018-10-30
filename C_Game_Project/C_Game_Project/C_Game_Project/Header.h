@@ -22,6 +22,19 @@ typedef struct
 	COORD position;
 }GameObject;
 
+enum GameState
+{
+	Pause = -2,
+	End = -1,
+
+	StartUp = 0,
+	MainMenu,
+	GamePlay,
+
+	NumberOfState
+
+};
+
 #endif // !Header.h
 
 

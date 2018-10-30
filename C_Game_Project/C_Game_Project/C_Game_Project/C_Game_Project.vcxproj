@@ -118,10 +118,13 @@
     <ClInclude Include="GameBase.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="Graphic.h" />
+    <ClInclude Include="GS_GamePlay.h" />
+    <ClInclude Include="GS_MainMenu.h" />
     <ClInclude Include="Header.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Menu.h" />
+    <ClInclude Include="GS_StartUp.h" />
     <ClInclude Include="TextReader.h" />
     <ClInclude Include="UiHandler.h" />
   </ItemGroup>
@@ -129,10 +132,13 @@
     <ClCompile Include="GameBase.c" />
     <ClCompile Include="GameManager.c" />
     <ClCompile Include="Graphic.c" />
+    <ClCompile Include="GS_GamePlay.c" />
+    <ClCompile Include="GS_MainMenu.c" />
     <ClCompile Include="Input.c" />
     <ClCompile Include="Map.c" />
     <ClCompile Include="Main.c" />
     <ClCompile Include="Menu.c" />
+    <ClCompile Include="GS_StartUp.c" />
     <ClCompile Include="UiHandler.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

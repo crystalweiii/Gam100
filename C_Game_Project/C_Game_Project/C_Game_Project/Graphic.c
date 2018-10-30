@@ -10,12 +10,12 @@ void F_Graphic_Init()
 	int lx,ly;
 	WindowsHelper_GetLargestConsoleWindowSize(&lx, &ly);
 
-	COORD bufferSize = { lx/1.2, lx/1.2 };
+	COORD bufferSize = { (short)lx/1.2, (short)lx/1.2 };
 	SetConsoleScreenBufferSize(wHnd, bufferSize);
 	
-	SMALL_RECT windowSize = { 0 , 0 ,  lx/1.2-1 , ly/1.2-1 }; //change the values
+	SMALL_RECT windowSize =  { 0 , 0 ,  lx/1.2-1 , ly/1.2-1 }; 
 	SetConsoleWindowInfo(wHnd, TRUE, &windowSize);
-
+	
 }
 
 
@@ -115,7 +115,7 @@ void F_Map_DrawBorder(COORD top, COORD btm)
 
 void F_Map_DrawBorder_Asc(COORD top, COORD btm, int ascicode)
 {
-	int i, j;
+	int j;
 	//Top border line...
 	gotoxy(top.X, top.Y);
 	for (j = 0; j < btm.X; j++)
