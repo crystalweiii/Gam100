@@ -8,9 +8,9 @@
 #include "GS_MainMenu.h"
 
 
-int v_current_gs;
-int v_previous_gs;
-int v_next_gs;
+int v_gs_current;
+int v_gs_previous;
+int v_gs_next; 
 
 int currentScreenIndex = 0;
 
@@ -26,36 +26,21 @@ void F_GSManager_Init()
 	COORD TextColumn = { v_border_btm.X + 5, (v_border_btm.Y) / 3 };
 	CO_TextPrintOut = TextColumn;
 
-	v_current_gs = StartUp;
-	v_previous_gs = StartUp;
+	v_gs_current = StartUp;
+	v_gs_previous = StartUp;
+	v_gs_next = StartUp;
 	
 	currentScreenIndex = 0;
 	v_running = 1;
 	temp_c_input = 0;
 
-	F_GSManager_ChangeState(v_current_gs);
-	
+
+	F_GSManager_InitState(v_gs_current);
 }
 
 void F_GSManager_ChangeState(int state)
 {
-	/*Check for valid gamestate*/
-	if (state >= 0)
-	{
-		F_GSManager_ExitState(v_current_gs);
 
-		v_previous_gs = v_current_gs;
-		v_current_gs = state;
-
-		F_GSManager_InitState(v_current_gs);
-
-		gotoxy(CO_TextPrintOut.X, CO_TextPrintOut.Y - 1);
-		printf("Current Map Index: %d", currentScreenIndex);
-	}
-	else
-	{
-		v_running = 0;
-	}
 }
 
 void F_GSManager_InitState(int state)
@@ -124,11 +109,25 @@ void F_GSManager_ExitState(int state) {
 
 int F_GSManager_RunningStateMachine(int* dt)
 {
-	COORD v_temp_startSpot = { (short)v_border_btm.X + 5 , (short)(v_border_btm.Y) / 2.5 };
+	/*COORD v_temp_startSpot = { (short)v_border_btm.X + 5 , (short)(v_border_btm.Y) / 2.5 };*/
 
 	while (v_running)
 	{	
+		/*Check for valid gamestate*/
+		if (F_GSManager_CheckForChangeState())
+		{
+			v_gs_previous = v_gs_current;
+			F_GSManager_ExitState(v_gs_current);
+			v_gs_current = v_gs_next;
+			F_GSManager_InitState(v_gs_current);
+
+			gotoxy(CO_TextPrintOut.X, CO_TextPrintOut.Y - 1);
+			printf("Current Map Index: %d", currentScreenIndex);
+		}
+		/*Input check and updates here, Most likely gonna move input check to another*/
 		F_GSManager_InputCheck();
+		F_GSManager_UpdateState(v_gs_current);
+
 	}
 	return 0;
 }
@@ -143,8 +142,7 @@ void F_GSManager_InputCheck()
 		else
 			currentScreenIndex = 0;
 
-		F_GSManager_ChangeState(currentScreenIndex);
-
+		v_gs_next = currentScreenIndex;
 	}
 
 	/*Check for number 2 key hit*/
@@ -155,24 +153,29 @@ void F_GSManager_InputCheck()
 		else
 			currentScreenIndex = d_map_amount - 1;
 
-		F_GSManager_ChangeState(currentScreenIndex);
+		v_gs_next = currentScreenIndex;
 	}
 
 	/*Check for Q small and Q caps*/
 	if (f_Check_KeyDown(0x71) || f_Check_KeyDown(0x51))
 	{
-		F_GSManager_ChangeState(Pause);
+		v_gs_next = Pause;
 	}
 
 
 	/*Check for R small and R caps*/
 	if (f_Check_KeyDown(0x72) || f_Check_KeyDown(0x52))
 	{
-		F_GSManager_ChangeState(currentScreenIndex);
+		v_gs_next = currentScreenIndex;
 	}
 
 }
 
+int F_GSManager_CheckForChangeState()
+{
+	return v_gs_next != v_gs_current;
+
+}
 
 void F_Basic_Instruction_Printout()
 {

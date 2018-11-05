@@ -10,6 +10,7 @@ void F_GSManager_ChangeState(int state);
 void F_GSManager_InitState(int state);
 void F_GSManager_UpdateState(int state);
 void F_GSManager_ExitState(int state);
+int F_GSManager_CheckForChangeState();
 
 int F_GSManager_RunningStateMachine(int* dt);
 
