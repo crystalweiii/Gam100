@@ -13,7 +13,6 @@ void F_Game_Init()
 
 void F_Game_Running()
 {
-	dt = time(NULL) / 3600;
-	F_GSManager_RunningStateMachine(&dt);
+	F_GSManager_RunningStateMachine();
 }
 

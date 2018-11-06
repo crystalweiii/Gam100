@@ -1,3 +1,4 @@
+#include <time.h>
 #include "GameManager.h"
 #include "Input.h"
 #include "TextReader.h"
@@ -6,7 +7,6 @@
 /*Game State*/
 #include "GS_StartUp.h"
 #include "GS_MainMenu.h"
-
 
 int v_gs_current;
 int v_gs_previous;
@@ -65,7 +65,8 @@ void F_GSManager_InitState(int state)
 	}
 }
 
-void F_GSManager_UpdateState(int state) {
+void F_GSManager_UpdateState(int state, float dt) {
+	
 	switch (state)
 		{
 		case StartUp:
@@ -75,7 +76,7 @@ void F_GSManager_UpdateState(int state) {
 			GS_MainMenu_Update();
 			break;
 		case GamePlay:
-			GS_GamePlay_Update();
+			GS_GamePlay_Update(dt);
 			break;
 		case Pause:
 			v_running = 0;
@@ -107,9 +108,14 @@ void F_GSManager_ExitState(int state) {
 	}
 }
 
-int F_GSManager_RunningStateMachine(int* dt)
+int F_GSManager_RunningStateMachine()
 {
 	/*COORD v_temp_startSpot = { (short)v_border_btm.X + 5 , (short)(v_border_btm.Y) / 2.5 };*/
+
+	/* DT DONE HERE */
+	clock_t ticksThen, ticksNow;
+	float dt;
+	ticksThen = clock();
 
 	while (v_running)
 	{	
@@ -126,8 +132,16 @@ int F_GSManager_RunningStateMachine(int* dt)
 		}
 		/*Input check and updates here, Most likely gonna move input check to another*/
 		F_GSManager_InputCheck();
-		F_GSManager_UpdateState(v_gs_current);
 
+		/* DT UPDATE DONE HERE */
+		ticksNow = clock();
+		dt = (ticksNow - ticksThen) / (float)CLOCKS_PER_SEC;
+		if (dt >= 0.016f)
+		{
+			/* Update the game state manager. */
+			ticksThen = ticksNow;
+			F_GSManager_UpdateState(v_gs_current, dt);
+		}
 	}
 	return 0;
 }
