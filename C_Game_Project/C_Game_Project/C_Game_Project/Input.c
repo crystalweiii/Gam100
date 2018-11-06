@@ -13,6 +13,5 @@ int f_input()
 int f_Check_KeyDown(int key)
 {
 	a_key_check[key] = GetKeyState(key);
-
 	return (a_key_check[key] != 0 && a_key_check[key] != 1);
 }
