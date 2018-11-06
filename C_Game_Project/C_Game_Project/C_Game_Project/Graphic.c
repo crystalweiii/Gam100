@@ -1,5 +1,5 @@
 #include "Graphic.h"
-
+#include "GameObjectManager.h"
 
 void F_Graphic_Init()
 {
@@ -25,6 +25,12 @@ void gotoxy(int x, int y)
 	SetConsoleCursorPosition(wHnd, c);
 }
 
+void hideCursor()
+{
+	GetConsoleCursorInfo(wHnd, &cursorInfo);
+	cursorInfo.bVisible = 0;
+	SetConsoleCursorInfo(wHnd, &cursorInfo);
+}
 
 
 int F_ReadFromTextAndStore(char* url , char dc_array[d_game_width][d_game_height]) {
@@ -137,3 +143,75 @@ void F_Map_DrawBorder_Asc(COORD top, COORD btm, int ascicode)
 	}
 	printf("\n");
 }
+
+void F_Graphic_Draw()
+{
+	int i;
+	GameObj *objectList = GetGameObjectList();
+	int activeObjectCount = MovingObjectManager_GetNumberInUse();
+	int processed = 0;
+
+	hideCursor();
+
+	for (i = 0; i < MAX_GAMEOBJECTS; ++i)
+	{
+		short x = (short)(objectList[i].position.X);
+		short y = (short)(objectList[i].position.Y);
+
+		/* Check within bounds of map NEED TO LOOK AT COLLISION CODE AGAIN TO SEE IF WE NEED OFFSET OR NOT */
+		if (x < 0 || x > d_game_width || y < 0 || y > d_game_height)
+		{
+			continue;
+		}
+
+		if (objectList[i].type == Player)
+		{
+			ClearImage(objectList[i].prevposition.X, objectList[i].prevposition.Y); /* clear obj prev image */
+			PrintImage(objectList[i].position.X, objectList[i].position.Y, objectList[i].image); /* print obj image */
+			++processed;
+		}
+
+		/*Tracking the number of objects to draw*/
+		if (processed >= activeObjectCount)
+		{
+			return;
+		}
+
+	}
+}
+
+void PrintImage(float posX, float posY, char image[ObjectSize])
+{
+	int j;
+	int offsetX = 0, offsetY = 0;
+	for (j = 0; j < ObjectSize; ++j)
+	{
+		if (j != 0 && j % 3 == 0)
+		{
+			offsetY += 1;
+			offsetX = 0;
+		}
+		gotoxy((short)posX + offsetX, (short)posY + offsetY);
+		printf_s("%c", image[j]);
+		offsetX += 1;
+	}
+}
+
+void ClearImage(float posX, float posY)
+{
+	int j;
+	int offsetX = 0, offsetY = 0;
+	for (j = 0; j < ObjectSize; ++j)
+	{
+		if (j != 0 && j % 3 == 0)
+		{
+			offsetY += 1;
+			offsetX = 0;
+		}
+		gotoxy((short)posX + offsetX, (short)posY + offsetY);
+		printf_s("%c", ' ');
+		offsetX += 1;
+	}
+}
+
+
