@@ -7,6 +7,7 @@
 /*Game State*/
 #include "GS_StartUp.h"
 #include "GS_MainMenu.h"
+#include "GS_GamePlay.h"
 
 int v_gs_current;
 int v_gs_previous;
@@ -128,7 +129,8 @@ int F_GSManager_RunningStateMachine()
 			F_GSManager_InitState(v_gs_current);
 
 			gotoxy(CO_TextPrintOut.X, CO_TextPrintOut.Y - 1);
-			printf("Current Map Index: %d", currentScreenIndex);
+
+			//printf("Current Map Index: %d", currentScreenIndex);
 		}
 		/*Input check and updates here, Most likely gonna move input check to another*/
 		F_GSManager_InputCheck();
