@@ -4,7 +4,6 @@
 
 int main()
 {
-	
 	F_Game_Init();
 
 	F_Game_Running();

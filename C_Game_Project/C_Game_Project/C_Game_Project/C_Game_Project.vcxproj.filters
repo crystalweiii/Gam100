@@ -34,6 +34,18 @@
     <Filter Include="Header Files\Test">
       <UniqueIdentifier>{7ccf37d4-ce46-495b-9d3f-cb645d007f91}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\GameObject">
+      <UniqueIdentifier>{284339f5-aaf9-4ed7-aa5f-fc2d1d3a49af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameObject">
+      <UniqueIdentifier>{e16668f0-0b50-47c9-9bec-1c5d91f8b96d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Math">
+      <UniqueIdentifier>{4863ce87-c483-4bbb-90d7-b21fd045ea4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Math">
+      <UniqueIdentifier>{7b58d766-6a54-4a72-9b26-b0f6bcc38ba5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameManager.h">
@@ -72,6 +84,21 @@
     <ClInclude Include="UiHandler.h">
       <Filter>Header Files\Test</Filter>
     </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Header Files\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerManager.h">
+      <Filter>Header Files\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectManager.h">
+      <Filter>Header Files\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Math.h">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="BulletManager.h">
+      <Filter>Header Files\GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameManager.c">
@@ -106,6 +133,12 @@
     </ClCompile>
     <ClCompile Include="UiHandler.c">
       <Filter>Source Files\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerManager.c">
+      <Filter>Source Files\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectManager.c">
+      <Filter>Source Files\GameObject</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

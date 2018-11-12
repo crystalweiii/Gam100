@@ -1,3 +1,4 @@
+#include <time.h>
 #include "GameManager.h"
 #include "Input.h"
 #include "TextReader.h"
@@ -6,7 +7,6 @@
 /*Game State*/
 #include "GS_StartUp.h"
 #include "GS_MainMenu.h"
-
 
 int v_gs_current;
 int v_gs_previous;
@@ -35,27 +35,17 @@ void F_GSManager_Init()
 	temp_c_input = 0;
 
 
-	F_GSManager_InitState();
+	F_GSManager_InitState(v_gs_current);
 }
 
-void F_GSManager_ChangeState()
+void F_GSManager_ChangeState(int state)
 {
-	/*Check for valid gamestate*/
-	if (F_GSManager_CheckForChangeState())
-	{
-		v_gs_previous = v_gs_current;
-		F_GSManager_ExitState();
-		v_gs_current = v_gs_next;
-		F_GSManager_InitState();
 
-		gotoxy(CO_TextPrintOut.X, CO_TextPrintOut.Y - 1);
-		printf("Current Map Index: %d", currentScreenIndex);
-	}
 }
 
-void F_GSManager_InitState()
+void F_GSManager_InitState(int state)
 {
-	switch (v_gs_current)
+	switch (state)
 	{
 	case StartUp:
 		GS_StartUp_Init();
@@ -75,8 +65,9 @@ void F_GSManager_InitState()
 	}
 }
 
-void F_GSManager_UpdateState() {
-	switch (v_gs_current)
+void F_GSManager_UpdateState(int state, float dt) {
+	
+	switch (state)
 		{
 		case StartUp:
 			GS_StartUp_Update();
@@ -85,7 +76,7 @@ void F_GSManager_UpdateState() {
 			GS_MainMenu_Update();
 			break;
 		case GamePlay:
-			GS_GamePlay_Update();
+			GS_GamePlay_Update(dt);
 			break;
 		case Pause:
 			v_running = 0;
@@ -96,8 +87,8 @@ void F_GSManager_UpdateState() {
 		}
 }
 
-void F_GSManager_ExitState() {
-	switch (v_gs_current)
+void F_GSManager_ExitState(int state) {
+	switch (state)
 	{
 	case StartUp:
 		GS_StartUp_Exit();
@@ -117,17 +108,40 @@ void F_GSManager_ExitState() {
 	}
 }
 
-int F_GSManager_RunningStateMachine(int* dt)
+int F_GSManager_RunningStateMachine()
 {
 	/*COORD v_temp_startSpot = { (short)v_border_btm.X + 5 , (short)(v_border_btm.Y) / 2.5 };*/
 
+	/* DT DONE HERE */
+	clock_t ticksThen, ticksNow;
+	float dt;
+	ticksThen = clock();
+
 	while (v_running)
 	{	
-		F_GSManager_ChangeState();
+		/*Check for valid gamestate*/
+		if (F_GSManager_CheckForChangeState())
+		{
+			v_gs_previous = v_gs_current;
+			F_GSManager_ExitState(v_gs_current);
+			v_gs_current = v_gs_next;
+			F_GSManager_InitState(v_gs_current);
+
+			gotoxy(CO_TextPrintOut.X, CO_TextPrintOut.Y - 1);
+			printf("Current Map Index: %d", currentScreenIndex);
+		}
 		/*Input check and updates here, Most likely gonna move input check to another*/
 		F_GSManager_InputCheck();
-		F_GSManager_UpdateState();
 
+		/* DT UPDATE DONE HERE */
+		ticksNow = clock();
+		dt = (ticksNow - ticksThen) / (float)CLOCKS_PER_SEC;
+		if (dt >= 0.016f)
+		{
+			/* Update the game state manager. */
+			ticksThen = ticksNow;
+			F_GSManager_UpdateState(v_gs_current, dt);
+		}
 	}
 	return 0;
 }
@@ -177,9 +191,9 @@ int F_GSManager_CheckForChangeState()
 
 }
 
-
 void F_Basic_Instruction_Printout()
 {
+	COORD v_temp_startSpot = { v_border_btm.X + 5 , (v_border_btm.Y) / 3 };
 	gotoxy(CO_TextPrintOut.X, CO_TextPrintOut.Y);
 	printf("'Q' to quit");
 
@@ -191,7 +205,4 @@ void F_Basic_Instruction_Printout()
 
 	gotoxy(CO_TextPrintOut.X, CO_TextPrintOut.Y + 3);
 	printf("'2' for previous map");
-
-	gotoxy(CO_TextPrintOut.X, CO_TextPrintOut.Y - 1);
-	printf("Current Map Index: %d", currentScreenIndex);
 }
