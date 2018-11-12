@@ -1,9 +1,16 @@
 #pragma once
+#include "Math.h"
 
-int playerIndex;
-
+/*------------------------------------------------------------------------------
+// Main Function
+//----------------------------------------------------------------------------*/
 void F_PlayerManager_Init();
-void F_PlayerManager_Update();
+void F_PlayerManager_Update(float dt);
 void F_PlayerManager_Exit();
 
+
+
+/*------------------------------------------------------------------------------
+// Others
+//----------------------------------------------------------------------------*/
 void F_PlayerManager_CheckInput();

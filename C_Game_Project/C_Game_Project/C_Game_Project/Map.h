@@ -2,6 +2,7 @@
 #include "Header.h"
 #include "Graphic.h"
 #include "Menu.h"
+#include "Math.h"
 
 /*Cordinate for outer border*/
 COORD v_border_top;
@@ -46,9 +47,51 @@ void F_Map_EmptySlow();
 void F_Map_Print();
 void F_Map_Set_And_Print(int index);
 
-
-
 /*Drawing border with specific ascicode*/
 /*void F_Map_DrawBorder(COORD top, COORD btm, int ascicode);*/
 
 void F_Map_Instruction_Printout();
+
+/*------------------------------------------------------
+// Public Variable Declaration
+------------------------------------------------------*/
+/* Reusable: for lvl 1, 2, 3, etc..       */
+int map[d_MAX_ROWS][d_MAX_COLUMNS];
+int mapWidth;
+int mapHeight;
+
+
+/*------------------------------------------------------
+// Init
+------------------------------------------------------*/
+/* Map Init: for Gameplay State*/
+void F_MapManager_Gameplay_Init(LevelType levelType);
+
+
+
+/*------------------------------------------------------
+// Setter & Getter
+------------------------------------------------------*/
+/* Set: map[y][x] = TileType */
+void F_Set_Map_DataType(TileType type, int x, int y);
+
+/* Get: map[y][x] = ? */
+TileType F_Get_Map_DataType(int x, int y);
+
+/* Get: Player Spawn Point Position*/
+Vector2D F_MapManager_GetPlayerSpawnPosition();
+
+/* Get: Map playable width */
+int F_MapManager_GetMapWidth();
+
+/* Get: Map playable height */
+int F_MapManager_GetMapHeight();
+
+
+
+
+/*------------------------------------------------------
+// Others
+------------------------------------------------------*/
+/* Retrieve: Enemy Spawn Point[] positions*/
+void F_MapManager_GetEnemySpawnPosition(float *spawnEnemyPosX, float *spawnEnemyPosY, int *noOfSpawnPoint);

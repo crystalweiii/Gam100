@@ -116,6 +116,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="BulletManager.h" />
+    <ClInclude Include="EnemyManager.h" />
     <ClInclude Include="GameBase.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameObject.h" />
@@ -130,10 +131,14 @@
     <ClInclude Include="Menu.h" />
     <ClInclude Include="GS_StartUp.h" />
     <ClInclude Include="PlayerManager.h" />
+    <ClInclude Include="RandNumManager.h" />
     <ClInclude Include="TextReader.h" />
     <ClInclude Include="UiHandler.h" />
+    <ClInclude Include="WindowsHelper.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BulletManager.c" />
+    <ClCompile Include="EnemyManager.c" />
     <ClCompile Include="GameBase.c" />
     <ClCompile Include="GameManager.c" />
     <ClCompile Include="GameObjectManager.c" />
@@ -146,7 +151,9 @@
     <ClCompile Include="Menu.c" />
     <ClCompile Include="GS_StartUp.c" />
     <ClCompile Include="PlayerManager.c" />
+    <ClCompile Include="RandNumManager.c" />
     <ClCompile Include="UiHandler.c" />
+    <ClCompile Include="WindowsHelper.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

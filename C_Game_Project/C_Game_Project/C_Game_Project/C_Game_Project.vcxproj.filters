@@ -99,6 +99,15 @@
     <ClInclude Include="BulletManager.h">
       <Filter>Header Files\GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="WindowsHelper.h">
+      <Filter>Header Files\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyManager.h">
+      <Filter>Header Files\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="RandNumManager.h">
+      <Filter>Header Files\GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameManager.c">
@@ -138,6 +147,18 @@
       <Filter>Source Files\GameObject</Filter>
     </ClCompile>
     <ClCompile Include="GameObjectManager.c">
+      <Filter>Source Files\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowsHelper.c">
+      <Filter>Header Files\Helper</Filter>
+    </ClCompile>
+    <ClCompile Include="BulletManager.c">
+      <Filter>Source Files\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyManager.c">
+      <Filter>Source Files\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="RandNumManager.c">
       <Filter>Source Files\GameObject</Filter>
     </ClCompile>
   </ItemGroup>

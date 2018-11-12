@@ -1,4 +1,6 @@
-typedef struct Vector2D
+#pragma once
+
+typedef struct 
 {
 	float X;
 	float Y;

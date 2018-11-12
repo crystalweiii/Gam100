@@ -1,64 +1,96 @@
-#include <math.h>
+//#include <math.h>
+#include "Math.h"
 #include "PlayerManager.h"
 #include "GameObjectManager.h"
 #include "Input.h"
+#include "Map.h"
+#include <conio.h>				/* _getch(), _kbhit()*/
+#include "BulletManager.h"
 
+/*------------------------------------------------------------------------------
+// Private Variables Declaration
+//----------------------------------------------------------------------------*/
+float time_elasped = 0.0f;
+int playerIndex;
+
+/*------------------------------------------------------------------------------
+// Private Function Declaration
+//----------------------------------------------------------------------------*/
+void CreateBullet(ObjectType type);
+
+/*------------------------------------------------------------------------------
+// Main Function
+//----------------------------------------------------------------------------*/
 void F_PlayerManager_Init()
 {
-	int i = 0;
+	/* Init: Used for shoot cooldown */
+	time_elasped = 0.0f;
 
 	/* Need to read from csv */
+	int i = 0;
 	char playerImage[ObjectSize];
 	for (i = 0; i < ObjectSize; ++i)
 	{
 		playerImage[i] = 'a';
 	}
 
-	/* Set player initial position*/
-	Vector2D playerPosition;
-	playerPosition.X = 10;
-	playerPosition.Y = 10;
-
+	/* Retrieve: Empty GameObject Slot*/
 	playerIndex = F_GameObjectManager_CreateObject();
+
+	/* Assign: Player properties */
 	F_GameObjectManager_SetObjectType(playerIndex, Player);
-	F_GameObjectManager_SetObjectPosition(playerIndex, playerPosition);
+	F_GameObjectManager_SetObjectDir(playerIndex, 0, 1);
+	F_GameObjectManager_SetObjectPosition(playerIndex, F_MapManager_GetPlayerSpawnPosition().X, F_MapManager_GetPlayerSpawnPosition().Y);
+	F_GameObjectManager_SetObjectPrevPosition(playerIndex, F_MapManager_GetPlayerSpawnPosition().X, F_MapManager_GetPlayerSpawnPosition().Y);
+	F_GameObjectManager_SetObjectSpeed(playerIndex, d_PLAYER_SPEED);
+	F_GameObjectManager_SetObjectScale(playerIndex, d_CHARACTER_SCALE_X, d_CHARACTER_SCALE_Y);
 	F_GameObjectManager_SetObjectImage(playerIndex, playerImage);
 }
-void F_PlayerManager_Update()
+void F_PlayerManager_Update(float dt)
 {
+	/* Track: shoot cooldown */
+	time_elasped += dt;
+
+	/* LOOP: Turnbased input */
 	F_PlayerManager_CheckInput();
 }
 void F_PlayerManager_Exit()
 {
+	/* Exit: Return object index, for objectpooling purpose */
 	GameObjectManager_ReturnMovingObjectIndex(playerIndex);
 }
 
+/*------------------------------------------------------------------------------
+// Others
+//----------------------------------------------------------------------------*/
+/* LOOP: Turnbased input */
 void F_PlayerManager_CheckInput()
 {
-	Vector2D playerPosition = F_GameObjectManager_GetObjectPosition(playerIndex);
-	if (f_Check_KeyDown(0x57)) /* Press 'w' */
+	if (_kbhit())
 	{
-		
-		playerPosition.Y = max(playerPosition.Y - 1.0f, 6.0f);
-		F_GameObjectManager_SetObjectPosition(playerIndex, playerPosition);
+		switch (_getch())
+		{
+			/* Press Space bar */
+			case 0x20:
+				CreateBullet(BulletBlue);
+				break;
+		}
 	}
-	else if (f_Check_KeyDown(0x53)) /* Press 's' */
-	{
-		F_GameObjectManager_SetObjectPrevPosition(playerIndex, playerPosition);
-		playerPosition.Y = min(playerPosition.Y + 1.0f, d_game_height);
-		F_GameObjectManager_SetObjectPosition(playerIndex, playerPosition);
-	}
+}
 
-	else if (f_Check_KeyDown(0x41)) /* Press 'a' */
-	{
-		F_GameObjectManager_SetObjectPrevPosition(playerIndex, playerPosition);
-		playerPosition.X = max(playerPosition.X - 1.0f, 6.0f);
-		F_GameObjectManager_SetObjectPosition(playerIndex, playerPosition);
-	}
-	else if (f_Check_KeyDown(0x44)) /* Press 'd' */
-	{
-		F_GameObjectManager_SetObjectPrevPosition(playerIndex, playerPosition);
-		playerPosition.X = min(playerPosition.X + 1.0f, d_game_width);
-		F_GameObjectManager_SetObjectPosition(playerIndex, playerPosition);
-	}
+/* Spawn: Bullet*/
+void CreateBullet(ObjectType type)
+{
+	/* Check: Still in shoot cooldown? */
+	if (time_elasped < d_RATE_OF_PLAYER_FIRE)
+		return;
+
+	/* Reset: shoot timer */
+	time_elasped = 0.0f;
+
+	/* Get: Player Info */
+	GameObj object = F_GameObjectManager_GetMovingObject(playerIndex);
+
+	/* Create: RED/BLUE/GREEN Bullet*/
+	F_BulletManager_SpawnBullet(type, object.positionX + d_PLAYER_SHOOT_X_OFFSET, object.positionY, 1, 0);
 }
