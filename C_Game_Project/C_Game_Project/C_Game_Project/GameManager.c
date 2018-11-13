@@ -207,4 +207,7 @@ void F_Basic_Instruction_Printout()
 
 	gotoxy(CO_TextPrintOut.X, CO_TextPrintOut.Y + 3);
 	printf("'2' for previous map");
+
+	gotoxy(CO_TextPrintOut.X, CO_TextPrintOut.Y + 4);
+	printf("'S' during menu to move through choice");
 }

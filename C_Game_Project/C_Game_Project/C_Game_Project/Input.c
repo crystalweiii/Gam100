@@ -1,11 +1,10 @@
 #include "Input.h"
 
-int f_input()
+int f_Check_KeyDown_Once(int key)
 {
 	if (_kbhit())
 	{
-		int temp = _getch();
-		return temp;
+		return (key == _getch());
 	}
 	return 0;
 }
