@@ -17,14 +17,12 @@ void LoadCSV_Map(int map[d_MAX_ROWS][d_MAX_COLUMNS], int mapIndex);
 void RetrieveSpawnPositionFromData(float *spawnPlayerPosX, float *spawnPlayerPosY, float *spawnEnemyPosX, float *spawnEnemyPosY);
 
 
-COORD v_border_top = { 3,4 };
+
 
 /*COORD v_border_btm;*/
-
-COORD v_map_buffer = { 4, 2 };
-
-
-COORD v_map_top = { 3 + 2, 4 + 1 };
+COORD v_border_top = { 3,4 };
+COORD v_map_buffer = { 4,2 };
+COORD v_map_top = { d_map_offset_x,  d_map_offset_y };
 
 void F_Map_Init()
 {
@@ -35,7 +33,6 @@ void F_Map_Init()
 	COORD v_Text_border_Btm = { d_game_width + v_map_buffer.X , 10 };
 	
 	v_border_btm = v_temp_border_btm;
-
 
 	F_Map_DrawBorder(v_border_top, v_border_btm);
 	F_Map_DrawBorder(v_Text_border_Top, v_Text_border_Btm);
@@ -64,7 +61,7 @@ void F_Map_Set(int index) /*set index to the current map*/
 	s_map_index.v_current = index;
 }
 
-void F_Map_Empty() /*clear screen*/
+void F_Map_Empty() /*clear screen everything*/
 {
 	int x = v_map_top.X, y = v_map_top.Y;
 	for (int gh_generate = 0; gh_generate < d_game_height; gh_generate++)
@@ -79,7 +76,7 @@ void F_Map_Empty() /*clear screen*/
 	}
 }
 
-void F_Map_EmptySlow() /*clear screen*/
+void F_Map_EmptySlow() /*clear screen pixel by pixel*/
 {
 	int x = v_map_top.X, y = v_map_top.Y;
 	for (int gh_generate = 0; gh_generate < d_game_height; gh_generate++)

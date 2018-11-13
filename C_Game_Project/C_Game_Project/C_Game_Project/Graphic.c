@@ -8,16 +8,18 @@ void F_Graphic_Init()
 	wHnd = GetStdHandle(STD_OUTPUT_HANDLE);
 	rHnd = GetStdHandle(STD_INPUT_HANDLE);
 	SetConsoleTitle(TEXT("NANIIIIIIIII"));
-	
+	/*
 	short lx,ly;
 	WindowsHelper_GetLargestConsoleWindowSize(&lx, &ly);
-
-	COORD bufferSize = { (double)(lx/1.2), (double)(lx/1.2) };
+	
+	COORD bufferSize = { ly/2, lx/2 };
 	SetConsoleScreenBufferSize(wHnd, bufferSize);
 	
-	SMALL_RECT windowSize =  { (double)0 , (double)0 ,  (double)lx/1.2-1 , (double)ly/1.2-1 };
+
+	SMALL_RECT windowSize =  { 0 , 0 ,  100 , 180};
 	SetConsoleWindowInfo(wHnd, TRUE, &windowSize);
-	
+	*/
+	WindowsHelper_FullScreen();
 }
 
 void gotoxy(int x, int y)

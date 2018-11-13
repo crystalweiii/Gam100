@@ -39,7 +39,9 @@ void WindowsHelper_GetLargestConsoleWindowSize(short *width, short *height)
 	if (width == NULL || height == NULL)
 		return;
 
+
 	COORD size = GetLargestConsoleWindowSize(wHnd);
+	printf("%d %d", size.X, size.Y);
 	*width = size.X;
 	*height = size.Y;
 }
