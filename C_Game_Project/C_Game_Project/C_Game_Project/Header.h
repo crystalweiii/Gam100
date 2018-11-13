@@ -10,8 +10,8 @@
 /*
  *  Map Macro:
  */
-#define d_MAX_ROWS 48		//map height:  48
-#define d_MAX_COLUMNS 200	//map width : 200
+#define d_MAX_ROWS 20		//map height:  48
+#define d_MAX_COLUMNS 90	//map width : 200
 
 #define d_game_width 90
 #define d_game_height 20
@@ -29,8 +29,8 @@
   /*
    *  Character Properties:
    */
-#define d_CHARACTER_SCALE_X 5			//Character: scale X  (player/enemy/bullet scale X)
-#define d_CHARACTER_SCALE_Y 3			//Character: scale Y  (player/enemy/bullet scale X)
+#define d_CHARACTER_SCALE_X 2			//Character: scale X  (player/enemy/bullet scale X)
+#define d_CHARACTER_SCALE_Y 2			//Character: scale Y  (player/enemy/bullet scale X)
 
    /*
 	*  Player Properties:

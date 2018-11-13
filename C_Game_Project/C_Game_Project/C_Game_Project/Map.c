@@ -13,7 +13,7 @@ int numOfEnemySpawnPoint = 0;
 /*--------------------------------
 // Private Function Declaration
 --------------------------------*/
-void LoadCSV_Map(int map[d_MAX_ROWS][d_MAX_COLUMNS], int mapIndex);
+void F_ReadFromCSVAndStore(int tempMap[d_game_height][d_game_width], int mapIndex);
 void RetrieveSpawnPositionFromData(float *spawnPlayerPosX, float *spawnPlayerPosY, float *spawnEnemyPosX, float *spawnEnemyPosY);
 
 
@@ -44,7 +44,11 @@ void F_Map_Init()
 	F_ReadFromTextAndStore(txt_DGPLogo , s_map_db[0].V_Map_Array);
 	F_Main_Menu_Print(s_map_db[1].V_Map_Array);
 
+	/* "Read" & "Store": gameplay level 1 map data from csv*/
+	//F_ReadFromCSVAndStore(s_map_db[2].V_Map_Array, Level_One);
+
 	F_ReadFromTextAndStore(txt_Map1, s_map_db[2].V_Map_Array);
+	
 	
 
 	s_map_index.v_amount = d_map_amount;
@@ -142,7 +146,7 @@ void F_MapManager_Gameplay_Init(LevelType levelType)
 	mapWidth = mapHeight = 0;
 
 	/* Get: map data from CSV */
-	LoadCSV_Map(map, (int)levelType);
+	F_ReadFromCSVAndStore(map, (int)levelType);
 
 	/* Get: player/enemy spawn point positions*/
 	RetrieveSpawnPositionFromData(&playerSpawnPosX, &playerSpawnPosY, enemySpawnPosX, enemySpawnPosY);
@@ -198,7 +202,7 @@ int F_MapManager_GetMapHeight()
 // Utility
 //----------------------------------------------------------------------------*/
 /* Function: Load from csv + Assign data*/
-void LoadCSV_Map(int map[d_MAX_ROWS][d_MAX_COLUMNS], int mapIndex)
+void F_ReadFromCSVAndStore(int tempMap[d_game_height][d_game_width], int mapIndex)
 {
 	FILE *inFile;
 	int tempNum = 0;
@@ -217,10 +221,10 @@ void LoadCSV_Map(int map[d_MAX_ROWS][d_MAX_COLUMNS], int mapIndex)
 	/*
 	 * Init: all map elements to 0
 	 */
-	for (y = 0; y < d_MAX_ROWS; ++y)
+	for (y = 0; y < d_game_height; ++y)
 	{
-		for (x = 0; x < d_MAX_COLUMNS; ++x)
-			map[y][x] = 0;
+		for (x = 0; x < d_game_width; ++x)
+			tempMap[y][x] = 0;
 	}
 
 	if (err == 0)
@@ -234,10 +238,10 @@ void LoadCSV_Map(int map[d_MAX_ROWS][d_MAX_COLUMNS], int mapIndex)
 			/*
 			 * Parse the comma-separated values from each line into 'array'.
 			 */
-			for (x = 0, ptr = buffer; x < ARRAYSIZE(*map); ++x, ++ptr)
+			for (x = 0, ptr = buffer; x < ARRAYSIZE(*tempMap); ++x, ++ptr)
 			{
 				/* Assign: map[y][x] = (int)TILE_??? */
-				map[y][x] = (int)strtol(ptr, &ptr, 10);
+				tempMap[y][x] = (int)strtol(ptr, &ptr, 10);
 
 				/*Get: Playable Width*/
 				if(!stop)
