@@ -4,8 +4,8 @@ Author(s):	Darren
 Login(s) :	s.low (100%)
 
 Description/Features:
-...
-
+This file contains init, update, cleaning up enemy.
+It contains functions to random spawn, kill enemy, check collison.
 ************************************************************************************************/
 
 #pragma once
