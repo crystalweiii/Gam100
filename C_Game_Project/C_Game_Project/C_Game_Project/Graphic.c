@@ -19,7 +19,7 @@ void F_Graphic_Init()
 	SMALL_RECT windowSize =  { 0 , 0 ,  100 , 180};
 	SetConsoleWindowInfo(wHnd, TRUE, &windowSize);
 	*/
-	WindowsHelper_FullScreen();
+	/*WindowsHelper_FullScreen();*/
 }
 
 void gotoxy(int x, int y)

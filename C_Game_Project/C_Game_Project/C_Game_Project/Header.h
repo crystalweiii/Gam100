@@ -146,6 +146,7 @@ enum GameState
 	StartUp = 0,
 	MainMenu,
 	GamePlay,
+	Credit,
 
 	NumberOfState
 

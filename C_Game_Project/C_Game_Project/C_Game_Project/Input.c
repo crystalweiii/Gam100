@@ -1,5 +1,12 @@
 #include "Input.h"
 
+
+int f_Check_KeyHit()
+{
+	return _kbhit();
+}
+
+
 int f_Check_KeyDown_Once(int key)
 {
 	if (_kbhit())

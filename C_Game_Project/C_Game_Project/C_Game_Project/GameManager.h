@@ -2,7 +2,7 @@
 
 void F_GSManager_Init();
 
-/*For transition and other fancy stuff*/
+/*For other class uses*/
 void F_GSManager_ChangeState(int state);
 
 /*Getting all the variable need up*/

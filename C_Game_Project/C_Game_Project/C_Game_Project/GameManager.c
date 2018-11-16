@@ -9,9 +9,10 @@
 #include "GS_MainMenu.h"
 #include "GS_GamePlay.h"
 
+
 int v_gs_current;
 int v_gs_previous;
-int v_gs_next; 
+int v_gs_next;
 
 int currentScreenIndex = 0;
 
@@ -39,9 +40,10 @@ void F_GSManager_Init()
 	F_GSManager_InitState(v_gs_current);
 }
 
+/*use for other files to change state / may need checks*/
 void F_GSManager_ChangeState(int state)
 {
-
+	v_gs_next = state;
 }
 
 void F_GSManager_InitState(int state)
