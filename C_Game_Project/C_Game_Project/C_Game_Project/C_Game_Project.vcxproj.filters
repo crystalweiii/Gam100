@@ -72,9 +72,6 @@
     <ClInclude Include="Graphic.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
-    <ClInclude Include="UiHandler.h">
-      <Filter>Header Files\Test</Filter>
-    </ClInclude>
     <ClInclude Include="GameObject.h">
       <Filter>Header Files\GameObject</Filter>
     </ClInclude>
@@ -133,9 +130,6 @@
     </ClCompile>
     <ClCompile Include="Map.c">
       <Filter>Source Files\Engine</Filter>
-    </ClCompile>
-    <ClCompile Include="UiHandler.c">
-      <Filter>Source Files\Test</Filter>
     </ClCompile>
     <ClCompile Include="PlayerManager.c">
       <Filter>Source Files\GameObject</Filter>
