@@ -16,8 +16,11 @@
 #define d_game_width 90
 #define d_game_height 20
 
-#define d_map_offset_x 5
-#define d_map_offset_y 5
+#define d_border_offset_x 0 
+#define d_border_offset_y 0
+
+#define d_map_offset_x 1
+#define d_map_offset_y 1
 
  /*
   *  Spawner Macro:

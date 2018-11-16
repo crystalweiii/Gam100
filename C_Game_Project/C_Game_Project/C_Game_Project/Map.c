@@ -20,7 +20,7 @@ void RetrieveSpawnPositionFromData(float *spawnPlayerPosX, float *spawnPlayerPos
 
 
 /*COORD v_border_btm;*/
-COORD v_border_top = { 3,4 };
+COORD v_border_top = { d_border_offset_x,d_border_offset_y };
 COORD v_map_buffer = { 4,2 };
 COORD v_map_top = { d_map_offset_x,  d_map_offset_y };
 
@@ -29,7 +29,7 @@ void F_Map_Init()
 	/*Init border btm with the buffers*/
 	COORD v_temp_border_btm = { d_game_width + v_map_buffer.X, d_game_height + v_map_buffer.Y };
 	
-	COORD v_Text_border_Top = { v_border_top.X ,  v_temp_border_btm.Y + 3 };
+	COORD v_Text_border_Top = { v_border_top.X ,  v_temp_border_btm.Y };
 	COORD v_Text_border_Btm = { d_game_width + v_map_buffer.X , 10 };
 	
 	v_border_btm = v_temp_border_btm;

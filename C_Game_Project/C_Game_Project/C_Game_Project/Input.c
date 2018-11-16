@@ -8,7 +8,7 @@ float f_KeyUpdate(float dt)
 {
    /*delay bool according to dt*/
 	if(delay<1.f)
-		delay += dt*2;
+		delay += dt*4;
 	return delay;
 }
 
