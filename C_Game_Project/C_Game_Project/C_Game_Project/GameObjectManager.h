@@ -1,7 +1,7 @@
 /*********************************************************************************************************************
 Filename :	GameObjectManager.h/ GameObjectManager.c
 Author(s):	Ong Jia Quan Joel, Desmond, Darren
-Login(s) :	o.jiaquanjoel(80%), seeweedesmond.yeo(...), s.low (...)
+Login(s) :	o.jiaquanjoel(80%), seeweedesmond.yeo(10%), s.low (10%)
 
 Description/Features:
 This file contains init, update, cleanup for gameobject
