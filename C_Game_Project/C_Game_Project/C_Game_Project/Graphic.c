@@ -83,12 +83,12 @@ void F_Map_DrawBorder(COORD top, COORD btm)
 
 	//Top border line...
 	gotoxy(top.X, top.Y);
-	for (j = 0; j < btm.X; j++)
+	for (j = 0; j <= btm.X; j++)
 		printf("%c", 223);
 
 	//Bottom border line... 
 	gotoxy(top.X, top.Y + btm.Y);
-	for (j = 0; j < btm.X; j++)
+	for (j = 0; j <= btm.X; j++)
 		printf("%c", 223);
 
 	//Left and Right border line...
@@ -108,12 +108,12 @@ void F_Map_DrawBorder_Asc(COORD top, COORD btm, int ascicode)
 	int j;
 	//Top border line...
 	gotoxy(top.X, top.Y);
-	for (j = 0; j < btm.X; j++)
+	for (j = 0; j <= btm.X; j++)
 		printf("%c", ascicode);
 
 	//Bottom border line... 
 	gotoxy(top.X, top.Y + btm.Y);
-	for (j = 0; j < btm.X; j++)
+	for (j = 0; j <= btm.X; j++)
 		printf("%c", ascicode);
 
 	//Left and Right border line...

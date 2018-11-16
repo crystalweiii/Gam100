@@ -157,10 +157,11 @@ int F_GSManager_RunningStateMachine()
 			/* Update the game state manager. */
 			ticksThen = ticksNow;
 			F_GSManager_UpdateState(v_gs_current, dt);
-			
+			f_KeyUpdate(dt);
+			/*
 			gotoxy(CO_TextPrintOut.X, CO_TextPrintOut.Y + 5);
-			printf("dt: %f", f_KeyUpdate(dt));
-
+			printf("dt: %f", dt);
+			*/
 		}
 	}
 	return 0;
@@ -168,7 +169,8 @@ int F_GSManager_RunningStateMachine()
 
 void F_GSManager_InputCheck()
 {
-	/*Check for number 1 key hit*/
+	/*
+	/*Check for number 1 key hit/
 	if (f_Check_KeyDown(0x31))
 	{
 		if (currentScreenIndex < d_map_amount - 1)
@@ -179,7 +181,7 @@ void F_GSManager_InputCheck()
 		v_gs_next = currentScreenIndex;
 	}
 
-	/*Check for number 2 key hit*/
+	/*Check for number 2 key hit/
 	if (f_Check_KeyDown(0x32))
 	{
 		if (currentScreenIndex > 0)
@@ -189,7 +191,7 @@ void F_GSManager_InputCheck()
 
 		v_gs_next = currentScreenIndex;
 	}
-
+	*/
 	/*Check for Q small and Q caps*/
 	if (f_Check_KeyDown(0x71) || f_Check_KeyDown(0x51))
 	{
@@ -213,7 +215,7 @@ int F_GSManager_CheckForChangeState()
 
 void F_Basic_Instruction_Printout()
 {
-	COORD v_temp_startSpot = { v_border_btm.X + 5 , (v_border_btm.Y) / 3 };
+    COORD v_temp_startSpot = { v_border_btm.X + 5 , (v_border_btm.Y) / 3 };
 	gotoxy(CO_TextPrintOut.X, CO_TextPrintOut.Y);
 	printf("'Q' to quit");
 
@@ -221,15 +223,13 @@ void F_Basic_Instruction_Printout()
 	printf("'R' to reset");
 
 	gotoxy(CO_TextPrintOut.X, CO_TextPrintOut.Y + 2);
-	printf("'1' for next map");
+	printf("Space to select");
 
 	gotoxy(CO_TextPrintOut.X, CO_TextPrintOut.Y + 3);
-	printf("'2' for previous map");
+	printf("'W' & 'S' For up and down");
 
-	gotoxy(CO_TextPrintOut.X, CO_TextPrintOut.Y + 4);
-	printf("'S' during menu to move through choice");
-
-	gotoxy(CO_TextPrintOut.X, CO_TextPrintOut.Y + 5);
-	printf("dt: %f", dt);
+	COORD v_temp_borderStart = { v_border_btm.X , v_border_top.Y };
+	COORD v_temp_borderEnd = { 40 , v_border_btm.Y + 10 };
+	F_Map_DrawBorder(v_temp_borderStart, v_temp_borderEnd);
 
 }

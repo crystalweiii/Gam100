@@ -72,9 +72,6 @@
     <ClInclude Include="TextReader.h">
       <Filter>Header Files\Helper</Filter>
     </ClInclude>
-    <ClInclude Include="Header.h">
-      <Filter>Header Files\Helper</Filter>
-    </ClInclude>
     <ClInclude Include="Graphic.h">
       <Filter>Header Files\Engine</Filter>
     </ClInclude>
@@ -107,6 +104,9 @@
     </ClInclude>
     <ClInclude Include="Menu.h">
       <Filter>Header Files\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Header.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
