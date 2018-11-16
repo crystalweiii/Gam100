@@ -128,7 +128,7 @@ void UpdateCollisionEvent_Bullet(int i)
 																			   listOfGameObjects[i].scaleX, listOfGameObjects[i].scaleY);
 
 		/*Found: movingObjectIndex of enemy*/
-		if (hitEnemyIndex != 0)
+		if (hitEnemyIndex >= 0)
 		{
 			/*Get: both collided thing de objectType*/
 			ObjectType bulletObjType = (ObjectType)F_GameObjectManager_GetObjectType(i);

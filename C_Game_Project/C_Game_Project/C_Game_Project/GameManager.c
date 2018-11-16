@@ -23,6 +23,10 @@ int temp_c_input = 0;
 COORD CO_TextPrintOut = { 0 };
 /*Each key check will be stored here*/
 
+/* DT DONE HERE */
+clock_t ticksThen, ticksNow;
+float dt;
+
 void F_GSManager_Init()
 {
 	COORD TextColumn = { v_border_btm.X + 5, (v_border_btm.Y) / 3 };
@@ -115,9 +119,6 @@ int F_GSManager_RunningStateMachine()
 {
 	/*COORD v_temp_startSpot = { (short)v_border_btm.X + 5 , (short)(v_border_btm.Y) / 2.5 };*/
 
-	/* DT DONE HERE */
-	clock_t ticksThen, ticksNow;
-	float dt;
 	ticksThen = clock();
 
 	while (v_running)
@@ -145,6 +146,10 @@ int F_GSManager_RunningStateMachine()
 			/* Update the game state manager. */
 			ticksThen = ticksNow;
 			F_GSManager_UpdateState(v_gs_current, dt);
+			
+			gotoxy(CO_TextPrintOut.X, CO_TextPrintOut.Y + 5);
+			printf("dt: %f", f_KeyUpdate(dt));
+
 		}
 	}
 	return 0;
@@ -212,4 +217,8 @@ void F_Basic_Instruction_Printout()
 
 	gotoxy(CO_TextPrintOut.X, CO_TextPrintOut.Y + 4);
 	printf("'S' during menu to move through choice");
+
+	gotoxy(CO_TextPrintOut.X, CO_TextPrintOut.Y + 5);
+	printf("dt: %f", dt);
+
 }

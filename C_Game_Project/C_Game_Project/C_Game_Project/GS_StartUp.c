@@ -22,7 +22,7 @@ void GS_StartUp_Exit()
 
 void GS_StartUp_InputCheck()
 {
-	if (f_Check_KeyDown_Once(0x20))
+	if (f_Check_KeyDown(0x20))
 	{
 		F_GSManager_ChangeState(MainMenu);
 	}

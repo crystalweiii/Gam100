@@ -44,14 +44,14 @@ void GS_MainMenu_Exit()
 void GS_MainMenu_InputCheck()
 {
 	/*Check for number 1 key hit*/
-	if (f_Check_KeyDown_Once(0x73) || f_Check_KeyDown_Once(0x53) )
+	if (f_Check_KeyDown_Slow(0x73) || f_Check_KeyDown_Slow(0x53) )
 	{
 		F_MainMenu_Select(1);
 	}
 
-	if (f_Check_KeyDown(0x77) || f_Check_KeyDown(0x57))
+	if (f_Check_KeyDown_Slow(0x77) || f_Check_KeyDown_Slow(0x57))
 	{
-		F_MainMenu_Select(1);
+		F_MainMenu_Select(-1);
 	}
 
 	if (f_Check_KeyDown(0x20))
