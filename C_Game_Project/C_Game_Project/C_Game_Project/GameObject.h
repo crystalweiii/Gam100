@@ -1,7 +1,7 @@
 /************************************************************************************************
 Filename :	GameObject.h / GameObject.c
-Author(s):
-Login(s) :
+Author(s):	Ong Jia Quan Joel
+Login(s) :	o.jiaquanjoel(100%)
 
 Description/Features:
 

@@ -1,12 +1,12 @@
 /************************************************************************************************
 Filename :	Map.h / Map.c
-Author(s):	Ong Jia Quan Joel, Ngian Teck Wei
-Login(s) :	o.jiaquanjoel(30%), teckwei.ngian(70%)
+Author(s):	Ong Jia Quan Joel, Desmond, Ngian Teck Wei
+Login(s) :	o.jiaquanjoel(25%), seeweedesmond.yeo(25%), teckwei.ngian(50%)
 
 Description/Features:
 This file contains reading from .csv (for level design) file.
 It also contains function to print out ASCII characters.
-It also contains function to print out instructions and welcome messages.
+It also contains function to print out game instructions.
 It also contains setter and getter functions to retrieve map[][] data
 
 ************************************************************************************************/

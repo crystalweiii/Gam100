@@ -1,7 +1,7 @@
 /************************************************************************************************
 Filename :	Header.h 
-Author(s):  Darren Low, Desmond Yeo, Ngian Teck Wei, Ong Jia Quan Joel
-Login(s) :	s.low (25%), seeweedesmond.yeo(25%), teckwei.ngian (25%),  o.jiaquanjoel (25%)
+Author(s):  Darren Low, Ngian Teck Wei, Ong Jia Quan Joel
+Login(s) :	s.low (33%), teckwei.ngian (33%),  o.jiaquanjoel (33%)
 
 Description/Features:
 Gather all the Marco together, easier for us to tweak the values.

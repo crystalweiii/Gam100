@@ -1,7 +1,7 @@
 /************************************************************************************************
 Filename :	Input.h / Input.c
-Author(s): Ngian Teck Wei, Desmond Yeo
-Login(s) : teckwei.ngian(70%) , seeweedesmond.yeo(30%)
+Author(s): Ngian Teck Wei
+Login(s) : teckwei.ngian(100%)
 
 Description/Features:
 Input handling that will provide function to check input and handle
