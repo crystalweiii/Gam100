@@ -1,8 +1,15 @@
-/**************************************************************************
-	Files: Map.h / Map.c
-	Load / Read / Set data from CSV for game map: [Joel: 50%], [Desmond: 50%]
-	Load / Read / Set data from text for menu: [TeckWei: 100%]
-**************************************************************************/
+/************************************************************************************************
+Filename :	Map.h / Map.c
+Author(s):	Ong Jia Quan Joel, Desmond, Teck Wei
+Login(s) :	o.jiaquanjoel(25%), seeweedesmond.yeo(25%), teck wei(50%)
+
+Description/Features:
+This file contains reading from .csv (for level design) file.
+It also contains function to print out ASCII characters.
+It also contains function to print out game instructions.
+It also contains setter and getter functions to retrieve map[][] data
+
+************************************************************************************************/
 #pragma once
 #include "Header.h"
 #include "Graphic.h"

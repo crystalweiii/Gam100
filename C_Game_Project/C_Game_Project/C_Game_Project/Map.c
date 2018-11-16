@@ -1,3 +1,16 @@
+/************************************************************************************************
+Filename :	Map.h / Map.c
+Author(s):	Ong Jia Quan Joel, Teck Wei
+Login(s) :	o.jiaquanjoel(30%), teck wei(70%)
+
+Description/Features:
+This file contains reading from .csv (for level design) file.
+It also contains function to print out ASCII characters.
+It also contains function to print out instructions and welcome messages.
+It also contains setter and getter functions to retrieve map[][] data
+
+************************************************************************************************/
+
 #include "Map.h"
 #include <stdbool.h>
 

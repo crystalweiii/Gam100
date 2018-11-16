@@ -1,3 +1,12 @@
+/************************************************************************************************
+Filename :	EnemyManager.h / EnemyManager.c
+Author(s):	Darren
+Login(s) :	s.low (100%)
+
+Description/Features:
+...
+
+************************************************************************************************/
 #include "EnemyManager.h"
 #include "GameObjectManager.h"
 #include "Map.h"

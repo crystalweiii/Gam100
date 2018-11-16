@@ -1,3 +1,13 @@
+/************************************************************************************************
+Filename :	WindowsHelper.h / WindowsHelper.c
+Author(s):  Ong Jia Quan Joel
+Login(s) :	o.jiaquanjoel (100%)
+
+Description/Features:
+Handle Windows Properties
+
+************************************************************************************************/
+
 #include <windows.h>
 #include "WindowsHelper.h"
 

@@ -1,3 +1,13 @@
+/************************************************************************************************
+Filename :	Header.h 
+Author(s):  Darren Low, Desmond Yeo, Teck Wei, Ong Jia Quan Joel
+Login(s) :	s.low (25%), seeweedesmond.yeo(25%), tw (25%),  o.jiaquanjoel (25%)
+
+Description/Features:
+Gather all the Marco together, easier for us to tweak the values.
+
+************************************************************************************************/
+
 #ifndef HEADER_H
 #define HEADER_H
 

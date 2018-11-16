@@ -1,3 +1,14 @@
+/*********************************************************************************************************************
+Filename :	GameObjectManager.h/ GameObjectManager.c
+Author(s):	Ong Jia Quan Joel, Desmond, Darren
+Login(s) :	o.jiaquanjoel(80%), seeweedesmond.yeo(...), s.low (...)
+
+Description/Features:
+This file contains init, update, cleanup for gameobject
+It contains function that handle collision checking, response to collision, setter and getter gameobject properties
+
+**********************************************************************************************************************/
+
 #include "GameObjectManager.h"
 #include "Map.h"
 #include "BulletManager.h"

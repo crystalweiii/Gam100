@@ -1,8 +1,13 @@
-/**************************************************************************
-	Files: PlayerManager.h / PlayerManager.c
-	Bullet Functions: [Joel: 100%]
-	Player Init / Update / Exit Functions: [Desmond: 100%]
-**************************************************************************/
+/*********************************************************************************************************************
+Filename :	PlayerManager.h / PlayerManager.c
+Author(s):	Ong Jia Quan Joel, Desmond
+Login(s) :	o.jiaquanjoel(40%), seeweedesmond.yeo(60%)
+
+Description/Features:
+This file contains init, update, cleanup for player.
+It contains function that handle player inputs during gameplay, and trigger event when input is enter.
+
+**********************************************************************************************************************/
 #pragma once
 #include "Math.h"
 
