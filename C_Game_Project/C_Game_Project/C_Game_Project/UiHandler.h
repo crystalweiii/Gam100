@@ -2,6 +2,8 @@
 #include "Header.h"
 #define MAX_PRINTOUT_CHAR 100
 
+
+/*
 typedef struct
 {
 	GameObject v_game_object;
@@ -31,7 +33,7 @@ void F_UIobject_init() {
 
 }
 
-
+*/
 void F_Insert_Print_Out() {
 	/*
 	for (x = 0; x < 10; x++)

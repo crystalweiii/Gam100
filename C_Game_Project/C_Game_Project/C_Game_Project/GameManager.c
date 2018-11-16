@@ -1,18 +1,15 @@
 /*********************************************************************************************************************
 Filename :	GameManager.h / GameManager.c
-Author(s):
-Login(s) :
+Author(s): Ngian Teck Wei , Ong Jia Quan Joel 
+Login(s) : teckwei.ngian(90%) , o.jiaquanjoel(10%)
 
 Description/Features:
-...
-
+This is game state manager is to control and handle the flow of the whole program
 **********************************************************************************************************************/
-
 
 #include <time.h>
 #include "GameManager.h"
 #include "Input.h"
-#include "TextReader.h"
 #include "Map.h"
 
 /*Game State*/
@@ -51,7 +48,6 @@ void F_GSManager_Init()
 	v_running = 1;
 	temp_c_input = 0;
 
-
 	F_GSManager_InitState(v_gs_current);
 }
 
@@ -61,6 +57,7 @@ void F_GSManager_ChangeState(int state)
 	v_gs_next = state;
 }
 
+/*Initialising of states is done here*/
 void F_GSManager_InitState(int state)
 {
 	switch (state)
@@ -83,6 +80,7 @@ void F_GSManager_InitState(int state)
 	}
 }
 
+/*Updating of states is done here*/
 void F_GSManager_UpdateState(int state, float dt) {
 	
 	switch (state)
@@ -105,6 +103,7 @@ void F_GSManager_UpdateState(int state, float dt) {
 		}
 }
 
+/*Exit and cleaning of states is done here*/
 void F_GSManager_ExitState(int state) {
 	switch (state)
 	{
@@ -128,10 +127,7 @@ void F_GSManager_ExitState(int state) {
 
 int F_GSManager_RunningStateMachine()
 {
-	/*COORD v_temp_startSpot = { (short)v_border_btm.X + 5 , (short)(v_border_btm.Y) / 2.5 };*/
-
 	ticksThen = clock();
-
 	while (v_running)
 	{	
 		/*Check for valid gamestate*/
@@ -141,12 +137,8 @@ int F_GSManager_RunningStateMachine()
 			F_GSManager_ExitState(v_gs_current);
 			v_gs_current = v_gs_next;
 			F_GSManager_InitState(v_gs_current);
-
-			gotoxy(CO_TextPrintOut.X, CO_TextPrintOut.Y - 1);
-
-			//printf("Current Map Index: %d", currentScreenIndex);
 		}
-		/*Input check and updates here, Most likely gonna move input check to another*/
+		/*Input check and updates here*/
 		F_GSManager_InputCheck();
 
 		/* DT UPDATE DONE HERE */
@@ -154,7 +146,7 @@ int F_GSManager_RunningStateMachine()
 		dt = (ticksNow - ticksThen) / (float)CLOCKS_PER_SEC;
 		if (dt >= 0.016f)
 		{
-			/* Update the game state manager. */
+			/* Update the game state manager */
 			ticksThen = ticksNow;
 			F_GSManager_UpdateState(v_gs_current, dt);
 			f_KeyUpdate(dt);
@@ -167,6 +159,7 @@ int F_GSManager_RunningStateMachine()
 	return 0;
 }
 
+/*input checking done here*/
 void F_GSManager_InputCheck()
 {
 	/*
@@ -206,13 +199,14 @@ void F_GSManager_InputCheck()
 	}
 
 }
-
+/*check for changing of state done here*/
 int F_GSManager_CheckForChangeState()
 {
 	return v_gs_next != v_gs_current;
 
 }
 
+/*Debug and instructional printout is heree*/
 void F_Basic_Instruction_Printout()
 {
     COORD v_temp_startSpot = { v_border_btm.X + 5 , (v_border_btm.Y) / 3 };

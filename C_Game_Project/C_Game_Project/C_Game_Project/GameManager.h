@@ -1,12 +1,12 @@
 /*********************************************************************************************************************
 Filename :	GameManager.h / GameManager.c
-Author(s):
-Login(s) :
+Author(s): Ngian Teck Wei , Ong Jia Quan Joel
+Login(s) : teckwei.ngian(90%) , o.jiaquanjoel(10%)
 
 Description/Features:
-...
-
+This is game state manager is to control and handle the flow of the whole program
 **********************************************************************************************************************/
+
 
 #include "Header.h"
 

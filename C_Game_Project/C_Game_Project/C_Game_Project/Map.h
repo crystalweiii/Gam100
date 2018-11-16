@@ -1,7 +1,7 @@
 /************************************************************************************************
 Filename :	Map.h / Map.c
-Author(s):	Ong Jia Quan Joel, Desmond, Teck Wei
-Login(s) :	o.jiaquanjoel(25%), seeweedesmond.yeo(25%), teck wei(50%)
+Author(s):	Ong Jia Quan Joel, Desmond, Ngian Teck Wei
+Login(s) :	o.jiaquanjoel(25%), seeweedesmond.yeo(25%), teckwei.ngian(50%)
 
 Description/Features:
 This file contains reading from .csv (for level design) file.

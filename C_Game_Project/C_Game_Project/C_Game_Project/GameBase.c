@@ -1,11 +1,10 @@
 /*********************************************************************************************************************
 Filename :	GameBase.h / GameBase.c
-Author(s):
-Login(s) :
+Author(s): Ngian Teck Wei
+Login(s) : teckwei.ngian (100%)
 
 Description/Features:
-...
-
+The basic start up of the program.
 **********************************************************************************************************************/
 
 
@@ -19,7 +18,6 @@ void F_Game_Init()
 	F_GSManager_Init();
 
 	F_Basic_Instruction_Printout();
-	
 }
 
 void F_Game_Running()

@@ -1,11 +1,10 @@
 /*********************************************************************************************************************
 Filename :	GS_GamePlay.h / GS_GamePlay.c
-Author(s):	
-Login(s) :	
+Author(s):	Ong Jia Quan Joel
+Login(s) :	o.jiaquanjoel(100%)
 
 Description/Features:
-...
-
+This is for the gameplay state, where others will then link up with their gameplay logics
 **********************************************************************************************************************/
 
 #include "GS_GamePlay.h"

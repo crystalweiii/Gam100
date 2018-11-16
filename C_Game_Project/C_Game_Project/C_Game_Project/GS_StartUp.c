@@ -1,13 +1,11 @@
 /*********************************************************************************************************************
 Filename :	GS_StartUp.h / GS_StartUp.c
-Author(s):
-Login(s) :
+Author(s): Ngian Teck Wei
+Login(s) : teckwei.ngian(100%)
 
 Description/Features:
-...
-
+This is the start up page where it will print the digipen logo
 **********************************************************************************************************************/
-
 
 #include "GS_StartUp.h"
 #include "Map.h"

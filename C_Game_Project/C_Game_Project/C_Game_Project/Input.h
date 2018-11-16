@@ -1,10 +1,11 @@
 /************************************************************************************************
 Filename :	Input.h / Input.c
-Author(s):
-Login(s) :
+Author(s): Ngian Teck Wei, Desmond Yeo
+Login(s) : teckwei.ngian(70%) , seeweedesmond.yeo(30%)
 
 Description/Features:
-
+Input handling that will provide function to check input and handle 
+them in different way
 ************************************************************************************************/
 
 #include "Header.h"

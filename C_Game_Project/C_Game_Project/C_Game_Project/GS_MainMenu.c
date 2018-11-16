@@ -1,11 +1,10 @@
 /*********************************************************************************************************************
 Filename :	GS_MainMenu.h / GS_MainMenu.c
-Author(s):
-Login(s) :
+Author(s): Ngian Teck Wei
+Login(s) : teckwei.ngian(100%)
 
 Description/Features:
-...
-
+This is the main menu page which will be use to transition to game play page, credit page, and exit
 **********************************************************************************************************************/
 
 #include "GS_MainMenu.h"
@@ -50,10 +49,10 @@ void GS_MainMenu_Exit()
 {
 	F_Map_EmptySlow();
 }
-
+/*For Input checking*/
 void GS_MainMenu_InputCheck()
 {
-	/*Check for number 1 key hit*/
+	/*for tranversing the menu and selection*/
 	if (f_Check_KeyDown_Slow(0x73) || f_Check_KeyDown_Slow(0x53) )
 	{
 		F_MainMenu_Select(1);
@@ -81,6 +80,7 @@ void GS_MainMenu_InputCheck()
 	}
 }
 
+/*Selection logic*/
 void F_MainMenu_Select(int dir)
 {
 	COORD top_position = { Word_Pos_Top[selector_ptr].X + v_map_top.X , Word_Pos_Top[selector_ptr].Y + v_map_top.Y };
@@ -107,7 +107,7 @@ void F_MainMenu_Select(int dir)
 }
 
 
-
+/*Coding out the main menu and the intended choices*/
 void F_Main_Menu_Print(char dc_array[d_game_width][d_game_height])
 {
 	char* Spaceneed[25]; /*25 max char*/

@@ -1,11 +1,10 @@
 /*********************************************************************************************************************
 Filename :	GS_MainMenu.h / GS_MainMenu.c
-Author(s):
-Login(s) :
+Author(s): Ngian Teck Wei
+Login(s) : teckwei.ngian(100%)
 
 Description/Features:
-...
-
+This is the main menu page which will be use to transition to game play page, credit page, and exit
 **********************************************************************************************************************/
 
 

@@ -1,16 +1,17 @@
 /************************************************************************************************
 Filename :	Input.h / Input.c
-Author(s):	
-Login(s) :	
+Author(s): Ngian Teck Wei, Desmond Yeo
+Login(s) : teckwei.ngian(70%) , seeweedesmond.yeo(30%)
 
 Description/Features:
-
+Input handling that will provide function to check input and handle
+them in different way
 ************************************************************************************************/
 
 #include "Input.h"
 
-
-float delay = 1; /*for key delay*/
+/*for key delay*/
+float delay = 1; 
 
 
 float f_KeyUpdate(float dt)
@@ -31,8 +32,7 @@ int f_Check_KeyHit()
 int f_Check_KeyDown_Slow(int key)
 {
 
-     a_key_check[key] = GetKeyState(key);
-	 if ((delay >= 1.f) && (a_key_check[key] != 0 && a_key_check[key] != 1))
+	 if (delay >= 1.f &&  f_Check_KeyDown(key))
 	 {
 		 delay = 0.f;
 		 return 1;

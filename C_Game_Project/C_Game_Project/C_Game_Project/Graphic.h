@@ -1,7 +1,7 @@
 /************************************************************************************************
 Filename :	Graphic.h / Graphic.c
 Author(s):	Ong Jia Quan Joel, Teck Wei
-Login(s) :	o.jiaquanjoel(30%), teck wei(70%)
+Login(s) :	o.jiaquanjoel(30%), teckwei.ngian(70%)
 
 Description/Features:
 This file contains reading from .txt file.

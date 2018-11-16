@@ -1,11 +1,10 @@
 /*********************************************************************************************************************
 Filename :	GameBase.h / GameBase.c
-Author(s):
-Login(s) :
+Author(s): Ngian Teck Wei
+Login(s) : teckwei.ngian (100%)
 
 Description/Features:
-...
-
+The basic start up of the program.
 **********************************************************************************************************************/
 
 #pragma once

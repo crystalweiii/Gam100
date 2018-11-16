@@ -1,11 +1,10 @@
 /*********************************************************************************************************************
 Filename :	GS_GamePlay.h / GS_GamePlay.c
-Author(s):
-Login(s) :
+Author(s): Ngian Teck Wei
+Login(s) : teckwei.ngian(100%)
 
 Description/Features:
-...
-
+This is for the gameplay state, where others will then link up with their gameplay logics
 **********************************************************************************************************************/
 
 extern void GS_GamePlay_Init();

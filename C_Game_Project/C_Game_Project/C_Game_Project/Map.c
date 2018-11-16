@@ -1,7 +1,7 @@
 /************************************************************************************************
 Filename :	Map.h / Map.c
-Author(s):	Ong Jia Quan Joel, Teck Wei
-Login(s) :	o.jiaquanjoel(30%), teck wei(70%)
+Author(s):	Ong Jia Quan Joel, Ngian Teck Wei
+Login(s) :	o.jiaquanjoel(30%), teckwei.ngian(70%)
 
 Description/Features:
 This file contains reading from .csv (for level design) file.
@@ -143,8 +143,10 @@ void F_Map_Set_And_Print(int index)
 
 void F_Map_Instruction_Printout()
 {
+	/*
 	gotoxy(d_game_width / 2, 2);
 	printf("Welcome to GGPEN");
+	*/
 }
 
 /*------------------------------------------------------------------------------
