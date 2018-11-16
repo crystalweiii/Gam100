@@ -1,3 +1,8 @@
+/**************************************************************************
+	Files: Map.h / Map.c
+	Load / Read / Set data from CSV for game map: [Joel: 50%], [Desmond: 50%]
+	Load / Read / Set data from text for menu: [TeckWei: 100%]
+**************************************************************************/
 #pragma once
 #include "Header.h"
 #include "Graphic.h"

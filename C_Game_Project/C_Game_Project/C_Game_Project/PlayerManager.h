@@ -1,3 +1,8 @@
+/**************************************************************************
+	Files: PlayerManager.h / PlayerManager.c
+	Bullet Functions: [Joel: 100%]
+	Player Init / Update / Exit Functions: [Desmond: 100%]
+**************************************************************************/
 #pragma once
 #include "Math.h"
 
