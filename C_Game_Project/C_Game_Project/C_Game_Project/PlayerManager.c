@@ -87,20 +87,12 @@ void F_PlayerManager_Exit()
 /* LOOP: Turnbased input */
 void F_PlayerManager_CheckInput()
 {
-	if (_kbhit())
-	{
-		switch (_getch())
-		{
-			/* Press Space bar */
-			case 0x20:
-				CreateBullet(BulletBlue, playerIndex1);
-				break;
-			/* Press backspace *TEMP* */
-			case 0x08:
-				CreateBullet(BulletBlue, playerIndex2);
-				break;
-		}
-	}
+	/* Press J */
+	if (f_Check_KeyDown(0x4A))
+		CreateBullet(BulletBlue, playerIndex1);
+	/* Press K */
+	else if (f_Check_KeyDown(0x4B))
+		CreateBullet(BulletBlue, playerIndex2);
 
 	if (f_Check_KeyDown(0x26)) /* Press 'UP ARROW KEY' */
 	{

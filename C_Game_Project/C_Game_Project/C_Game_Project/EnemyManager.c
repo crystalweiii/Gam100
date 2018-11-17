@@ -50,18 +50,7 @@ void F_EnemyManager_Init()
 		enemyIndices[i] = -1;
 	}
 
-	/*Get: Num of spawn Point*/
-	noOfSpawnPoint = F_MapManager_GetEnemyTotalSpawnPoint();
-
-	/*Get: Enemy Spawn Position*/
-	float* tmpX = F_MapManager_GetEnemySpawnPositionX();
-	float* tmpY = F_MapManager_GetEnemySpawnPositionY();
-	for (i = 0; i < noOfSpawnPoint; ++i)
-	{
-		enemySpawnPosX[i] = *(tmpX + i);
-		enemySpawnPosY[i] = *(tmpY + i);
-	}
-
+	F_EnemyManager_StartOfLevelInit(Level_One);
 }
 void F_EnemyManager_Update(float dt)
 {
@@ -78,7 +67,38 @@ void F_EnemyManager_Exit()
 	}
 }
 
+void F_EnemyManager_StartOfLevelInit(int level)
+{
+	int i = 0;
 
+	/*Get: Num of spawn Point*/
+	noOfSpawnPoint = F_MapManager_GetEnemyTotalSpawnPoint();
+
+	/* Spawn Enemy depending on which map*/
+	switch (level)
+	{
+	case Level_One:
+		/*Tutorial Level: Spawn 2 enemies on 1 large lane*/
+		F_EnemyManager_SpawnEnemy(0, EnemyRed, -1, 0);
+		F_EnemyManager_SpawnEnemy(1, EnemyBlue, -1, 0);
+		break;
+	case Level_Two:
+		/* Level 1 spawn 3 enemies 1 vertical lane, 2 horizontal lanes*/
+		F_EnemyManager_SpawnEnemy(0, EnemyGreen, 0, 1);
+		F_EnemyManager_SpawnEnemy(1, EnemyBlue, -1, 0);
+		F_EnemyManager_SpawnEnemy(2, EnemyBlue, -1, 0);
+		break;
+	}
+
+	/*Get: Enemy Spawn Position*/
+	float* tmpX = F_MapManager_GetEnemySpawnPositionX();
+	float* tmpY = F_MapManager_GetEnemySpawnPositionY();
+	for (i = 0; i < noOfSpawnPoint; ++i)
+	{
+		enemySpawnPosX[i] = *(tmpX + i);
+		enemySpawnPosY[i] = *(tmpY + i);
+	}
+}
 
 /*------------------------------------------------------------------------------
 // Utility

@@ -8,6 +8,7 @@ This is for the gameplay state, where others will then link up with their gamepl
 **********************************************************************************************************************/
 
 #include "GS_GamePlay.h"
+#include "LevelManager.h"
 #include "Map.h"
 #include "PlayerManager.h"
 #include "GameObjectManager.h"
@@ -19,9 +20,9 @@ void GS_GamePlay_Init()
 {
 	/* Window: Make sure its full screen  */
 	//WindowsHelper_Init();
-
-	/* Map: "Retrieve" level->mapdata */
-	F_MapManager_Gameplay_Init(Level_Two);
+	
+	/* Handles level loading stuff etc*/
+	F_LevelManager_Init();
 
 	/* GameObjectManager: memset all gameobject elements */
 	F_GameObjectManager_Init();
@@ -34,20 +35,13 @@ void GS_GamePlay_Init()
 
 	/* EnemyManager: Init all enemy indices*/
 	F_EnemyManager_Init();
-
-	/*Spawn Enemy*/
-	F_EnemyManager_SpawnEnemy(0, EnemyRed, -1, 0);
-	/*F_EnemyManager_SpawnEnemy(1, EnemyBlue, -1, 0);
-	F_EnemyManager_SpawnEnemy(2, EnemyGreen, -1, 0);
-	F_EnemyManager_SpawnEnemy(3, EnemyBlue, -1, 0);
-	F_EnemyManager_SpawnEnemy(4, EnemyBlue, -1, 0);*/
 }
 
 void GS_GamePlay_Update(float dt) 
 {
 	F_GameObjectManager_Update(dt);
 	F_PlayerManager_Update(dt);
-
+	F_LevelManager_Update();
 	F_Graphic_Draw();
 }
 
@@ -56,6 +50,6 @@ void GS_GamePlay_Exit()
 	F_PlayerManager_Exit();
 	F_BulletManager_Exit();
 	F_EnemyManager_Exit();
-	F_Map_EmptySlow();
+	F_LevelManager_Exit();
 }
 
