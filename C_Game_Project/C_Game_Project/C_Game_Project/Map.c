@@ -127,7 +127,6 @@ void F_Map_Print()
 void F_Map_Set_And_Print(int index)
 {
 	int x = v_map_top.X, y = v_map_top.Y;
-
 	s_map_index.v_selected = index;
 
 	for (int gh_generate = 0; gh_generate < d_game_height; gh_generate++)
@@ -136,9 +135,13 @@ void F_Map_Set_And_Print(int index)
 		for (int gw_generate = 0; gw_generate < d_game_width; gw_generate++)
 		{
 			s_current_map.V_Map_Array[gh_generate][gw_generate] = s_map_db[s_map_index.v_selected].V_Map_Array[gh_generate][gw_generate];
-			printf("%c", s_current_map.V_Map_Array[gh_generate][gw_generate]);
+
+			if(s_current_map.V_Map_Array[gh_generate][gw_generate] != '~')
+				printf("%c", s_current_map.V_Map_Array[gh_generate][gw_generate]);
 		}
-		++y;
+
+ 		++y;
+
 	}
 }
 
@@ -168,7 +171,6 @@ void F_MapManager_Gameplay_Init(LevelType levelType)
 			F_Map_Set_And_Print(3);
 			break;
 	}
-
 	/* Get: player/enemy spawn point positions*/
 	RetrieveSpawnPositionFromData(&player1SpawnPosX, &player1SpawnPosY, &player2SpawnPosX, &player2SpawnPosY, enemySpawnPosX, enemySpawnPosY);
 }
@@ -256,7 +258,7 @@ void F_ReadFromCSVAndStore(char tempMap[d_game_height][d_game_width], int mapInd
 	for (y = 0; y < d_game_height; ++y)
 	{
 		for (x = 0; x < d_game_width; ++x)
-			tempMap[y][x] = ' ';
+			tempMap[y][x] = '~';
 	}
 	int xCounter = 0;
 	mapHeight = mapWidth = 0;

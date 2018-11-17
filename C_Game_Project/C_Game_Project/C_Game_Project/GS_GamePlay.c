@@ -21,7 +21,7 @@ void GS_GamePlay_Init()
 	//WindowsHelper_Init();
 
 	/* Map: "Retrieve" level->mapdata */
-	F_MapManager_Gameplay_Init(Level_One);
+	F_MapManager_Gameplay_Init(Level_Two);
 
 	/* GameObjectManager: memset all gameobject elements */
 	F_GameObjectManager_Init();
