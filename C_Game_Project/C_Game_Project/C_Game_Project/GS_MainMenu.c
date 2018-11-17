@@ -108,7 +108,7 @@ void F_MainMenu_Select(int dir)
 
 
 /*Coding out the main menu and the intended choices*/
-void F_Main_Menu_Print(char dc_array[d_game_width][d_game_height])
+void F_Main_Menu_Print(char dc_array[d_game_height][d_game_width])
 {
 	char* Spaceneed[25]; /*25 max char*/
 	int count;
@@ -122,7 +122,7 @@ void F_Main_Menu_Print(char dc_array[d_game_width][d_game_height])
 	Word_Pos_Top[0].X = AlignPoint.X - 1;
 	Word_Pos_Top[0].Y = AlignPoint.Y - 1;
 	for (count = 0; count < 4; count++) {
-		dc_array[AlignPoint.X + count][AlignPoint.Y] = play[count];
+		dc_array[AlignPoint.Y][AlignPoint.X + count] = play[count];
 	}
 	Word_Pos_Btm[0].X = AlignPoint.X + count + 1;
 	Word_Pos_Btm[0].Y = AlignPoint.Y + 1;
@@ -132,7 +132,7 @@ void F_Main_Menu_Print(char dc_array[d_game_width][d_game_height])
 	Word_Pos_Top[1].X = AlignPoint.X - 1;
 	Word_Pos_Top[1].Y = AlignPoint.Y - 1;
 	for (count = 0; count < 6; count++) {
-		dc_array[AlignPoint.X + count][AlignPoint.Y] = credit[count];
+		dc_array[AlignPoint.Y][AlignPoint.X + count] = credit[count];
 	}
 	Word_Pos_Btm[1].X = AlignPoint.X + count + 1;
 	Word_Pos_Btm[1].Y = AlignPoint.Y + 1;
@@ -142,7 +142,7 @@ void F_Main_Menu_Print(char dc_array[d_game_width][d_game_height])
 	Word_Pos_Top[2].X = AlignPoint.X - 1;
 	Word_Pos_Top[2].Y = AlignPoint.Y - 1;
 	for (count = 0; count < 4; count++) {
-		dc_array[AlignPoint.X + count][AlignPoint.Y] = exit[count];
+		dc_array[AlignPoint.Y][AlignPoint.X + count] = exit[count];
 	}
 	Word_Pos_Btm[2].X = AlignPoint.X + count + 1;
 	Word_Pos_Btm[2].Y = AlignPoint.Y + 1;

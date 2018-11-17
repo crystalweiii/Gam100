@@ -36,9 +36,6 @@ void ClearImage(float posX, float posY);
 /*------------------------------------------------------------------------------
 // Render
 //----------------------------------------------------------------------------*/
-/* Render: All Static objects like wall, "ONCE"*/
-void F_Graphic_RenderStaticObject();
-
 /* Render: All Moving objects like player "LOOP" */
 void F_Graphic_Draw();
 

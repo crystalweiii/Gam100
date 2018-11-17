@@ -42,15 +42,25 @@ void F_EnemyManager_Init()
 	enemiesInUse = 0;
 
 	/*Set all bullet related data to initial state*/
-	for (int i = 0; i < d_MAX_ENEMIES; ++i)
+	int i = 0;
+	for (i = 0; i < d_MAX_ENEMIES; ++i)
 	{
 		/*Initializing indices to -1.
 		Since indices can only be >= 0, -1 tells me that the bullet at this index is not active*/
 		enemyIndices[i] = -1;
 	}
 
-	/*Get: Enemy Spawn Point position + Num of spawn Point*/
-	F_MapManager_GetEnemySpawnPosition(enemySpawnPosX, enemySpawnPosY, &noOfSpawnPoint);
+	/*Get: Num of spawn Point*/
+	noOfSpawnPoint = F_MapManager_GetEnemyTotalSpawnPoint();
+
+	/*Get: Enemy Spawn Position*/
+	float* tmpX = F_MapManager_GetEnemySpawnPositionX();
+	float* tmpY = F_MapManager_GetEnemySpawnPositionY();
+	for (i = 0; i < noOfSpawnPoint; ++i)
+	{
+		enemySpawnPosX[i] = *(tmpX + i);
+		enemySpawnPosY[i] = *(tmpY + i);
+	}
 
 }
 void F_EnemyManager_Update(float dt)

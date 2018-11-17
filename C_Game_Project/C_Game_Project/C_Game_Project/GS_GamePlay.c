@@ -18,7 +18,7 @@ This is for the gameplay state, where others will then link up with their gamepl
 void GS_GamePlay_Init()
 {
 	/* Window: Make sure its full screen  */
-	WindowsHelper_Init();
+	//WindowsHelper_Init();
 
 	/* Map: "Retrieve" level->mapdata */
 	F_MapManager_Gameplay_Init(Level_One);
@@ -28,9 +28,6 @@ void GS_GamePlay_Init()
 
 	/* PlayerManager: create and spawn player*/
 	F_PlayerManager_Init();
-
-	/* GraphicManager: Static objects like wall "ONCE" */
-	F_Graphic_RenderStaticObject();
 
 	/* BulletManager: Init all bullet indices*/
 	F_BulletManager_Init();

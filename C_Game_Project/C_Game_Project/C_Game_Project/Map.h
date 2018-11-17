@@ -39,7 +39,7 @@ struct S_MapIndex s_map_index;
 
 struct S_MapData /*to keep track of the maps*/
 {
-	char V_Map_Array[d_game_width][d_game_height];
+	char V_Map_Array[d_game_height][d_game_width];
 };
 
 /*int V_current_map_index = 0;  to keep track of the current map*/
@@ -104,5 +104,6 @@ int F_MapManager_GetMapHeight();
 /*------------------------------------------------------
 // Others
 ------------------------------------------------------*/
-/* Retrieve: Enemy Spawn Point[] positions*/
-void F_MapManager_GetEnemySpawnPosition(float *spawnEnemyPosX, float *spawnEnemyPosY, int *noOfSpawnPoint);
+float* F_MapManager_GetEnemySpawnPositionX();
+float* F_MapManager_GetEnemySpawnPositionY();
+int F_MapManager_GetEnemyTotalSpawnPoint();

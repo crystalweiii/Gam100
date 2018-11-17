@@ -46,7 +46,7 @@ void hideCursor()
 	SetConsoleCursorInfo(wHnd, &cursorInfo);
 }
 
-int F_ReadFromTextAndStore(char* url , char dc_array[d_game_width][d_game_height]) {
+int F_ReadFromTextAndStore(char* url , char dc_array[d_game_height][d_game_width]) {
 	errno_t err;
 	FILE *fp;
 	char str[d_maxchar];
@@ -66,7 +66,7 @@ int F_ReadFromTextAndStore(char* url , char dc_array[d_game_width][d_game_height
 		int t_gw = 0;
 		for (t_gw = 0; t_gw < strlen(str); t_gw++)//for (t_gw = 0; t_gw < d_game_width; t_gw++)
 		{
-			dc_array[t_gw][t_heightCount] = str[t_gw];
+			dc_array[t_heightCount][t_gw] = str[t_gw];
 			/*s_map_db[s_map_index.v_selected].V_Map_Array[t_gw][t_heightCount] = s_current_map.V_Map_Array[t_gw][t_heightCount];*/
 		}
 
@@ -168,33 +168,6 @@ void ClearImage(float posX, float posY)
 /*------------------------------------------------------------------------------
 // Render
 //----------------------------------------------------------------------------*/
-/* Render: All Static objects like wall "ONCE" */
-void F_Graphic_RenderStaticObject()
-{
-	/*
-	 * Function Description: Draw only static object like wall "ONCE"
-	 */
-
-	int x, y;
-	x = y = 0;
-
-	for (y = 0; y < d_game_height; y++)
-	{
-		for (x = 0; x < d_game_width; x++)
-		{
-
-			/* Render: 1 desired tile at desired position*/
-			//F_DrawTile_Position(s_current_map.V_Map_Array[y][x], None, x, y);
-			F_DrawTile_Position(map[y][x], None, x, y);
-			int hahhaa = 0;
-
-		}
-
-		/* Dont molest my '\n' */
-		printf_s("\n");
-	}
-}
-
 /* Render: Moving objects like player "LOOP" */
 void F_Graphic_Draw()
 {
