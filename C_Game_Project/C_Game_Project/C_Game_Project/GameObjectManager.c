@@ -18,6 +18,7 @@ It contains function that handle collision checking, response to collision, sett
 // Private Variables
 //----------------------------------------------------------------------------*/
 static GameObj listOfGameObjects[d_MAX_GAMEOBJECTS];
+
 static int numberInUse;
 
 
@@ -38,6 +39,7 @@ bool Check_TileCollision_With(char otherType, int index);
 /* Init */
 void F_GameObjectManager_Init()
 {
+	int i;
 	memset(listOfGameObjects, 0, sizeof(GameObj) * d_MAX_GAMEOBJECTS);
 }
 
@@ -47,6 +49,7 @@ void F_GameObjectManager_Update(float dt)
 	int processed = 0;
 	// update position of all gameobjects
 	int i;
+
 	for (i = 0; i < d_MAX_GAMEOBJECTS; ++i)
 	{
 		if (listOfGameObjects[i].type != None &&
@@ -255,7 +258,6 @@ void UpdateCollisionEvent_Bullet(int i)
 		}
 	}
 
-	
 	/*-----------------------------------------------
 	// Handle Collision: Bullet XXX Wall
 	-----------------------------------------------*/
@@ -275,7 +277,7 @@ void UpdateCollisionEvent_Enemy(int i)
 	/*-----------------------------------------------
 	// Handle Collision: Enemy XXX Player Defense
 	-----------------------------------------------*/
-	if (Check_TileCollision_With(TILE_WALL_V, i))
+	if (Check_TileCollision_With(TILE_WALL_V, i) || Check_TileCollision_With(TILE_WALL_H, i) || Check_TileCollision_With(TILE_PLAYER_DEFENSE, i))
 	{
 		/*Draw EMPTY over ENEMY*/
 		F_DrawScaleTile_Position(TILE_EMPTY, None, (int)listOfGameObjects[i].positionX, (int)listOfGameObjects[i].positionY, (int)listOfGameObjects[i].scaleX,
