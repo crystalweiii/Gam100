@@ -102,6 +102,9 @@
     <ClInclude Include="Header.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="LevelManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameManager.c">
@@ -151,6 +154,9 @@
     </ClCompile>
     <ClCompile Include="Menu.c">
       <Filter>Source Files\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelManager.c">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
