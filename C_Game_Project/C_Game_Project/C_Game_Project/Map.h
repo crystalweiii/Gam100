@@ -108,3 +108,11 @@ int F_MapManager_GetMapHeight();
 float* F_MapManager_GetEnemySpawnPositionX();
 float* F_MapManager_GetEnemySpawnPositionY();
 int F_MapManager_GetEnemyTotalSpawnPoint();
+
+/*------------------------------------------------------------------------------
+// Invincible tiles use
+//----------------------------------------------------------------------------*/
+char *GetInvincibleTilesListType();
+int *GetInvincibleTilesListPosX();
+int *GetInvincibleTilesListPosY();
+int *F_GameObjectManager_GetNumOfInvincibleTiles();

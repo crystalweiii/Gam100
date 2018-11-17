@@ -20,8 +20,8 @@ Gather all the Marco together, easier for us to tweak the values.
 /*
  *  Map Macro:
  */
-#define d_game_width 160					/*Adjust: Gameplay map->size*/
-#define d_game_height 29					/*Adjust: Gameplay map->size*/
+#define d_game_width 120					/*Adjust: Gameplay map->size*/
+#define d_game_height 49					/*Adjust: Gameplay map->size*/
 
 #define d_border_offset_x 0					/*Adjust: Dont touch please*/
 #define d_border_offset_y 0					/*Adjust: Dont touch please*/
@@ -42,6 +42,11 @@ Gather all the Marco together, easier for us to tweak the values.
    */
 #define d_MAX_GAMEOBJECTS 200
 
+   /*
+	*  Invincible tiles Macro:
+	*/
+#define d_MAX_INVINCIBLE_TILES 1000
+
   /*
    *  Character Properties:
    */
@@ -54,7 +59,7 @@ Gather all the Marco together, easier for us to tweak the values.
 #define d_PLAYER_SPEED 15				//Player: move speed
 #define d_RATE_OF_PLAYER_FIRE 0.25f		//Player: shoot cooldown
 #define d_PLAYER_SHOOT_X_OFFSET 9		//Player: Bullet Spawn position
-#define d_PLAYER_SHOOT_Y_OFFSET -4		//Player: Bullet Spawn position
+#define d_PLAYER_SHOOT_Y_OFFSET -5		//Player: Bullet Spawn position
 
 	/*
 	 *  Bullet Properties:
@@ -66,7 +71,7 @@ Gather all the Marco together, easier for us to tweak the values.
 	  *  Enemy Properties:
 	  */
 #define d_MAX_ENEMIES 30
-#define d_ENEMY_SPEED 20
+#define d_ENEMY_SPEED 5
 #define d_ENEMY_ANGRY_SPEED d_ENEMY_SPEED * 2
   /*
    *  Textfile Macro:
@@ -98,6 +103,8 @@ static char TILE_ENEMY = 'X';
 static char TILE_BULLET_1 = '>';
 static char TILE_BULLET_2 = '^';
 static char TILE_PLAYER_DEFENSE = 'B';
+static char TILE_ROAD_H = '=';
+static char TILE_ROAD_V = '/';
 /*
  *  ObjectType: Use to differentiate which is "active GameObject" & differentiate color GameObject
  */

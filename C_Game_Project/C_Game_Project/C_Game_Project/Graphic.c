@@ -12,6 +12,7 @@ It also contains function to print out ASCII characters.
 #include "Graphic.h"
 #include "Map.h"
 #include "GameObjectManager.h"
+#include "LevelManager.h"
 #include "WindowsHelper.h"
 
 void F_Graphic_Init()
@@ -177,8 +178,30 @@ void F_Graphic_Draw()
 
 	int i;
 	GameObj *objects = GetGameObjectList();
-	int activeObjectCount = F_GameObjectManager_GetNumberInUse();
 	int processed = 0;
+
+	/* Data for printing the invisible tiles */
+	char (*listOfInvincibleTilesType)[d_MAX_INVINCIBLE_TILES] = GetInvincibleTilesListType();
+	int (*listOfInvincibleTilesPosX)[d_MAX_INVINCIBLE_TILES] = GetInvincibleTilesListPosX();
+	int (*listOfInvincibleTilesPosY)[d_MAX_INVINCIBLE_TILES] = GetInvincibleTilesListPosY();
+	int *arrOfMaxInvincibleTiles = F_GameObjectManager_GetNumOfInvincibleTiles();
+
+	int currentLevel = F_LevelManager_GetCurrentLevel();
+	int activeObjectCount = F_GameObjectManager_GetNumberInUse();
+
+	/* Prints invincible tiles constantly */
+	for (i = 0; i < d_MAX_INVINCIBLE_TILES; ++i)
+	{
+		if (i < arrOfMaxInvincibleTiles[currentLevel])
+		{
+			gotoxy(*(*(listOfInvincibleTilesPosX + F_LevelManager_GetCurrentLevel()) + i), *(*(listOfInvincibleTilesPosY + F_LevelManager_GetCurrentLevel()) + i));
+			printf("%c", '=');
+		}
+		else
+		{
+			break;
+		}
+	}
 
 	for (i = 0; i < d_MAX_GAMEOBJECTS; ++i)
 	{
@@ -227,9 +250,11 @@ void F_Graphic_Draw()
 
 		/*Tracking the number of objects to draw*/
 		if (processed >= activeObjectCount)
-			return;
+			break;
 
 	}
+
+	
 }
 
 
@@ -288,7 +313,6 @@ void F_DrawScaleTile_Position(char tiletype, ObjectType objType, int posX, int p
 			for (y = 0; y < scaleY; ++y)
 			{
 				F_DrawTile_Position(tiletype, objType, posX - anchorOffsetX + x, posY - anchorOffsetY + y);
-
 			}
 		}
 
@@ -304,7 +328,6 @@ void F_DrawScaleTile_Position(char tiletype, ObjectType objType, int posX, int p
 			for (y = 0; y < scaleY; ++y)
 			{
 				F_DrawTile_Position(tiletype, objType, posX - anchorOffsetX + x, posY - anchorOffsetY + y);
-
 			}
 		}
 

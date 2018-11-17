@@ -21,15 +21,22 @@ float player1SpawnPosX = 0;
 float player1SpawnPosY = 0;
 float player2SpawnPosX = 0;
 float player2SpawnPosY = 0;
+
 float enemySpawnPosX[d_MAX_ENEMY_SPAWN_POINT];
 float enemySpawnPosY[d_MAX_ENEMY_SPAWN_POINT];
 int numOfEnemySpawnPoint = 0;
+
+
+int listOfInvincibleTilesPosX[d_map_amount][d_MAX_INVINCIBLE_TILES];
+int listOfInvincibleTilesPosY[d_map_amount][d_MAX_INVINCIBLE_TILES];
+char listOfInvincibleTilesType[d_map_amount][d_MAX_INVINCIBLE_TILES];
+static int numOfInvincibleTiles[d_map_amount];
 
 /*--------------------------------
 // Private Function Declaration
 --------------------------------*/
 void F_ReadFromCSVAndStore(char tempMap[d_game_height][d_game_width], int mapIndex);
-void RetrieveSpawnPositionFromData(float *spawnPlayerPosX, float *spawnPlayerPosY, float *spawnEnemyPosX, float *spawnEnemyPosY);
+void RetrieveSpawnPositionFromData(float *spawnPlayer1PosX, float *spawnPlayer1PosY, float *spawnPlayer2PosX, float *spawnPlayer2PosY, float *spawnEnemyPosX, float *spawnEnemyPosY);
 
 
 
@@ -138,11 +145,31 @@ void F_Map_Set_And_Print(int index)
 
 			if(s_current_map.V_Map_Array[gh_generate][gw_generate] != '~')
 				printf("%c", s_current_map.V_Map_Array[gh_generate][gw_generate]);
+
+			/* Stores the position and type of tiles that bullets can go through in a list */
+			if (index >= 2)
+			{
+				/* STORING FOR IF POS X and POS Y  = TILE_ROAH_H */
+				if (F_Get_Map_DataType(gw_generate, gh_generate) == TILE_ROAD_H)
+				{
+					listOfInvincibleTilesPosX[index-2][numOfInvincibleTiles[index-2]] = gw_generate;
+					listOfInvincibleTilesPosY[index-2][numOfInvincibleTiles[index-2]] = gh_generate;
+					listOfInvincibleTilesType[index-2][numOfInvincibleTiles[index-2]] = TILE_ROAD_H;
+					numOfInvincibleTiles[index-2] = numOfInvincibleTiles[index - 2] + 1;
+				}
+				/* STORING FOR IF POS X and POS Y  = TILE_ROAH_V */
+				else if (F_Get_Map_DataType(gw_generate, gh_generate) == TILE_ROAD_V)
+				{
+					listOfInvincibleTilesPosX[index - 2][numOfInvincibleTiles[index - 2]] = gw_generate;
+					listOfInvincibleTilesPosY[index - 2][numOfInvincibleTiles[index - 2]] = gh_generate;
+					listOfInvincibleTilesType[index - 2][numOfInvincibleTiles[index - 2]] = TILE_ROAD_V;
+					numOfInvincibleTiles[index - 2] = numOfInvincibleTiles[index - 2] + 1;
+				}
+			}
 		}
-
  		++y;
-
 	}
+ 	printf("%d ", listOfInvincibleTilesPosX[index - 2][2]);
 }
 
 void F_Map_Instruction_Printout()
@@ -334,6 +361,7 @@ void RetrieveSpawnPositionFromData(float *spawnPlayer1PosX, float *spawnPlayer1P
 {
 	int x = 0;
 	int y = 0;
+	numOfEnemySpawnPoint = 0;
 
 	for (y = 0; y < d_game_height; y++)
 	{
@@ -397,4 +425,25 @@ float* F_MapManager_GetEnemySpawnPositionY()
 int F_MapManager_GetEnemyTotalSpawnPoint()
 {
 	return numOfEnemySpawnPoint;
+}
+
+
+/*------------------------------------------------------------------------------
+// Invincible tiles use
+//----------------------------------------------------------------------------*/
+char *GetInvincibleTilesListType()
+{
+	return listOfInvincibleTilesType;
+}
+int *GetInvincibleTilesListPosX()
+{
+	return listOfInvincibleTilesPosX;
+}
+int *GetInvincibleTilesListPosY()
+{
+	return listOfInvincibleTilesPosY;
+}
+int *F_GameObjectManager_GetNumOfInvincibleTiles()
+{
+	return numOfInvincibleTiles;
 }
