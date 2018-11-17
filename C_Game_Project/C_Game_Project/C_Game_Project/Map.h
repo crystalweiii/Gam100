@@ -92,7 +92,8 @@ void F_Set_Map_DataType(char type, int x, int y);
 char F_Get_Map_DataType(int x, int y);
 
 /* Get: Player Spawn Point Position*/
-Vector2D F_MapManager_GetPlayerSpawnPosition();
+Vector2D F_MapManager_GetPlayer1SpawnPosition();
+Vector2D F_MapManager_GetPlayer2SpawnPosition();
 
 /* Get: Map playable width */
 int F_MapManager_GetMapWidth();

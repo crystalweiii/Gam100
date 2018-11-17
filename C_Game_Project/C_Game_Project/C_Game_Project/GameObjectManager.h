@@ -26,6 +26,8 @@ void F_GameObjectManager_Update(float dt);
 // Setter & Getter
 //----------------------------------------------------------------------------*/
 /* Dir, Scale, Speed */
+float F_GameObjectManager_GetObjectDirX(int index);
+float F_GameObjectManager_GetObjectDirY(int index);
 void F_GameObjectManager_SetObjectDir(int index, float x, float y);
 void F_GameObjectManager_SetObjectScale(int index, int x, int y);
 void F_GameObjectManager_SetObjectSpeed(int index, float speed);

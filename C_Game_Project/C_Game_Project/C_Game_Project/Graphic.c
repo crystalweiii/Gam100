@@ -213,8 +213,13 @@ void F_Graphic_Draw()
 			F_DrawScaleTile_Position(TILE_EMPTY, None, (int)objects[i].prevPositionX, (int)objects[i].prevPositionY, (int)objects[i].scaleX, (int)objects[i].scaleY,
 													   (int)objects[i].anchorOffsetX, (int)objects[i].anchorOffsetY);
 			/* Remove: Render ENEMY at position*/
-			F_DrawScaleTile_Position(TILE_BULLET, objects[i].type, (int)objects[i].positionX, (int)objects[i].positionY, (int)objects[i].scaleX, (int)objects[i].scaleY,
-																   (int)objects[i].anchorOffsetX, (int)objects[i].anchorOffsetY);
+			if(objects[i].directionX == 1) /* render correct image according to direction */
+				F_DrawScaleTile_Position(TILE_BULLET_1, objects[i].type, (int)objects[i].positionX, (int)objects[i].positionY, (int)objects[i].scaleX, (int)objects[i].scaleY,
+																(int)objects[i].anchorOffsetX, (int)objects[i].anchorOffsetY);
+
+			else if (objects[i].directionY == -1) /* render correct image according to direction */
+			F_DrawScaleTile_Position(TILE_BULLET_2, objects[i].type, (int)objects[i].positionX, (int)objects[i].positionY, (int)objects[i].scaleX, (int)objects[i].scaleY,
+				(int)objects[i].anchorOffsetX, (int)objects[i].anchorOffsetY);
 
 			/*Tracking: To optimize checking*/
 			++processed;

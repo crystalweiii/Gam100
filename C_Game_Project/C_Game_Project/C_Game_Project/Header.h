@@ -54,6 +54,7 @@ Gather all the Marco together, easier for us to tweak the values.
 #define d_PLAYER_SPEED 15				//Player: move speed
 #define d_RATE_OF_PLAYER_FIRE 0.25f		//Player: shoot cooldown
 #define d_PLAYER_SHOOT_X_OFFSET 9		//Player: Bullet Spawn position
+#define d_PLAYER_SHOOT_Y_OFFSET -4		//Player: Bullet Spawn position
 
 	/*
 	 *  Bullet Properties:
@@ -90,10 +91,12 @@ static char TILE_EMPTY = ' ';
 static char TILE_WALL_H = '-';
 static char TILE_WALL_V = '|';
 static char TILE_PLAYER_SPAWNER = 'P';
+static char TILE_PLAYER_SPAWNER_2 = 'D';
 static char TILE_ENEMY_SPAWNER = 'E';
 static char TILE_PLAYER = '$';
 static char TILE_ENEMY = 'X';
-static char TILE_BULLET = '>';
+static char TILE_BULLET_1 = '>';
+static char TILE_BULLET_2 = '^';
 static char TILE_PLAYER_DEFENSE = 'B';
 /*
  *  ObjectType: Use to differentiate which is "active GameObject" & differentiate color GameObject

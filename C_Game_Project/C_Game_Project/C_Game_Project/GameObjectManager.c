@@ -259,7 +259,7 @@ void UpdateCollisionEvent_Bullet(int i)
 	/*-----------------------------------------------
 	// Handle Collision: Bullet XXX Wall
 	-----------------------------------------------*/
-	if (Check_TileCollision_With(TILE_WALL_V, i))
+	if (Check_TileCollision_With(TILE_WALL_V, i) || Check_TileCollision_With(TILE_WALL_H, i))
 	{
 		/*-----------------------------------------------
 		// Destroy: Bullet
@@ -376,6 +376,16 @@ float F_GameObjectManager_GetObjectPositionY_Max(int index)
 ObjectType F_GameObjectManager_GetObjectType(int index)
 {
 	return listOfGameObjects[index].type;
+}
+
+float F_GameObjectManager_GetObjectDirX(int index)
+{
+	return listOfGameObjects[index].directionX;
+}
+
+float F_GameObjectManager_GetObjectDirY(int index)
+{
+	return listOfGameObjects[index].directionY;
 }
 
 void F_GameObjectManager_SetObjectDir(int index, float x, float y)

@@ -17,8 +17,10 @@ It also contains setter and getter functions to retrieve map[][] data
 /*--------------------------------
 // Private Variable Declaration
 --------------------------------*/
-float playerSpawnPosX = 0;
-float playerSpawnPosY = 0;
+float player1SpawnPosX = 0;
+float player1SpawnPosY = 0;
+float player2SpawnPosX = 0;
+float player2SpawnPosY = 0;
 float enemySpawnPosX[d_MAX_ENEMY_SPAWN_POINT];
 float enemySpawnPosY[d_MAX_ENEMY_SPAWN_POINT];
 int numOfEnemySpawnPoint = 0;
@@ -168,7 +170,7 @@ void F_MapManager_Gameplay_Init(LevelType levelType)
 	}
 
 	/* Get: player/enemy spawn point positions*/
-	RetrieveSpawnPositionFromData(&playerSpawnPosX, &playerSpawnPosY, enemySpawnPosX, enemySpawnPosY);
+	RetrieveSpawnPositionFromData(&player1SpawnPosX, &player1SpawnPosY, &player2SpawnPosX, &player2SpawnPosY, enemySpawnPosX, enemySpawnPosY);
 }
 
 
@@ -192,12 +194,23 @@ char F_Get_Map_DataType(int x, int y)
 	return s_current_map.V_Map_Array[y][x];
 }
 
-/* Get: Player Spawn Point Position*/
-Vector2D F_MapManager_GetPlayerSpawnPosition()
+/* Get: Player 1 Spawn Point Position*/
+Vector2D F_MapManager_GetPlayer1SpawnPosition()
 {
 	Vector2D pos;
-	pos.X = playerSpawnPosX;
-	pos.Y = playerSpawnPosY;
+	pos.X = player1SpawnPosX;
+	pos.Y = player1SpawnPosY;
+	pos.X = player1SpawnPosX;
+	pos.Y = player1SpawnPosY;
+	return pos;
+}
+
+/* Get: Player 2 Spawn Point Position*/
+Vector2D F_MapManager_GetPlayer2SpawnPosition()
+{
+	Vector2D pos;
+	pos.X = player2SpawnPosX;
+	pos.Y = player2SpawnPosY;
 	return pos;
 }
 
@@ -315,7 +328,7 @@ void F_ReadFromCSVAndStore(char tempMap[d_game_height][d_game_width], int mapInd
 }
 
 /* Function: Retrieve player/enemy spawn point positions from map[][]*/
-void RetrieveSpawnPositionFromData(float *spawnPlayerPosX, float *spawnPlayerPosY, float *spawnEnemyPosX, float *spawnEnemyPosY)
+void RetrieveSpawnPositionFromData(float *spawnPlayer1PosX, float *spawnPlayer1PosY, float *spawnPlayer2PosX, float *spawnPlayer2PosY, float *spawnEnemyPosX, float *spawnEnemyPosY)
 {
 	int x = 0;
 	int y = 0;
@@ -328,8 +341,20 @@ void RetrieveSpawnPositionFromData(float *spawnPlayerPosX, float *spawnPlayerPos
 			if (s_current_map.V_Map_Array[y][x] == TILE_PLAYER_SPAWNER)
 			{
 				/*Record down: player spawn point ==> posX, posY*/
-				*spawnPlayerPosX = (float)x;
-				*spawnPlayerPosY = (float)y;
+				*spawnPlayer1PosX = (float)x;
+				*spawnPlayer1PosY = (float)y;
+
+				/* Remove: remove spawner on the map[][], after retrieving the spawn position, we dont want it to be display out*/
+				s_current_map.V_Map_Array[y][x] = TILE_EMPTY;
+				F_DrawTile_Position(TILE_EMPTY, None, x, y);
+			}
+
+			/* Finding: Tile that represent "Player Spawn Point"*/
+			else if (s_current_map.V_Map_Array[y][x] == TILE_PLAYER_SPAWNER_2)
+			{
+				/*Record down: player spawn point ==> posX, posY*/
+				*spawnPlayer2PosX = (float)x;
+				*spawnPlayer2PosY = (float)y;
 
 				/* Remove: remove spawner on the map[][], after retrieving the spawn position, we dont want it to be display out*/
 				s_current_map.V_Map_Array[y][x] = TILE_EMPTY;
