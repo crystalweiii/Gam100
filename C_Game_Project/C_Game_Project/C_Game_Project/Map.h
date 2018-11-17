@@ -27,6 +27,7 @@ COORD v_map_buffer;
 COORD v_map_top;
 COORD v_map_btm;
 
+
 struct S_MapIndex /*to keep track of the maps*/
 {
 	int v_current;
@@ -68,7 +69,7 @@ void F_Map_Instruction_Printout();
 // Public Variable Declaration
 ------------------------------------------------------*/
 /* Reusable: for lvl 1, 2, 3, etc..       */
-int map[d_MAX_ROWS][d_MAX_COLUMNS];
+char map[d_game_height][d_game_width];
 int mapWidth;
 int mapHeight;
 
@@ -85,10 +86,10 @@ void F_MapManager_Gameplay_Init(LevelType levelType);
 // Setter & Getter
 ------------------------------------------------------*/
 /* Set: map[y][x] = TileType */
-void F_Set_Map_DataType(TileType type, int x, int y);
+void F_Set_Map_DataType(char type, int x, int y);
 
 /* Get: map[y][x] = ? */
-TileType F_Get_Map_DataType(int x, int y);
+char F_Get_Map_DataType(int x, int y);
 
 /* Get: Player Spawn Point Position*/
 Vector2D F_MapManager_GetPlayerSpawnPosition();

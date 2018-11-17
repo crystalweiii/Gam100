@@ -28,7 +28,7 @@ static int numberInUse;
 void UpdateCollisionEvent_Player(int i);
 void UpdateCollisionEvent_Bullet(int i);
 void UpdateCollisionEvent_Enemy(int i);
-bool Check_TileCollision_With(TileType otherType, int index);
+bool Check_TileCollision_With(char otherType, int index);
 
 
 
@@ -275,7 +275,7 @@ void UpdateCollisionEvent_Enemy(int i)
 	/*-----------------------------------------------
 	// Handle Collision: Enemy XXX Player Defense
 	-----------------------------------------------*/
-	if (Check_TileCollision_With(TILE_PLAYER_DEFENSE, i))
+	if (Check_TileCollision_With(TILE_WALL_V, i))
 	{
 		/*Draw EMPTY over ENEMY*/
 		F_DrawScaleTile_Position(TILE_EMPTY, None, (int)listOfGameObjects[i].positionX, (int)listOfGameObjects[i].positionY, (int)listOfGameObjects[i].scaleX,
@@ -468,7 +468,7 @@ void F_GameObjectManager_SetObjectImage(int index, char image[ObjectSize])
 /*------------------------------------------------------------------------------
 // Collision
 //----------------------------------------------------------------------------*/
-bool Check_TileCollision_With(TileType otherType, int index)
+bool Check_TileCollision_With(char otherType, int index)
 {
 	int i = 0;
 	/* Check X Axis Collision */

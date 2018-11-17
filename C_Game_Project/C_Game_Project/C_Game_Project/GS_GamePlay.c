@@ -39,8 +39,8 @@ void GS_GamePlay_Init()
 	F_EnemyManager_Init();
 
 	/*Spawn Enemy*/
-	/*F_EnemyManager_SpawnEnemy(0, EnemyRed, -1, 0);
-	F_EnemyManager_SpawnEnemy(1, EnemyBlue, -1, 0);
+	F_EnemyManager_SpawnEnemy(0, EnemyRed, -1, 0);
+	/*F_EnemyManager_SpawnEnemy(1, EnemyBlue, -1, 0);
 	F_EnemyManager_SpawnEnemy(2, EnemyGreen, -1, 0);
 	F_EnemyManager_SpawnEnemy(3, EnemyBlue, -1, 0);
 	F_EnemyManager_SpawnEnemy(4, EnemyBlue, -1, 0);*/
@@ -59,6 +59,6 @@ void GS_GamePlay_Exit()
 	F_PlayerManager_Exit();
 	F_BulletManager_Exit();
 	F_EnemyManager_Exit();
-	//F_Map_EmptySlow();
+	F_Map_EmptySlow();
 }
 

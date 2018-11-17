@@ -26,8 +26,8 @@ int numOfEnemySpawnPoint = 0;
 /*--------------------------------
 // Private Function Declaration
 --------------------------------*/
-void F_ReadFromCSVAndStore(int tempMap[d_game_height][d_game_width], int mapIndex);
-void RetrieveSpawnPositionFromData(float *spawnPlayerPosX, float *spawnPlayerPosY, float *spawnEnemyPosX, float *spawnEnemyPosY);
+void F_ReadFromCSVAndStore(char tempMap[d_game_height][d_game_width], int mapIndex);
+void RetrieveSpawnPositionFromData(LevelType level, float *spawnPlayerPosX, float *spawnPlayerPosY, float *spawnEnemyPosX, float *spawnEnemyPosY);
 
 
 
@@ -40,24 +40,31 @@ COORD v_map_top = { d_map_offset_x,  d_map_offset_y };
 void F_Map_Init()
 {
 	/*Init border btm with the buffers*/
-	COORD v_temp_border_btm = { d_game_width + v_map_buffer.X, d_game_height + v_map_buffer.Y };
+	COORD v_temp_border_btm = { d_game_width, d_game_height};	//{ d_game_width + v_map_buffer.X, d_game_height + v_map_buffer.Y };
 	
 	COORD v_Text_border_Top = { v_border_top.X ,  v_temp_border_btm.Y };
-	COORD v_Text_border_Btm = { d_game_width + v_map_buffer.X , 10 };
+	COORD v_Text_border_Btm = { d_game_width, d_ui_height };					//{ d_game_width + v_map_buffer.X , 10 };
 	
 	v_border_btm = v_temp_border_btm;
 
-	F_Map_DrawBorder(v_border_top, v_border_btm);
+	//F_Map_DrawBorder(v_border_top, v_border_btm);
 	F_Map_DrawBorder(v_Text_border_Top, v_Text_border_Btm);
 
 
 	F_ReadFromTextAndStore(txt_DGPLogo , s_map_db[0].V_Map_Array);
+
+	/* Draw: Main Menu */
 	F_Main_Menu_Print(s_map_db[1].V_Map_Array);
 
 	/* "Read" & "Store": gameplay level 1 map data from csv*/
-	//F_ReadFromCSVAndStore(s_map_db[2].V_Map_Array, Level_One);
+	F_ReadFromCSVAndStore(s_map_db[2].V_Map_Array, Level_One);
 
-	F_ReadFromTextAndStore(txt_Map1, s_map_db[2].V_Map_Array);
+
+
+	/* "Read" & "Store": gameplay level 2 map data from csv*/
+	F_ReadFromCSVAndStore(s_map_db[3].V_Map_Array, Level_Two);
+
+	//F_ReadFromTextAndStore(txt_Map1, s_map_db[2].V_Map_Array);
 	
 	
 
@@ -67,6 +74,7 @@ void F_Map_Init()
 	
 	/*F_Map_Set_And_Print(s_map_index.v_selected);*/
 
+	/* Draw: Welcome To GGPen */
 	F_Map_Instruction_Printout();
 	
 	/*F_Map_Set_And_Print(s_map_index.v_current);*/
@@ -161,7 +169,7 @@ void F_MapManager_Gameplay_Init(LevelType levelType)
 	F_ReadFromCSVAndStore(map, (int)levelType);
 
 	/* Get: player/enemy spawn point positions*/
-	RetrieveSpawnPositionFromData(&playerSpawnPosX, &playerSpawnPosY, enemySpawnPosX, enemySpawnPosY);
+	RetrieveSpawnPositionFromData(levelType, &playerSpawnPosX, &playerSpawnPosY, enemySpawnPosX, enemySpawnPosY);
 }
 
 
@@ -170,19 +178,19 @@ void F_MapManager_Gameplay_Init(LevelType levelType)
 // Setter & Getter
 //----------------------------------------------------------------------------*/
 /* Set: map[y][x] = TileType */
-void F_Set_Map_DataType(TileType type, int x, int y)
+void F_Set_Map_DataType(char type, int x, int y)
 {
-	map[y][x] = (int)type;
+	map[y][x] = type;
 }
 
 /* Get: TileType of map[?][?]*/
-TileType F_Get_Map_DataType(int x, int y)
+char F_Get_Map_DataType(int x, int y)
 {
-	if (x < 0 || x > d_MAX_COLUMNS ||
-		y < 0 || y > d_MAX_ROWS)
+	if (x < 0 || x > d_game_width ||
+		y < 0 || y > d_game_height)
 		return -1;
 
-	return (TileType)map[y][x];
+	return map[y][x];
 }
 
 /* Get: Player Spawn Point Position*/
@@ -197,13 +205,13 @@ Vector2D F_MapManager_GetPlayerSpawnPosition()
 /* Get: Playable Map Width*/
 int F_MapManager_GetMapWidth()
 {
-	return mapWidth-1;
+	return mapWidth;
 }
 
 /* Get: Playable Map Height*/
 int F_MapManager_GetMapHeight()
 {
-	return mapHeight-1;
+	return mapHeight;
 }
 
 
@@ -214,12 +222,12 @@ int F_MapManager_GetMapHeight()
 // Utility
 //----------------------------------------------------------------------------*/
 /* Function: Load from csv + Assign data*/
-void F_ReadFromCSVAndStore(int tempMap[d_game_height][d_game_width], int mapIndex)
+void F_ReadFromCSVAndStore(char tempMap[d_game_height][d_game_width], int mapIndex)
 {
 	FILE *inFile;
 	int tempNum = 0;
 	int k = mapIndex;
-	char buffer[64]; // The filename buffer.
+	char buffer[512]; // The filename buffer.
 	errno_t err;
 
 	bool stop = false; //Use to retrieve mapWidth;
@@ -236,37 +244,68 @@ void F_ReadFromCSVAndStore(int tempMap[d_game_height][d_game_width], int mapInde
 	for (y = 0; y < d_game_height; ++y)
 	{
 		for (x = 0; x < d_game_width; ++x)
-			tempMap[y][x] = 0;
+			tempMap[y][x] = ' ';
 	}
+	int xCounter = 0;
+	mapHeight = mapWidth = 0;
 
 	if (err == 0)
 	{
-		char buffer[BUFSIZ], *ptr;
 		/*
 		 * Read each line from the file.
 		 */
 		for (y = 0; fgets(buffer, sizeof buffer, inFile); ++y)
 		{
-			/*
-			 * Parse the comma-separated values from each line into 'array'.
-			 */
-			for (x = 0, ptr = buffer; x < ARRAYSIZE(*tempMap); ++x, ++ptr)
+			xCounter = 0;
+			for (x = 0; x < strlen(buffer); ++x)
 			{
-				/* Assign: map[y][x] = (int)TILE_??? */
-				tempMap[y][x] = (int)strtol(ptr, &ptr, 10);
+				if (buffer[x] != ',')
+				{
+					tempMap[y][xCounter] = buffer[x];
 
-				/*Get: Playable Width*/
-				if(!stop)
-					mapWidth++;
+					if (!stop)
+						mapWidth++;
+
+					/*Need this for delimiter skipping*/
+					xCounter++;
+				}
 			}
-
 			/* Stop: checking for mapWidth, already done */
 			stop = true;
 		}
 
 		/*Get: Playable Height*/
 		mapHeight = y;
+		mapWidth -= 1; //-'\0'
 	}
+	//if (err == 0)
+	//{
+	//	char buffer[BUFSIZ], *ptr;
+	//	/*
+	//	 * Read each line from the file.
+	//	 */
+	//	for (y = 0; fgets(buffer, sizeof buffer, inFile); ++y)
+	//	{
+	//		/*
+	//		 * Parse the comma-separated values from each line into 'array'.
+	//		 */
+	//		for (x = 0, ptr = buffer; x < ARRAYSIZE(*tempMap); ++x, ++ptr)
+	//		{
+	//			/* Assign: map[y][x] = (int)TILE_??? */
+	//			tempMap[y][x] = (int)strtol(ptr, &ptr, 10);
+
+	//			/*Get: Playable Width*/
+	//			if(!stop)
+	//				mapWidth++;
+	//		}
+
+	//		/* Stop: checking for mapWidth, already done */
+	//		stop = true;
+	//	}
+
+	//	/*Get: Playable Height*/
+	//	mapHeight = y;
+	//}
 	else
 	{
 		printf_s("CHECK YOUR FILE NAME. FILE %d NOT FOUND\n", mapIndex);
@@ -277,7 +316,7 @@ void F_ReadFromCSVAndStore(int tempMap[d_game_height][d_game_width], int mapInde
 }
 
 /* Function: Retrieve player/enemy spawn point positions from map[][]*/
-void RetrieveSpawnPositionFromData(float *spawnPlayerPosX, float *spawnPlayerPosY, float *spawnEnemyPosX, float *spawnEnemyPosY)
+void RetrieveSpawnPositionFromData(LevelType level, float *spawnPlayerPosX, float *spawnPlayerPosY, float *spawnEnemyPosX, float *spawnEnemyPosY)
 {
 	/* Clean: set all data bytes to be 0 */
 	memset(spawnEnemyPosX, 0, sizeof(float)*d_MAX_ENEMY_SPAWN_POINT);
@@ -286,23 +325,24 @@ void RetrieveSpawnPositionFromData(float *spawnPlayerPosX, float *spawnPlayerPos
 	int x = 0;
 	int y = 0;
 
-	for (y = 0; y < d_MAX_ROWS; y++)
+	for (y = 0; y < d_game_height; y++)
 	{
-		for (x = 0; x < d_MAX_COLUMNS; x++)
+		for (x = 0; x < d_game_width; x++)
 		{
 			/* Finding: Tile that represent "Player Spawn Point"*/
-			if ((TileType)map[y][x] == TILE_PLAYER_SPAWNER)
+			if (map[y][x] == TILE_PLAYER_SPAWNER)
 			{
 				/*Record down: player spawn point ==> posX, posY*/
 				*spawnPlayerPosX = (float)x;
 				*spawnPlayerPosY = (float)y;
 
 				/* Remove: remove spawner on the map[][], after retrieving the spawn position, we dont want it to be display out*/
-				(TileType)map[y][x] = TILE_EMPTY;
+				map[y][x] = TILE_EMPTY;
+				//s_current_map.V_Map_Array[y][x] = TILE_EMPTY;
 			}
 
 			/* Finding: Tile that represent "Enemy Spawn Point"*/
-			else if ((TileType)map[y][x] == TILE_ENEMY_SPAWNER)
+			else if (map[y][x] == TILE_ENEMY_SPAWNER)
 			{
 				/* Check: Don't record down more than 5 spawn point, because we only have 5 lanes*/
 				if (numOfEnemySpawnPoint >= d_MAX_ENEMY_SPAWN_POINT)
@@ -317,25 +357,38 @@ void RetrieveSpawnPositionFromData(float *spawnPlayerPosX, float *spawnPlayerPos
 				numOfEnemySpawnPoint++;
 
 				/* Remove: remove spawner on the map[][], after retrieving the spawn position, we dont want it to be display out*/
-				(TileType)map[y][x] = TILE_EMPTY;
+				map[y][x] = TILE_EMPTY;
+				//s_current_map.V_Map_Array[y][x] = TILE_EMPTY;
 			}
 		}
 	}
 }
 
 /* Retrieve: Enemy Spawn Point[] positions*/
-void F_MapManager_GetEnemySpawnPosition(float *spawnEnemyPosX, float *spawnEnemyPosY, int *noOfSpawnPoint)
+void F_MapManager_GetEnemySpawnPosition(LevelType level, float *spawnEnemyPosX, float *spawnEnemyPosY, int *noOfSpawnPoint)
 {
 	*noOfSpawnPoint = 0;
 
 	int x = 0;
 	int y = 0;
 
-	for (y = 0; y < d_MAX_ROWS; y++)
+	///* Get: the correct level map data for getting enemy spawn position*/
+	//char tempMap[d_game_width][d_game_height];
+	//switch (level)
+	//{
+	//case Level_One:
+	//	tempMap[d_game_width][d_game_height] = s_map_db[2].V_Map_Array;
+	//	break;
+	//case Level_Two:
+	//	tempMap[d_game_width][d_game_height] = s_map_db[3].V_Map_Array;
+	//	break;
+	//}
+
+	for (y = 0; y < d_game_height; y++)
 	{
-		for (x = 0; x < d_MAX_COLUMNS; x++)
+		for (x = 0; x < d_game_width; x++)
 		{
-			if ((TileType)map[y][x] == TILE_ENEMY_SPAWNER)
+			if (map[y][x] == TILE_ENEMY_SPAWNER)
 			{
 				if (*noOfSpawnPoint >= d_MAX_ENEMY_SPAWN_POINT)
 					return;
@@ -348,7 +401,7 @@ void F_MapManager_GetEnemySpawnPosition(float *spawnEnemyPosX, float *spawnEnemy
 				*noOfSpawnPoint++;
 
 				/* Remove: remove spawner, after retrieving the spawn position*/
-				(TileType)map[y][x] = TILE_EMPTY;
+				map[y][x] = TILE_EMPTY;
 			}
 		}
 	}

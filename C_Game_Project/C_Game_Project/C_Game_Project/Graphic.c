@@ -64,7 +64,7 @@ int F_ReadFromTextAndStore(char* url , char dc_array[d_game_width][d_game_height
 	{
 		/*printf("%s", str);*/
 		int t_gw = 0;
-		for (t_gw = 0; t_gw < d_game_width; t_gw++)
+		for (t_gw = 0; t_gw < strlen(str); t_gw++)//for (t_gw = 0; t_gw < d_game_width; t_gw++)
 		{
 			dc_array[t_gw][t_heightCount] = str[t_gw];
 			/*s_map_db[s_map_index.v_selected].V_Map_Array[t_gw][t_heightCount] = s_current_map.V_Map_Array[t_gw][t_heightCount];*/
@@ -178,12 +178,16 @@ void F_Graphic_RenderStaticObject()
 	int x, y;
 	x = y = 0;
 
-	for (y = 0; y < d_MAX_ROWS; y++)
+	for (y = 0; y < d_game_height; y++)
 	{
-		for (x = 0; x < d_MAX_COLUMNS; x++)
+		for (x = 0; x < d_game_width; x++)
 		{
+
 			/* Render: 1 desired tile at desired position*/
-			F_DrawTile_Position((TileType)map[y][x], None, x, y);
+			//F_DrawTile_Position(s_current_map.V_Map_Array[y][x], None, x, y);
+			F_DrawTile_Position(map[y][x], None, x, y);
+			int hahhaa = 0;
+
 		}
 
 		/* Dont molest my '\n' */
@@ -257,15 +261,15 @@ void F_Graphic_Draw()
 // Utility
 //----------------------------------------------------------------------------*/
 /* Render: 1 tile to your desired position */
-void F_DrawTile_Position(TileType tileType, ObjectType objType, int posX, int posY)
+void F_DrawTile_Position(char tileType, ObjectType objType, int posX, int posY)
 {
 	/*
 	 * Function Description: printf(ascii) and reassign map[y][x] = ? tileType
 	 */
 
 	/* Prevent: Array out of range */
-	if (posY < 0 || posY >= d_MAX_ROWS ||
-		posX < 0 || posX >= d_MAX_COLUMNS)
+	if (posY < 0 || posY >= d_game_height ||
+		posX < 0 || posX >= d_game_width)
 		return;
 
 	/* Point to: position to print */
@@ -274,49 +278,20 @@ void F_DrawTile_Position(TileType tileType, ObjectType objType, int posX, int po
 	/* Set: map[y][x] = tileType */
 	F_Set_Map_DataType(tileType, posX, posY);
 
-	/* Print: Draw ascii */
-	if (tileType == TILE_INVALID)
-		printf_s("-");
-	else if (tileType == TILE_EMPTY)
-		printf_s(" ");
-	else if (tileType == TILE_WALL_TL)
-		printf_s("%c", 201);
-	else if (tileType == TILE_WALL_TR)
-		printf_s("%c", 187);
-	else if (tileType == TILE_WALL_BL)
-		printf_s("%c", 200);
-	else if (tileType == TILE_WALL_BR)
-		printf_s("%c", 188);
-	else if (tileType == TILE_WALL_H)
-		printf_s("%c", 205);
-	else if (tileType == TILE_WALL_V)
-		printf_s("%c", 186);
-	else if (tileType == TILE_PLAYER)
-		printf_s("%c", 36);
-	else if (tileType == TILE_ENEMY)
-		printf_s("%c", 219);
-	else if (tileType == TILE_BULLET)
-		printf_s("%c", 62);
-	else if (tileType == TILE_PLAYER_SPAWNER)
-		printf_s("Q");
-	else if (tileType == TILE_ENEMY_SPAWNER)
-		printf_s("S");
-	else if (tileType == TILE_PLAYER_DEFENSE)
-	{
+	/* Enable: Color*/
+	if (tileType == TILE_PLAYER_DEFENSE)
 		WindowsHelper_ChangeTextcolor(LIGHTMAGENTA);
-		printf_s("%c", 178);
+
+	/* Draw: ASCII */
+	printf_s("%c", tileType);
+
+	/* Disable: color*/
+	if (tileType == TILE_PLAYER_DEFENSE)
 		WindowsHelper_ChangeTextcolor(LIGHTGRAY);
-	}
-	else if (tileType == TILE_PLAYER_DEFENSE_DECORATION1)
-	{
-		WindowsHelper_ChangeTextcolor(LIGHTMAGENTA);
-		printf_s("%c", 144);
-		WindowsHelper_ChangeTextcolor(LIGHTGRAY);
-	}
 }
 
 /* Render: scaled tile to your desired position */
-void F_DrawScaleTile_Position(TileType tiletype, ObjectType objType, int posX, int posY, int scaleX, int scaleY, int anchorOffsetX, int anchorOffsetY)
+void F_DrawScaleTile_Position(char tiletype, ObjectType objType, int posX, int posY, int scaleX, int scaleY, int anchorOffsetX, int anchorOffsetY)
 {
 	/*
 	 * Function Description: Draw a character of (e.g) 3x3 and change color if needed
@@ -373,7 +348,9 @@ void F_DrawScaleTile_Position(TileType tiletype, ObjectType objType, int posX, i
 
 		WindowsHelper_ChangeTextcolor(LIGHTGRAY);
 	}
-	else
+
+	/* Others thats not do not need coloring*/
+	else 
 	{
 		for (x = 0; x < scaleX; ++x)
 		{

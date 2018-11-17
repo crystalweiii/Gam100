@@ -51,7 +51,6 @@ void F_EnemyManager_Init()
 
 	/*Get: Enemy Spawn Point position + Num of spawn Point*/
 	F_MapManager_GetEnemySpawnPosition(enemySpawnPosX, enemySpawnPosY, &noOfSpawnPoint);
-	int spawnNo = noOfSpawnPoint;
 
 }
 void F_EnemyManager_Update(float dt)
@@ -184,8 +183,8 @@ int F_EnemyManager_FindCollidedEnemyIndex_BoxCollision(float otherPosX, float ot
 			/*2D Bounding Box Collision*/
 			float enemyPosX = movingObjectList[i].positionX;
 			float enemyPosY = movingObjectList[i].positionY;
-			float enemyScaleX = movingObjectList[i].scaleX;
-			float enemyScaleY = movingObjectList[i].scaleY;
+			int enemyScaleX = movingObjectList[i].scaleX;
+			int enemyScaleY = movingObjectList[i].scaleY;
 
 			//Enemy: MinX and MaxX is it between 
 			//Collided: MinX and MaxX

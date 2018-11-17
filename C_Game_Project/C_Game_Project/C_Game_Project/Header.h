@@ -20,17 +20,17 @@ Gather all the Marco together, easier for us to tweak the values.
 /*
  *  Map Macro:
  */
-#define d_MAX_ROWS 20		//map height:  48
-#define d_MAX_COLUMNS 90	//map width : 200
+#define d_game_width 160					/*Adjust: Gameplay map->size*/
+#define d_game_height 29					/*Adjust: Gameplay map->size*/
 
-#define d_game_width 90
-#define d_game_height 20
+#define d_border_offset_x 0					/*Adjust: Dont touch please*/
+#define d_border_offset_y 0					/*Adjust: Dont touch please*/
 
-#define d_border_offset_x 0 
-#define d_border_offset_y 0
+#define d_map_offset_x 0					/*Adjust: Dont touch please*/
+#define d_map_offset_y 0					/*Adjust: Dont touch please*/
 
-#define d_map_offset_x 1
-#define d_map_offset_y 1
+#define d_instruction_width 40				/*Adjust: Instruction on the right side of gameplay map->size*/
+#define d_ui_height 10						/*Adjust: UI on the btm of gameplay map->size*/
 
  /*
   *  Spawner Macro:
@@ -72,7 +72,7 @@ Gather all the Marco together, easier for us to tweak the values.
    */
 #define d_maxchar 1000
 
-#define d_map_amount 3
+#define d_map_amount 4
 #define txt_DGPLogo "txt_file/DigipenLogo.txt"
 #define txt_Map1 "txt_file/Map1.txt"
  
@@ -85,28 +85,16 @@ typedef enum {
 	Level_Three
 } LevelType;
 
-/*
- *  TileType: Use to "Print Character" & for "Collision"
- */
-typedef enum
-{
-	TILE_INVALID,
-	TILE_EMPTY,
-	TILE_WALL_TL,
-	TILE_WALL_TR,
-	TILE_WALL_BL,
-	TILE_WALL_BR,
-	TILE_WALL_H,
-	TILE_WALL_V,
-	TILE_PLAYER_SPAWNER = 8,
-	TILE_ENEMY_SPAWNER = 9,
-	TILE_PLAYER_DEFENSE = 10,
-	TILE_PLAYER_DEFENSE_DECORATION1 = 11,
-	TILE_PLAYER,
-	TILE_ENEMY,
-	TILE_BULLET,
-} TileType;
 
+static char TILE_EMPTY = ' ';
+static char TILE_WALL_H = '-';
+static char TILE_WALL_V = '|';
+static char TILE_PLAYER_SPAWNER = 'P';
+static char TILE_ENEMY_SPAWNER = 'E';
+static char TILE_PLAYER = '$';
+static char TILE_ENEMY = 'X';
+static char TILE_BULLET = '>';
+static char TILE_PLAYER_DEFENSE = 'B';
 /*
  *  ObjectType: Use to differentiate which is "active GameObject" & differentiate color GameObject
  */
