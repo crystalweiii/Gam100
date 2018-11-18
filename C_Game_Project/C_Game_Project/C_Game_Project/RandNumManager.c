@@ -14,10 +14,12 @@ It contains function that generate a random number
 #include "RandNumManager.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 int GenerateRandNum(int maxRange)
 {
-	int randomValue;
+	int randomValue = 0;
+	srand(time(0));
 	randomValue = rand() % maxRange;
 	return randomValue;
 }

@@ -41,6 +41,7 @@ void GS_GamePlay_Update(float dt)
 {
 	F_GameObjectManager_Update(dt);
 	F_PlayerManager_Update(dt);
+	F_EnemyManager_Update(dt);
 	F_LevelManager_Update();
 	F_Graphic_Draw();
 }

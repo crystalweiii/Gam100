@@ -21,6 +21,7 @@ int enemyIndices[d_MAX_ENEMIES];				/* Track: bullets are essentially movingObje
 float enemySpawnPosX[d_MAX_ENEMY_SPAWN_POINT];	/* Enemy Spawn Point(s): PositionX*/
 float enemySpawnPosY[d_MAX_ENEMY_SPAWN_POINT];	/* Enemy Spawn Point(s): PositionY*/
 int noOfSpawnPoint = 0;							/* Track: noOfSpawnPoint*/
+float enemy_time_elasped = 0.0f;
 
 
 
@@ -52,9 +53,38 @@ void F_EnemyManager_Init()
 
 	F_EnemyManager_StartOfLevelInit(Level_One);
 }
+
 void F_EnemyManager_Update(float dt)
 {
+	int RandEType = GenerateRandNum(3);
+	//int RandLaneSpot = GenerateRandNum(4);
+
+	enemy_time_elasped += dt;
+
+	/* Check: Still in spawn cd*/
+	if (enemy_time_elasped < d_RATE_OF_ENEMY_SPAWN)
+		return;
+
+	/* Reset: spawn timer */
+	enemy_time_elasped = 0.0f;
+
+	switch (RandEType)
+	{
+	case 0:
+		F_EnemyManager_SpawnEnemy(0, EnemyRed, -1, 0);
+		break;
+	case 1:
+		F_EnemyManager_SpawnEnemy(0, EnemyBlue, -1, 0);
+		break;
+	case 2:
+		F_EnemyManager_SpawnEnemy(0, EnemyGreen, -1, 0);
+		break;
+	default:
+		F_EnemyManager_SpawnEnemy(0, EnemyRed, -1, 0);
+		break;
+	}
 }
+
 void F_EnemyManager_Exit()
 {
 	for (int i = 0; i < d_MAX_ENEMIES; ++i)
@@ -79,8 +109,8 @@ void F_EnemyManager_StartOfLevelInit(int level)
 	{
 	case Level_One:
 		/*Tutorial Level: Spawn 2 enemies on 1 large lane*/
-		F_EnemyManager_SpawnEnemy(0, EnemyRed, -1, 0);
-		F_EnemyManager_SpawnEnemy(1, EnemyBlue, -1, 0);
+		//F_EnemyManager_SpawnEnemy(0, EnemyRed, -1, 0);
+	//	F_EnemyManager_SpawnEnemy(1, EnemyBlue, -1, 0);
 		break;
 	case Level_Two:
 		/* Level 1 spawn 3 enemies 1 vertical lane, 2 horizontal lanes*/
