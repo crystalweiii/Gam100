@@ -24,4 +24,3 @@ int F_GSManager_CheckForChangeState();
 int F_GSManager_RunningStateMachine();
 
 void F_GSManager_InputCheck();
-void F_Basic_Instruction_Printout();

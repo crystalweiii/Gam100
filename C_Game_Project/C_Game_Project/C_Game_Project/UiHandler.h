@@ -42,3 +42,8 @@ void F_Insert_Print_Out() {
 	}
 	*/
 }
+
+
+void F_Basic_Instruction_Printout();
+
+

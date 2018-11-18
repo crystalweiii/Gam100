@@ -133,6 +133,7 @@
     <ClInclude Include="GS_StartUp.h" />
     <ClInclude Include="PlayerManager.h" />
     <ClInclude Include="RandNumManager.h" />
+    <ClInclude Include="UiHandler.h" />
     <ClInclude Include="WindowsHelper.h" />
   </ItemGroup>
   <ItemGroup>
@@ -152,6 +153,7 @@
     <ClCompile Include="GS_StartUp.c" />
     <ClCompile Include="PlayerManager.c" />
     <ClCompile Include="RandNumManager.c" />
+    <ClCompile Include="UiHandler.c" />
     <ClCompile Include="WindowsHelper.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
