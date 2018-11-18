@@ -205,28 +205,3 @@ int F_GSManager_CheckForChangeState()
 	return v_gs_next != v_gs_current;
 
 }
-
-/*Debug and instructional printout is heree*/
-void F_Basic_Instruction_Printout()
-{
-    COORD v_temp_startSpot = { v_border_btm.X + 5 , (v_border_btm.Y) / 3 };
-	gotoxy(CO_TextPrintOut.X, CO_TextPrintOut.Y);
-	printf("'Q' to quit");
-
-	gotoxy(CO_TextPrintOut.X, CO_TextPrintOut.Y + 1);
-	printf("'R' to reset");
-
-	gotoxy(CO_TextPrintOut.X, CO_TextPrintOut.Y + 2);
-	printf("Space to select");
-
-	gotoxy(CO_TextPrintOut.X, CO_TextPrintOut.Y + 3);
-	printf("'W' & 'S' For up and down");
-
-	/* Retrieve: Position X right next to game map */
-	COORD v_temp_borderStart = { d_game_width, 0 };										//{ v_border_btm.X , v_border_top.Y };
-	
-	/* Retrieve: Total height: game map height + ui height*/
-	COORD v_temp_borderEnd = { d_instruction_width , d_game_height + d_ui_height};		//{ 40 , v_border_btm.Y + 10 };
-	F_Map_DrawBorder(v_temp_borderStart, v_temp_borderEnd);
-
-}

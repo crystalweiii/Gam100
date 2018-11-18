@@ -53,12 +53,12 @@ void GS_MainMenu_Exit()
 void GS_MainMenu_InputCheck()
 {
 	/*for tranversing the menu and selection*/
-	if (f_Check_KeyDown_Slow(0x73) || f_Check_KeyDown_Slow(0x53) )
+	if (f_Check_KeyDown_Slow(0x27) || f_Check_KeyDown_Slow(0x28) )
 	{
 		F_MainMenu_Select(1);
 	}
 
-	if (f_Check_KeyDown_Slow(0x77) || f_Check_KeyDown_Slow(0x57))
+	if (f_Check_KeyDown_Slow(0x25) || f_Check_KeyDown_Slow(0x26))
 	{
 		F_MainMenu_Select(-1);
 	}
