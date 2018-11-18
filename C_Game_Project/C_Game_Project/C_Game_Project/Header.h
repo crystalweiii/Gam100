@@ -30,7 +30,7 @@ Gather all the Marco together, easier for us to tweak the values.
 #define d_map_offset_y 0					/*Adjust: Dont touch please*/
 
 #define d_instruction_width 35				/*Adjust: Instruction on the right side of gameplay map->size*/
-#define d_ui_height 10						/*Adjust: UI on the btm of gameplay map->size*/
+#define d_ui_height 8						/*Adjust: UI on the btm of gameplay map->size*/
 
  /*
   *  Spawner Macro:
