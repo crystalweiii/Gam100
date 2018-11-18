@@ -20,8 +20,14 @@ Gather all the Marco together, easier for us to tweak the values.
 /*
  *  Map Macro:
  */
-#define d_game_width 120					/*Adjust: Gameplay map->size*/
-#define d_game_height 49					/*Adjust: Gameplay map->size*/
+#define d_window_properties_width 213		/*Right click console -> Properties -> Layout -> Window Size && Buffer Size -> Width  */
+#define d_window_properties_height 49		/*Right click console -> Properties -> Layout -> Window Size && Buffer Size-> Height */
+
+#define d_game_width 170					/*Adjust: Gameplay map->size  
+													  [EG d_game_width <= 170 ] */
+
+#define d_game_height 41					/*Adjust: Gameplay map->size  
+													  [EG d_game_height <= 41] */
 
 #define d_border_offset_x 0					/*Adjust: Dont touch please*/
 #define d_border_offset_y 0					/*Adjust: Dont touch please*/
@@ -30,7 +36,7 @@ Gather all the Marco together, easier for us to tweak the values.
 #define d_map_offset_y 0					/*Adjust: Dont touch please*/
 
 #define d_instruction_width 40				/*Adjust: Instruction on the right side of gameplay map->size*/
-#define d_ui_height 10						/*Adjust: UI on the btm of gameplay map->size*/
+#define d_ui_height 6						/*Adjust: UI on the btm of gameplay map->size*/
 
  /*
   *  Spawner Macro:

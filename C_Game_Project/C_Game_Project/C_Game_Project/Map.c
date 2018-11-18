@@ -169,7 +169,7 @@ void F_Map_Set_And_Print(int index)
 		}
  		++y;
 	}
- 	printf("%d ", listOfInvincibleTilesPosX[index - 2][2]);
+ 	//printf("%d ", listOfInvincibleTilesPosX[index - 2][2]);
 }
 
 void F_Map_Instruction_Printout()
@@ -311,6 +311,7 @@ void F_ReadFromCSVAndStore(char tempMap[d_game_height][d_game_width], int mapInd
 					xCounter++;
 				}
 			}
+
 			/* Stop: checking for mapWidth, already done */
 			stop = true;
 		}
