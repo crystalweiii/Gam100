@@ -105,6 +105,10 @@ static char TILE_BULLET_2 = '^';
 static char TILE_PLAYER_DEFENSE = 'B';
 static char TILE_ROAD_H = '=';
 static char TILE_ROAD_V = '/';
+static char TILE_ENEMY_MOVEUP = 'U';
+static char TILE_ENEMY_MOVEDOWN = 'V';
+static char TILE_ENEMY_MOVELEFT = 'L';
+static char TILE_ENEMY_MOVERIGHT = 'R';
 /*
  *  ObjectType: Use to differentiate which is "active GameObject" & differentiate color GameObject
  */

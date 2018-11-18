@@ -289,6 +289,21 @@ void UpdateCollisionEvent_Enemy(int i)
 		/*Player HP--*/
 		//.....
 	}
+
+	if (Check_TileCollision_With(TILE_ENEMY_MOVEDOWN, i))
+	{
+		F_GameObjectManager_SetObjectDir(i, 0, 1);
+	}
+
+	if (Check_TileCollision_With(TILE_ENEMY_MOVEUP, i))
+	{
+		F_GameObjectManager_SetObjectDir(i, 0, -1);
+	}
+
+	if (Check_TileCollision_With(TILE_ENEMY_MOVELEFT, i))
+	{
+		F_GameObjectManager_SetObjectDir(i, -1, 0);
+	}
 }
 
 
