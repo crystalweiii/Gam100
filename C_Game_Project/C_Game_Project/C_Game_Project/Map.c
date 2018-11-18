@@ -52,10 +52,12 @@ void F_Map_Init()
 	COORD v_temp_border_btm = { d_game_width, d_game_height};				//{ d_game_width + v_map_buffer.X, d_game_height + v_map_buffer.Y };
 	COORD v_Text_border_Top = { v_border_top.X ,  v_temp_border_btm.Y };
 	COORD v_Text_border_Btm = { d_game_width, d_ui_height };				//{ d_game_width + v_map_buffer.X , 10 };
-	v_border_btm = v_temp_border_btm;
-
 	/* "Draw: Border to seperate gameplay & UI */
 	F_Map_DrawBorder(v_Text_border_Top, v_Text_border_Btm);
+
+	
+	v_border_btm = v_temp_border_btm;
+
 	//F_Map_DrawBorder(v_border_top, v_border_btm);
 
 	/* "Read" & "Store": from text file*/

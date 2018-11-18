@@ -34,16 +34,25 @@ void F_UIobject_init() {
 }
 
 */
+/*
 void F_Insert_Print_Out() {
-	/*
+	
 	for (x = 0; x < 10; x++)
 	{
 		if (v_UiObject[x].v_game_object.active != 1)
 	}
-	*/
+	
 }
+*/
 
+void F_UI_Print_Out();
 
-void F_Basic_Instruction_Printout();
+void F_UI_Print_Out_Index(int index);
 
+void F_UI_Border_PO();
 
+void F_UI_Basic_Instru();
+void F_UI_Game_Instru();
+
+void F_UI_Game_Info_Right();
+void F_UI_Game_Info_Below();

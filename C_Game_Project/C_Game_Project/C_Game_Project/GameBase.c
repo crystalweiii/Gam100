@@ -17,7 +17,7 @@ void F_Game_Init()
 	F_Map_Init();
 	F_GSManager_Init();
 
-	F_Basic_Instruction_Printout();
+	F_UI_Init();
 }
 
 void F_Game_Running()

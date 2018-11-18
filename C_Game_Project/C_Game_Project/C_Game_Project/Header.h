@@ -163,6 +163,15 @@ enum GameState
 
 };
 
+enum PrintTrack
+{
+	PT_Basic_Instruction = 0,
+	PT_Game_Instruction,
+	PT_Game_Info_Right,
+	PT_Game_Info_Below,
+	PrintTrack_Total
+};
+
 #endif // !Header.h
 
 
