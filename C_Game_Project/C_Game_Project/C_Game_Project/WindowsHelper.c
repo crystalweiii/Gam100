@@ -95,7 +95,7 @@ void WindowsHelper_FullScreen()
 /* Display: Change printf color*/
 void WindowsHelper_ChangeTextcolor(int color)
 {
-	static int __BACKGROUND;
+	/*static int __BACKGROUND;
 
 	CONSOLE_SCREEN_BUFFER_INFO csbiInfo;
 
@@ -103,7 +103,7 @@ void WindowsHelper_ChangeTextcolor(int color)
 	GetConsoleScreenBufferInfo(wHnd, &csbiInfo);
 
 	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),
-		color + (__BACKGROUND << 4));
+		color + (__BACKGROUND << 4));*/
 }
 
 void WindowsHelper_ChangeBackgroundColor(BackgroundColorType type)

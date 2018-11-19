@@ -9,6 +9,7 @@ Handle Windows Properties
 ************************************************************************************************/
 
 #pragma once
+#include "Header.h"
 
 /*------------------------------------------------------------------------------
 // Init:
@@ -36,3 +37,6 @@ void WindowsHelper_ClearScreen();
 
 /* Display: Change printf color*/
 void WindowsHelper_ChangeTextcolor(int color);
+
+/* Display: Change background color*/
+void WindowsHelper_ChangeBackgroundColor(BackgroundColorType type);

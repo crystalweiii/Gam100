@@ -189,19 +189,19 @@ void F_Graphic_Draw()
 	int currentLevel = F_LevelManager_GetCurrentLevel();
 	int activeObjectCount = F_GameObjectManager_GetNumberInUse();
 
-	/* Prints invincible tiles constantly */
-	for (i = 0; i < d_MAX_INVINCIBLE_TILES; ++i)
-	{
-		if (i < arrOfMaxInvincibleTiles[currentLevel])
-		{
-			gotoxy(*(*(listOfInvincibleTilesPosX + F_LevelManager_GetCurrentLevel()) + i), *(*(listOfInvincibleTilesPosY + F_LevelManager_GetCurrentLevel()) + i));
-			printf("%c", '=');
-		}
-		else
-		{
-			break;
-		}
-	}
+	///* Prints invincible tiles constantly */
+	//for (i = 0; i < d_MAX_INVINCIBLE_TILES; ++i)
+	//{
+	//	if (i < arrOfMaxInvincibleTiles[currentLevel])
+	//	{
+	//		gotoxy(*(*(listOfInvincibleTilesPosX + F_LevelManager_GetCurrentLevel()) + i), *(*(listOfInvincibleTilesPosY + F_LevelManager_GetCurrentLevel()) + i));
+	//		printf("%c", '=');
+	//	}
+	//	else
+	//	{
+	//		break;
+	//	}
+	//}
 
 	for (i = 0; i < d_MAX_GAMEOBJECTS; ++i)
 	{
@@ -312,15 +312,21 @@ void F_DrawTile_Position(char tileType, ObjectType objType, int posX, int posY)
 	F_Set_Map_DataType(tileType, posX, posY);
 
 	/* Enable: Color*/
-	if (tileType == TILE_PLAYER_DEFENSE)
-		WindowsHelper_ChangeTextcolor(LIGHTMAGENTA);
+	/*if (tileType == TILE_PLAYER_DEFENSE)
+		WindowsHelper_ChangeTextcolor(LIGHTMAGENTA);*/
 
+	/* Draw: Background color */
+	int bcT = F_Map_Get_Background_DataType(posX, posY);
+	if (bcT >= 0)
+	{
+		WindowsHelper_ChangeBackgroundColor((BackgroundColorType)bcT);
+	}
 	/* Draw: ASCII */
 	printf_s("%c", tileType);
 
 	/* Disable: color*/
-	if (tileType == TILE_PLAYER_DEFENSE)
-		WindowsHelper_ChangeTextcolor(LIGHTGRAY);
+	/*if (tileType == TILE_PLAYER_DEFENSE)
+		WindowsHelper_ChangeTextcolor(LIGHTGRAY);*/
 }
 
 /* Render: scaled tile to your desired position */
@@ -336,7 +342,7 @@ void F_DrawScaleTile_Position(char tiletype, ObjectType objType, int posX, int p
 	if (objType == BulletRed || objType == EnemyRed)
 	{
 
-		WindowsHelper_ChangeTextcolor(LIGHTRED);
+		//WindowsHelper_ChangeTextcolor(LIGHTRED);
 
 		for (x = 0; x < scaleX; ++x)
 		{
@@ -346,12 +352,12 @@ void F_DrawScaleTile_Position(char tiletype, ObjectType objType, int posX, int p
 			}
 		}
 
-		WindowsHelper_ChangeTextcolor(LIGHTGRAY);
+		//WindowsHelper_ChangeTextcolor(LIGHTGRAY);
 	}
 	else if (objType == BulletGreen || objType == EnemyGreen)
 	{
 
-		WindowsHelper_ChangeTextcolor(LIGHTGREEN);
+		//WindowsHelper_ChangeTextcolor(LIGHTGREEN);
 
 		for (x = 0; x < scaleX; ++x)
 		{
@@ -361,12 +367,12 @@ void F_DrawScaleTile_Position(char tiletype, ObjectType objType, int posX, int p
 			}
 		}
 
-		WindowsHelper_ChangeTextcolor(LIGHTGRAY);
+		//WindowsHelper_ChangeTextcolor(LIGHTGRAY);
 	}
 	else if (objType == BulletBlue || objType == EnemyBlue)
 	{
 
-		WindowsHelper_ChangeTextcolor(LIGHTCYAN);
+		//WindowsHelper_ChangeTextcolor(LIGHTCYAN);
 
 		for (x = 0; x < scaleX; ++x)
 		{
@@ -377,7 +383,7 @@ void F_DrawScaleTile_Position(char tiletype, ObjectType objType, int posX, int p
 			}
 		}
 
-		WindowsHelper_ChangeTextcolor(LIGHTGRAY);
+		//WindowsHelper_ChangeTextcolor(LIGHTGRAY);
 	}
 
 	/* Others thats not do not need coloring*/
