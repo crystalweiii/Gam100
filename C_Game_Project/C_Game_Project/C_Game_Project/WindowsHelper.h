@@ -40,3 +40,5 @@ void WindowsHelper_ChangeTextcolor(int color);
 
 /* Display: Change background color*/
 void WindowsHelper_ChangeBackgroundColor(BackgroundColorType type);
+
+void WindowsHelper_ChangeColor(int foreground, int background);

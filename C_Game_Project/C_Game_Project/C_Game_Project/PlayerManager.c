@@ -137,7 +137,7 @@ void CreateBullet(ObjectType type, int owner)
 	/* Get: Player Info */
 	GameObj object = F_GameObjectManager_GetMovingObject(owner);
 
-	/* Create: RED/BLUE/GREEN Bullet*/\
+	/* Create: RED/BLUE/GREEN Bullet*/
 	if (owner == playerIndex1)
 		F_BulletManager_SpawnBullet(type, object.positionX + d_PLAYER_SHOOT_X_OFFSET, object.positionY, 1, 0);
 	else if (owner == playerIndex2)

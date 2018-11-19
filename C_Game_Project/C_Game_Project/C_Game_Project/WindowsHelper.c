@@ -106,43 +106,52 @@ void WindowsHelper_ChangeTextcolor(int color)
 		color + (__BACKGROUND << 4));*/
 }
 
+void WindowsHelper_ChangeColor(int foreground, int background)
+{
+	CONSOLE_SCREEN_BUFFER_INFO csbiInfo;
+	GetConsoleScreenBufferInfo(wHnd, &csbiInfo);
+
+	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), foreground | background);
+}
+
 void WindowsHelper_ChangeBackgroundColor(BackgroundColorType type)
 {
-	static int BACKGROUND;
+	//static int BACKGROUND;
 
-	if (type == BKG_GREY)
-		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_INTENSITY);
-	else if (type == BKG_LIGHT_RED)
-		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_RED | BACKGROUND_INTENSITY);
-	else if (type == BKG_LIGHT_BLUE)
-		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_BLUE | BACKGROUND_INTENSITY);
-	else if (type == BKG_LIGHT_GREEN)
-		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_GREEN | BACKGROUND_INTENSITY);
-	else if (type == BKG_LIGHT_YELLOW)
-		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_INTENSITY);
-	else if (type == BKG_LIGHT_MAGENTA)
-		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_RED | BACKGROUND_BLUE | BACKGROUND_INTENSITY);
-	else  if (type == BKG_LIGHT_CYAN)
-		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_INTENSITY);
-	else  if (type == BKG_LIGHT_WHITE)
-		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_INTENSITY);
+	//if (type == BKG_GREY)
+	//	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_INTENSITY);
+	//else if (type == BKG_LIGHT_RED)
+	//	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_RED | BACKGROUND_INTENSITY);
+	//else if (type == BKG_LIGHT_BLUE)
+	//	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_BLUE | BACKGROUND_INTENSITY);
+	//else if (type == BKG_LIGHT_GREEN)
+	//	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_GREEN | BACKGROUND_INTENSITY);
+	//else if (type == BKG_LIGHT_YELLOW)
+	//	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_INTENSITY);
+	//else if (type == BKG_LIGHT_MAGENTA)
+	//	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_RED | BACKGROUND_BLUE | BACKGROUND_INTENSITY);
+	//else  if (type == BKG_LIGHT_CYAN)
+	//	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_INTENSITY);
+	//else  if (type == BKG_LIGHT_WHITE)
+	//	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_INTENSITY);
 
-	else if (type == BKG_DARK_RED)
-		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_RED);
-	else if (type == BKG_DARK_BLUE)
-		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_BLUE);
-	else if (type == BKG_DARK_GREEN)
-		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_GREEN);
-	else if (type == BKG_DARK_YELLOW)
-		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_RED | BACKGROUND_GREEN);
-	else if (type == BKG_DARK_MAGENTA)
-		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_RED | BACKGROUND_BLUE);
-	else  if (type == BKG_DARK_CYAN)
-		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_GREEN | BACKGROUND_BLUE);
-	else  if (type == BKG_DARK_WHITE)
-		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE);
-	else if (type == BKG_BLACK) /* TextColor: white, BackgroundColor: None*/
-		SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7 + (BACKGROUND << 4));
+
+	//else if (type == BKG_DARK_RED)
+	//	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_RED);
+	//else if (type == BKG_DARK_BLUE)
+	//	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_BLUE);
+	//else if (type == BKG_DARK_GREEN)
+	//	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_GREEN);
+	//else if (type == BKG_DARK_YELLOW)
+	//	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_RED | BACKGROUND_GREEN);
+	//else if (type == BKG_DARK_MAGENTA)
+	//	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_RED | BACKGROUND_BLUE);
+	//else  if (type == BKG_DARK_CYAN)
+	//	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_GREEN | BACKGROUND_BLUE);
+	//else  if (type == BKG_DARK_WHITE)
+	//	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE);
+	//else if (type == BKG_BLACK) /* TextColor: white, BackgroundColor: None*/
+	//	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7 + (BACKGROUND << 4));
 }
 
 /* System: Clear screen*/

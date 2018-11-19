@@ -50,7 +50,7 @@ Gather all the Marco together, easier for us to tweak the values.
   /*
    *  Character Properties:
    */
-#define d_CHARACTER_SCALE_X 2			//Character: scale X  (player/enemy/bullet scale X)
+#define d_CHARACTER_SCALE_X 3			//Character: scale X  (player/enemy/bullet scale X)
 #define d_CHARACTER_SCALE_Y 2			//Character: scale Y  (player/enemy/bullet scale X)
 
    /*
@@ -76,9 +76,9 @@ Gather all the Marco together, easier for us to tweak the values.
 	  *  Enemy Properties:
 	  */
 #define d_MAX_ENEMIES 30
-#define d_ENEMY_SPEED 5
+#define d_ENEMY_SPEED 2
 #define d_ENEMY_ANGRY_SPEED d_ENEMY_SPEED * 2
-#define d_RATE_OF_ENEMY_SPAWN 1.0f
+#define d_RATE_OF_ENEMY_SPAWN 4.0f
   /*
    *  Textfile Macro:
    */
@@ -139,45 +139,48 @@ typedef enum
  *  TextColorType: Use to change printf color
  */
 typedef enum {
-	BLACK = 0,
-	BLUE = 1,
-	GREEN = 2,
-	CYAN = 3,
-	RED = 4,
-	MAGENTA = 5,
-	BROWN = 6,
-	LIGHTGRAY = 7,
-	DARKGRAY = 8,
-	LIGHTBLUE = 9,
-	LIGHTGREEN = 10,
-	LIGHTCYAN = 11,
-	LIGHTRED = 12,
-	LIGHTMAGENTA = 13,
-	YELLOW = 14,
-	WHITE = 15
+	FG_BLACK = 0,
+	FG_BLUE = 1,
+	FG_GREEN = 2,
+	FG_CYAN = 3,
+	FG_RED = 4,
+	FG_MAGENTA = 5,
+	FG_BROWN = 6,
+	FG_LIGHTGRAY = 7,
+	FG_DARKGRAY = 8,
+	FG_LIGHTBLUE = 9,
+	FG_LIGHTGREEN = 10,
+	FG_LIGHTCYAN = 11,
+	FG_LIGHTRED = 12,
+	FG_LIGHTMAGENTA = 13,
+	FG_YELLOW = 14,
+	FG_WHITE = 15
 } TextColorType;
 
 /*
  *  BackgroundColorType: Use to change background color
  */
 typedef enum {
-	BKG_BLACK,
-	BKG_GREY,
-	BKG_LIGHT_RED,
-	BKG_LIGHT_BLUE,
-	BKG_LIGHT_GREEN,
-	BKG_LIGHT_YELLOW,
-	BKG_LIGHT_MAGENTA,
-	BKG_LIGHT_CYAN,
-	BKG_LIGHT_WHITE,
-	BKG_DARK_RED,
-	BKG_DARK_BLUE,
-	BKG_DARK_GREEN,
-	BKG_DARK_YELLOW,
-	BKG_DARK_MAGENTA,
-	BKG_DARK_CYAN,
-	BKG_DARK_WHITE,
+	BKG_BLACK	= 0,
+	BKG_WHITE	= 1,
+	BKG_GREY	= 2,
+	BKG_RED		= 3,
+	BKG_GREEN	= 4,
+	BKG_BLUE	= 5,
 } BackgroundColorType;
+
+/* Basic Colors */
+#define BG_BLACK		0x0000
+#define BG_BLUE			0x0010
+#define BG_GREEN		0x0020
+#define BG_RED			0x0040 
+#define BG_INTENSITY	0x0080
+
+/* Mixed Colors */
+#define BG_WHITE	BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_BLUE | BACKGROUND_INTENSITY
+#define BG_GREY		BACKGROUND_INTENSITY
+#define BG_CYAN		BG_GREEN | BG_BLUE
+#define BG_YELLOW	BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_INTENSITY
 
 typedef struct
 {
