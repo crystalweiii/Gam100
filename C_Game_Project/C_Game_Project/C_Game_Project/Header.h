@@ -137,7 +137,7 @@ typedef enum
 } ObjectType;
 
 /*
- *  ColorType: Use to change printf color
+ *  TextColorType: Use to change printf color
  */
 typedef enum {
 	BLACK = 0,
@@ -156,7 +156,29 @@ typedef enum {
 	LIGHTMAGENTA = 13,
 	YELLOW = 14,
 	WHITE = 15
-} ColorType;
+} TextColorType;
+
+/*
+ *  BackgroundColorType: Use to change background color
+ */
+typedef enum {
+	BKG_BLACK,
+	BKG_GREY,
+	BKG_LIGHT_RED,
+	BKG_LIGHT_BLUE,
+	BKG_LIGHT_GREEN,
+	BKG_LIGHT_YELLOW,
+	BKG_LIGHT_MAGENTA,
+	BKG_LIGHT_CYAN,
+	BKG_LIGHT_WHITE,
+	BKG_DARK_RED,
+	BKG_DARK_BLUE,
+	BKG_DARK_GREEN,
+	BKG_DARK_YELLOW,
+	BKG_DARK_MAGENTA,
+	BKG_DARK_CYAN,
+	BKG_DARK_WHITE,
+} BackgroundColorType;
 
 typedef struct
 {

@@ -288,6 +288,11 @@ void F_Graphic_Draw()
 /*------------------------------------------------------------------------------
 // Utility
 //----------------------------------------------------------------------------*/
+/* Render: 1 tile background color*/
+void F_DrawTileBackGround_Position(int posX, int posY)
+{
+}
+
 /* Render: 1 tile to your desired position */
 void F_DrawTile_Position(char tileType, ObjectType objType, int posX, int posY)
 {
