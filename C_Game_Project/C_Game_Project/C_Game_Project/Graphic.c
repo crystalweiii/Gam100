@@ -226,7 +226,7 @@ void F_Graphic_Draw()
 			F_DrawScaleTile_Position(TILE_EMPTY, None, (int)objects[i].prevPositionX, (int)objects[i].prevPositionY, (int)objects[i].scaleX, (int)objects[i].scaleY,
 													   (int)objects[i].anchorOffsetX, (int)objects[i].anchorOffsetY);
 			/* Remove: Render PLAYER at new position*/
-			F_DrawScaleTile_Position(TILE_PLAYER, None, (int)objects[i].positionX, (int)objects[i].positionY, (int)objects[i].scaleX, (int)objects[i].scaleY,
+			F_DrawScaleTile_Position(TILE_PLAYER, objects[i].type, (int)objects[i].positionX, (int)objects[i].positionY, (int)objects[i].scaleX, (int)objects[i].scaleY,
 														(int)objects[i].anchorOffsetX, (int)objects[i].anchorOffsetY);
 
 			/*Tracking: To optimize checking*/
@@ -303,10 +303,6 @@ void F_Graphic_Draw()
 /*------------------------------------------------------------------------------
 // Utility
 //----------------------------------------------------------------------------*/
-/* Render: 1 tile background color*/
-void F_DrawTileBackGround_Position(int posX, int posY)
-{
-}
 
 /* Render: 1 tile to your desired position */
 void F_DrawTile_Position(char tileType, ObjectType objType, int posX, int posY)
@@ -315,7 +311,7 @@ void F_DrawTile_Position(char tileType, ObjectType objType, int posX, int posY)
 	 * Function Description: printf(ascii) and reassign map[y][x] = ? tileType
 	 */
 
-	/* Prevent: Array out of range */
+	 /* Prevent: Array out of range */
 	if (posY < 0 || posY >= d_game_height ||
 		posX < 0 || posX >= d_game_width)
 		return;
@@ -326,93 +322,69 @@ void F_DrawTile_Position(char tileType, ObjectType objType, int posX, int posY)
 	/* Set: map[y][x] = tileType */
 	F_Set_Map_DataType(tileType, posX, posY);
 
-	/* Enable: Color*/
-	/*if (tileType == TILE_PLAYER_DEFENSE)
-		WindowsHelper_ChangeTextcolor(LIGHTMAGENTA);*/
-
 	/* Draw: Background color */
 	int bcT = F_Map_Get_Background_DataType(posX, posY);
-	if (bcT >= 0)
+
+	int bC = BG_CYAN;
+	if (bcT == BKG_BLACK)
+		bC = BG_BLACK;
+	else if (bcT == BKG_WHITE)
+		bC = BG_WHITE;
+	else if (bcT == BKG_GREY)
+		bC = BG_GREY;
+	else if (bcT == BKG_RED)
+		bC = BG_RED;
+	else if (bcT == BKG_GREEN)
+		bC = BG_GREEN;
+	else if (bcT == BKG_BLUE)
+		bC = BG_BLUE;
+
+	int fC = FG_LIGHTGRAY;
+	if (objType == BulletRed || objType == EnemyRed)
 	{
-		WindowsHelper_ChangeBackgroundColor((BackgroundColorType)bcT);
+		fC = FG_LIGHTRED;
+		bC = BG_RED;
 	}
+	else if (objType == BulletGreen || objType == EnemyGreen)
+	{
+		fC = FG_LIGHTGREEN;
+		bC = BG_GREEN;
+	}
+	else if (objType == BulletBlue || objType == EnemyBlue)
+	{
+		fC = FG_LIGHTBLUE;
+		bC = BG_BLUE;
+	}
+	else if (objType == Player)
+	{
+		fC = FG_LIGHTGRAY;
+		bC = BG_YELLOW;
+	}
+
+	///* Change Color: to desired color */
+	WindowsHelper_ChangeColor(fC, bC);
+
 	/* Draw: ASCII */
 	printf_s("%c", tileType);
 
-	/* Disable: color*/
-	/*if (tileType == TILE_PLAYER_DEFENSE)
-		WindowsHelper_ChangeTextcolor(LIGHTGRAY);*/
+	/* Change Color: reset to white */
+	WindowsHelper_ChangeColor(FG_LIGHTGRAY, 0);
 }
 
 /* Render: scaled tile to your desired position */
 void F_DrawScaleTile_Position(char tiletype, ObjectType objType, int posX, int posY, int scaleX, int scaleY, int anchorOffsetX, int anchorOffsetY)
 {
 	/*
-	 * Function Description: Draw a character of (e.g) 3x3 and change color if needed
+	 * Function Description: Draw a character of (e.g) 3x3
 	 */
-
 	int x, y;
 	x = y = 0;
 
-	if (objType == BulletRed || objType == EnemyRed)
+	for (x = 0; x < scaleX; ++x)
 	{
-
-		//WindowsHelper_ChangeTextcolor(LIGHTRED);
-
-		for (x = 0; x < scaleX; ++x)
+		for (y = 0; y < scaleY; ++y)
 		{
-			for (y = 0; y < scaleY; ++y)
-			{
-				F_DrawTile_Position(tiletype, objType, posX - anchorOffsetX + x, posY - anchorOffsetY + y);
-			}
-		}
-
-		//WindowsHelper_ChangeTextcolor(LIGHTGRAY);
-	}
-	else if (objType == BulletGreen || objType == EnemyGreen)
-	{
-
-		//WindowsHelper_ChangeTextcolor(LIGHTGREEN);
-
-		for (x = 0; x < scaleX; ++x)
-		{
-			for (y = 0; y < scaleY; ++y)
-			{
-				F_DrawTile_Position(tiletype, objType, posX - anchorOffsetX + x, posY - anchorOffsetY + y);
-			}
-		}
-
-		//WindowsHelper_ChangeTextcolor(LIGHTGRAY);
-	}
-	else if (objType == BulletBlue || objType == EnemyBlue)
-	{
-
-		//WindowsHelper_ChangeTextcolor(LIGHTCYAN);
-
-		for (x = 0; x < scaleX; ++x)
-		{
-			for (y = 0; y < scaleY; ++y)
-			{
-				F_DrawTile_Position(tiletype, objType, posX - anchorOffsetX + x, posY - anchorOffsetY + y);
-
-			}
-		}
-
-		//WindowsHelper_ChangeTextcolor(LIGHTGRAY);
-	}
-
-	/* Others thats not do not need coloring*/
-	else 
-	{
-		for (x = 0; x < scaleX; ++x)
-		{
-			for (y = 0; y < scaleY; ++y)
-			{
-				F_DrawTile_Position(tiletype, objType, posX - anchorOffsetX + x, posY - anchorOffsetY + y);
-
-			}
+			F_DrawTile_Position(tiletype, objType, posX - anchorOffsetX + x, posY - anchorOffsetY + y);
 		}
 	}
-
-
 }
