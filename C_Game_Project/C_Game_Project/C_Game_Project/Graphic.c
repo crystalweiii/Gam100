@@ -129,6 +129,21 @@ void F_Map_DrawBorder_Asc(COORD top, COORD btm, int ascicode)
 	printf("\n");
 }
 
+void F_Graphic_DrawSquare_Asc(COORD top, COORD btm, int ascicode)
+{
+	int i = 0;
+	int j = 0;
+	
+	for (i = 0; i <= btm.X; i++)
+		for (j = 0; j <= btm.Y; j++)
+		{
+			gotoxy(top.X+i, top.Y+j);
+			printf("%c", ascicode);
+		}
+	//Bottom border line... 
+	
+}
+
 void PrintImage(float posX, float posY, char image[ObjectSize])
 {
 	int j;

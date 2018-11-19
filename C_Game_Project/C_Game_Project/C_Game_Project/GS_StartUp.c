@@ -17,6 +17,7 @@ void GS_StartUp_InputCheck();
 void GS_StartUp_Init()
 {
 	F_Map_Set_And_Print(0);
+	F_UI_Print_Out_Index(PT_Basic_Instruction);
 }
 
 void GS_StartUp_Update()
@@ -26,6 +27,7 @@ void GS_StartUp_Update()
 
 void GS_StartUp_Exit()
 {
+	F_UI_Clear_Index(PT_Basic_Instruction);
 	F_Map_EmptySlow();
 }
 

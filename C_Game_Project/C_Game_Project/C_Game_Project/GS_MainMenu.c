@@ -11,6 +11,7 @@ This is the main menu page which will be use to transition to game play page, cr
 #include "Map.h"
 #include "Menu.h"
 #include "GameManager.h"
+#include "UiHandler.h"
 
 /*Private var*/
 COORD AlignPoint = { d_game_width / 2.5f , d_game_height / 3 };
@@ -24,7 +25,6 @@ int selector_ptr;
 
 /*Private function*/
 void GS_MainMenu_InputCheck();
-
 void F_MainMenu_Select(int dir);
 
 
@@ -37,6 +37,9 @@ void GS_MainMenu_Init()
 	COORD top_position = { Word_Pos_Top[selector_ptr].X + v_map_top.X , Word_Pos_Top[selector_ptr].Y + v_map_top.Y };
 	COORD btm_position = { (Word_Pos_Btm[selector_ptr].X - Word_Pos_Top[selector_ptr].X), (Word_Pos_Btm[selector_ptr].Y - Word_Pos_Top[selector_ptr].Y) };
 	F_Menu_Select(top_position, btm_position);
+
+
+	F_UI_Print_Out_Index(PT_Basic_Instruction);
 }
 
 
@@ -47,6 +50,7 @@ void GS_MainMenu_Update()
 
 void GS_MainMenu_Exit()
 {
+	F_UI_Clear_Index(PT_Basic_Instruction);
 	F_Map_EmptySlow();
 }
 /*For Input checking*/

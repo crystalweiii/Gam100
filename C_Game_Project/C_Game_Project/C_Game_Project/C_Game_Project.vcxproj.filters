@@ -108,6 +108,9 @@
     <ClInclude Include="UiHandler.h">
       <Filter>Header Files\GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="BlockerManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameManager.c">
@@ -163,6 +166,12 @@
     </ClCompile>
     <ClCompile Include="UiHandler.c">
       <Filter>Source Files\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="BlockerManager.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Math.c">
+      <Filter>Source Files\Math</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -16,6 +16,7 @@ This is for the gameplay state, where others will then link up with their gamepl
 #include "BulletManager.h"
 #include "EnemyManager.h"
 #include "BlockerManager.h"
+#include "UiHandler.h"
 
 void GS_GamePlay_Init()
 {
@@ -39,6 +40,10 @@ void GS_GamePlay_Init()
 
 	/* BlockerManager: Init and spawn blocker */
 	F_BlockerManager_Init();
+
+	/* Printing of instruction*/
+	F_UI_Print_Out_Index(PT_Game_Instruction);
+	F_UI_Print_Out_Index(PT_Game_Info_Right);
 }
 
 void GS_GamePlay_Update(float dt) 
@@ -52,6 +57,9 @@ void GS_GamePlay_Update(float dt)
 
 void GS_GamePlay_Exit()
 {
+
+	F_UI_Clear_Index(PT_Game_Instruction);
+	F_UI_Clear_Index(PT_Game_Info_Right);
 	F_PlayerManager_Exit();
 	F_BulletManager_Exit();
 	F_EnemyManager_Exit();

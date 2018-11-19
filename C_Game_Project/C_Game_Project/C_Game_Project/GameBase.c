@@ -15,9 +15,8 @@ void F_Game_Init()
 {
 	F_Graphic_Init();
 	F_Map_Init();
-	F_GSManager_Init();
-
 	F_UI_Init();
+	F_GSManager_Init();
 }
 
 void F_Game_Running()

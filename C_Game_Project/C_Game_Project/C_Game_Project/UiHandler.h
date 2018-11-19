@@ -48,6 +48,7 @@ void F_Insert_Print_Out() {
 void F_UI_Print_Out();
 
 void F_UI_Print_Out_Index(int index);
+void F_UI_Clear_Index(int index);
 
 void F_UI_Border_PO();
 

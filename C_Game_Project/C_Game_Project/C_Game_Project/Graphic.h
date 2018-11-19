@@ -29,6 +29,9 @@ void hideCursor();
 void F_Map_DrawBorder(COORD top, COORD btm);
 void F_Map_DrawBorder_Asc(COORD btm, COORD top, int ascicode);
 
+/*Draw Square using same ascii*/
+void F_Graphic_DrawSquare_Asc(COORD top, COORD btm, int ascicode);
+
 /* Everything that handles the printing of the image on screen*/
 void PrintImage(float posX, float posY, char image[ObjectSize]);
 void ClearImage(float posX, float posY);

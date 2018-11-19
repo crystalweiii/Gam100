@@ -127,6 +127,8 @@ void F_Map_EmptySlow() /*clear screen pixel by pixel*/
 
 }
 
+
+
 void F_Map_Print()
 {
 	for (int gh_generate = 0; gh_generate < d_game_height; gh_generate++)
