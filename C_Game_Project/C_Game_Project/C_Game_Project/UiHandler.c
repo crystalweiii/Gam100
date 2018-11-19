@@ -4,6 +4,7 @@
 
 COORD v_instr_startSpot;
 COORD v_gamUI_startSpot;
+COORD v_btmL_startSpot;
 
 COORD v_instr_borderStart;
 COORD v_instr_borderEnd;
@@ -12,8 +13,10 @@ COORD v_gamUI_borderStart;
 COORD v_gamUI_borderEnd;
 
 COORD v_btmR_borderStart;
-/* Retrieve: Total height: game map height + ui height*/
 COORD v_btmR_borderEnd;
+
+COORD v_btmL_borderStart;
+COORD v_btmL_borderEnd;			
 
 
 /*Assigning position according downwards*/
@@ -84,7 +87,7 @@ void F_UI_Border_PO()
 
 	/* Retrieve: Total height: game map height + ui height*/
 	v_instr_borderEnd.X = d_instruction_width;
-	v_instr_borderEnd.Y = (d_game_height + d_ui_height) / 3;
+	v_instr_borderEnd.Y = (d_game_height + d_ui_height) / 2.4;
 	F_Map_DrawBorder(v_instr_borderStart, v_instr_borderEnd);
 
 	v_instr_startSpot.X = v_instr_borderStart.X + 5;
@@ -93,27 +96,39 @@ void F_UI_Border_PO()
 	/*Middle Right*/
 	/* Retrieve: Position X right next to game map */
 	v_gamUI_borderStart.X = d_game_width;
-	v_gamUI_borderStart.Y = (d_game_height + d_ui_height) / 3;
+	v_gamUI_borderStart.Y = (d_game_height + d_ui_height) / 2.4;
 
 	/* Retrieve: Total height: game map height + ui height*/
 	v_gamUI_borderEnd.X = d_instruction_width;
-	v_gamUI_borderEnd.Y = (d_game_height + d_ui_height) / 3 ;
+	v_gamUI_borderEnd.Y = (d_game_height + d_ui_height) / 2.4;
 	F_Map_DrawBorder(v_gamUI_borderStart, v_gamUI_borderEnd);
 
 	v_gamUI_startSpot.X = v_gamUI_borderStart.X + 5;
 	v_gamUI_startSpot.Y = v_gamUI_borderStart.Y + v_gamUI_borderEnd.Y / 4 ;
 	
 	/*Btm right*/
+	/*
 	v_btmR_borderStart.X = d_game_width;
 	v_btmR_borderStart.Y = (d_game_height + d_ui_height) * 2 / 3;
-	/* Retrieve: Total height: game map height + ui height*/
+
 	v_btmR_borderEnd.X = d_instruction_width;
 	v_btmR_borderEnd.Y = (d_game_height + d_ui_height) / 3 ;
 	F_Map_DrawBorder(v_btmR_borderStart, v_btmR_borderEnd);
+	*/
 	/*
 	v_btmR_startSpot.X = v_btmR_borderStart.X + 5;
 	v_btmR_startSpot.Y = v_btmR_borderStart.Y + v_btmR_borderEnd.Y / 4;
  */
+	v_btmL_borderStart.X = 0;
+	v_btmL_borderStart.Y = d_game_height;
+	
+	v_btmL_borderEnd.X = d_game_width + d_instruction_width;
+	v_btmL_borderEnd.Y = d_ui_height;				
+	/* "Draw: Border to seperate gameplay & UI */
+	F_Map_DrawBorder(v_btmL_borderStart, v_btmL_borderEnd);
+
+	v_btmL_startSpot.X = v_btmL_borderStart.X + 2;
+	v_btmL_startSpot.Y = v_btmL_borderStart.Y + (v_btmL_borderEnd.Y / 4);
 }
 
 
@@ -136,10 +151,10 @@ void F_UI_Basic_Instru() {
 	printf("'R' to reset");
 
 	F_Pos_Assignment(v_instr_startSpot, &BI_Count);
-	printf("Space to shoot");
+	printf("Space to Enter");
 
 	F_Pos_Assignment(v_instr_startSpot, &BI_Count);
-	printf("Arrow Keys for direction");
+	printf("<^> for direction");
 
 }
 
@@ -184,15 +199,26 @@ void F_UI_Game_Info_Right()
 	printf("Game Info:");
 
 	F_Pos_Assignment(v_gamUI_startSpot, &BI_Count);
-	printf("Score:" );
+	printf("Score:OVER 9000" );
 
 	F_Pos_Assignment(v_gamUI_startSpot, &BI_Count);
-	printf("Level:");
+	printf("Level:OVER 3.14159");
 }
 
 
 void F_UI_Game_Info_Below()
 {
+	gotoxy(v_btmL_startSpot.X, v_btmL_startSpot.Y );
+	printf("Lifes:");
+	gotoxy(v_btmL_startSpot.X, v_btmL_startSpot.Y+1);
+	printf("$$$");
 
+	gotoxy(v_btmL_startSpot.X + 20, v_btmL_startSpot.Y);
+	printf("Bullets:");
+	gotoxy(v_btmL_startSpot.X + 20, v_btmL_startSpot.Y+1);
+	printf("RBGBGB");
+
+	gotoxy(v_btmL_startSpot.X + 80, v_btmL_startSpot.Y);
+	printf("Something:");
 
 }

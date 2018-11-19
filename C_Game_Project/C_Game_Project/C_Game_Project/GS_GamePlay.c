@@ -44,6 +44,7 @@ void GS_GamePlay_Init()
 	/* Printing of instruction*/
 	F_UI_Print_Out_Index(PT_Game_Instruction);
 	F_UI_Print_Out_Index(PT_Game_Info_Right);
+	F_UI_Print_Out_Index(PT_Game_Info_Below);
 }
 
 void GS_GamePlay_Update(float dt) 
@@ -60,6 +61,7 @@ void GS_GamePlay_Exit()
 
 	F_UI_Clear_Index(PT_Game_Instruction);
 	F_UI_Clear_Index(PT_Game_Info_Right);
+	F_UI_Clear_Index(PT_Game_Info_Below);
 	F_PlayerManager_Exit();
 	F_BulletManager_Exit();
 	F_EnemyManager_Exit();

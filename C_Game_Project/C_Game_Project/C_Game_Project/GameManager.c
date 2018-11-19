@@ -16,6 +16,7 @@ This is game state manager is to control and handle the flow of the whole progra
 #include "GS_StartUp.h"
 #include "GS_MainMenu.h"
 #include "GS_GamePlay.h"
+#include "GS_Credit.h"
 
 
 int v_gs_current;
@@ -71,6 +72,9 @@ void F_GSManager_InitState(int state)
 	case GamePlay:
 		GS_GamePlay_Init();
 		break;
+	case Credit:
+		GS_Credit_Init();
+		break;
 	case Pause:
 		F_GSManager_ChangeState(End);
 		break;
@@ -94,6 +98,9 @@ void F_GSManager_UpdateState(int state, float dt) {
 		case GamePlay:
 			GS_GamePlay_Update(dt);
 			break;
+		case Credit:
+			GS_Credit_Update(dt);
+			break;
 		case Pause:
 			v_running = 0;
 			break;
@@ -115,6 +122,9 @@ void F_GSManager_ExitState(int state) {
 		break;
 	case GamePlay:
 		GS_GamePlay_Exit();
+		break;
+	case Credit:
+		GS_Credit_Exit();
 		break;
 	case Pause:
 		v_running = 0;
@@ -162,29 +172,6 @@ int F_GSManager_RunningStateMachine()
 /*input checking done here*/
 void F_GSManager_InputCheck()
 {
-	/*
-	/*Check for number 1 key hit/
-	if (f_Check_KeyDown(0x31))
-	{
-		if (currentScreenIndex < d_map_amount - 1)
-			currentScreenIndex++;
-		else
-			currentScreenIndex = 0;
-
-		v_gs_next = currentScreenIndex;
-	}
-
-	/*Check for number 2 key hit/
-	if (f_Check_KeyDown(0x32))
-	{
-		if (currentScreenIndex > 0)
-			currentScreenIndex--;
-		else
-			currentScreenIndex = d_map_amount - 1;
-
-		v_gs_next = currentScreenIndex;
-	}
-	*/
 	/*Check for Q small and Q caps*/
 	if (f_Check_KeyDown(0x71) || f_Check_KeyDown(0x51))
 	{

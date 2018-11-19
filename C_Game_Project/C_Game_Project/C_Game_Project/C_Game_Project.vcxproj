@@ -123,6 +123,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectManager.h" />
     <ClInclude Include="Graphic.h" />
+    <ClInclude Include="GS_Credit.h" />
     <ClInclude Include="GS_GamePlay.h" />
     <ClInclude Include="GS_MainMenu.h" />
     <ClInclude Include="Header.h" />
@@ -145,6 +146,7 @@
     <ClCompile Include="GameManager.c" />
     <ClCompile Include="GameObjectManager.c" />
     <ClCompile Include="Graphic.c" />
+    <ClCompile Include="GS_Credit.c" />
     <ClCompile Include="GS_GamePlay.c" />
     <ClCompile Include="GS_MainMenu.c" />
     <ClCompile Include="Input.c" />

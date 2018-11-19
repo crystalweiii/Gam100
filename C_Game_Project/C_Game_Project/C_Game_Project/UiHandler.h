@@ -52,8 +52,8 @@ void F_UI_Clear_Index(int index);
 
 void F_UI_Border_PO();
 
+
 void F_UI_Basic_Instru();
 void F_UI_Game_Instru();
-
 void F_UI_Game_Info_Right();
 void F_UI_Game_Info_Below();

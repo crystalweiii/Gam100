@@ -75,7 +75,7 @@ void GS_MainMenu_InputCheck()
 			F_GSManager_ChangeState(GamePlay);
 			break;
 		case 1:
-			F_GSManager_ChangeState(End);
+			F_GSManager_ChangeState(Credit);
 			break;
 		case 2:
 			F_GSManager_ChangeState(End);

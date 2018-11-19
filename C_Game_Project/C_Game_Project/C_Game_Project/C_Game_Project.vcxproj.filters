@@ -111,6 +111,9 @@
     <ClInclude Include="BlockerManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GS_Credit.h">
+      <Filter>Header Files\GameState</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameManager.c">
@@ -172,6 +175,9 @@
     </ClCompile>
     <ClCompile Include="Math.c">
       <Filter>Source Files\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="GS_Credit.c">
+      <Filter>Source Files\GameState</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
