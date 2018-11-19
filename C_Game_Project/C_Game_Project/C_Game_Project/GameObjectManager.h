@@ -25,12 +25,14 @@ void F_GameObjectManager_Update(float dt);
 /*------------------------------------------------------------------------------
 // Setter & Getter
 //----------------------------------------------------------------------------*/
-/* Dir, Scale, Speed */
+/* Dir, Scale, Speed, Visible */
 float F_GameObjectManager_GetObjectDirX(int index);
 float F_GameObjectManager_GetObjectDirY(int index);
+bool F_GameObjectManager_GetObjectVisible(int index);
 void F_GameObjectManager_SetObjectDir(int index, float x, float y);
 void F_GameObjectManager_SetObjectScale(int index, int x, int y);
 void F_GameObjectManager_SetObjectSpeed(int index, float speed);
+void F_GameObjectManager_SetObjectVisible(int index, bool visible);
 
 /* Current position */
 float F_GameObjectManager_GetObjectPositionX(int index);

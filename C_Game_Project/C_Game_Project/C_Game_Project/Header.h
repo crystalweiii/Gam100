@@ -16,6 +16,7 @@ Gather all the Marco together, easier for us to tweak the values.
 #include <windows.h>
 #include <time.h>
 #include <dos.h>
+#include <stdbool.h>
 
 /*
  *  Map Macro:
@@ -66,6 +67,11 @@ Gather all the Marco together, easier for us to tweak the values.
 	 */
 #define d_MAX_BULLETS 50
 #define d_BULLET_SPEED 50
+	/*
+	 *  Blocker Properties:
+	 */
+#define d_MAX_BLOCKERS 50
+#define d_BLOCKER_IS_VISIBLE true
 
 	 /*
 	  *  Enemy Properties:
@@ -123,7 +129,11 @@ typedef enum
 	EnemyGreen,
 	BulletRed,
 	BulletBlue,
-	BulletGreen
+	BulletGreen,
+	BlockerUp,
+	BlockerDown,
+	BlockerLeft,
+	BlockerRight
 } ObjectType;
 
 /*

@@ -56,6 +56,7 @@ void F_PlayerManager_Init()
 	F_GameObjectManager_SetObjectSpeed(playerIndex1, d_PLAYER_SPEED);
 	F_GameObjectManager_SetObjectScale(playerIndex1, d_CHARACTER_SCALE_X, d_CHARACTER_SCALE_Y);
 	F_GameObjectManager_SetObjectImage(playerIndex1, playerImage);
+	F_GameObjectManager_SetObjectVisible(playerIndex1, true);
 
 	/* Assign: Player 2 properties */
 	F_GameObjectManager_SetObjectType(playerIndex2, Player);
@@ -64,6 +65,7 @@ void F_PlayerManager_Init()
 	F_GameObjectManager_SetObjectSpeed(playerIndex2, d_PLAYER_SPEED);
 	F_GameObjectManager_SetObjectScale(playerIndex2, d_CHARACTER_SCALE_X, d_CHARACTER_SCALE_Y);
 	F_GameObjectManager_SetObjectImage(playerIndex2, playerImage);
+	F_GameObjectManager_SetObjectVisible(playerIndex2, true);
 
 }
 void F_PlayerManager_Update(float dt)

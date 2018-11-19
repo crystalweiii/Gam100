@@ -394,17 +394,29 @@ ObjectType F_GameObjectManager_GetObjectType(int index)
 {
 	return listOfGameObjects[index].type;
 }
-
 float F_GameObjectManager_GetObjectDirX(int index)
 {
 	return listOfGameObjects[index].directionX;
 }
-
 float F_GameObjectManager_GetObjectDirY(int index)
 {
 	return listOfGameObjects[index].directionY;
 }
+bool F_GameObjectManager_GetObjectVisible(int index)
+{
+	return listOfGameObjects[index].isVisible;
+}
 
+
+void F_GameObjectManager_SetObjectVisible(int index, bool visible)
+{
+	if (index < 0 || index >= d_MAX_GAMEOBJECTS)
+	{
+		return;
+	}
+
+	listOfGameObjects[index].isVisible = visible;
+}
 void F_GameObjectManager_SetObjectDir(int index, float x, float y)
 {
 	if (index < 0 || index >= d_MAX_GAMEOBJECTS)

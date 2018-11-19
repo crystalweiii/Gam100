@@ -103,6 +103,7 @@ void F_BulletManager_SpawnBullet(ObjectType type, float posX, float posY, float 
 	F_GameObjectManager_SetObjectDir(bulletIndex, dirX, dirY);
 	F_GameObjectManager_SetObjectScale(bulletIndex, d_CHARACTER_SCALE_X, d_CHARACTER_SCALE_Y);
 	F_GameObjectManager_SetObjectSpeed(bulletIndex, d_BULLET_SPEED);
+	F_GameObjectManager_SetObjectVisible(bulletIndex, true);
 }
 
 

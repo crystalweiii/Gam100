@@ -248,6 +248,31 @@ void F_Graphic_Draw()
 			++processed;
 		}
 
+		else if (objects[i].type == BlockerUp && objects[i].isVisible == true)
+		{
+			/* Render: Render TILE_ENEMY_MOVEUP*/
+			F_DrawScaleTile_Position(TILE_ENEMY_MOVEUP, None, (int)objects[i].positionX, (int)objects[i].positionY, (int)objects[i].scaleX, (int)objects[i].scaleY,
+				(int)objects[i].anchorOffsetX, (int)objects[i].anchorOffsetY);
+		}
+		else if (objects[i].type == BlockerDown && objects[i].isVisible == true)
+		{
+			/* Render: Render TILE_ENEMY_MOVEUP*/
+			F_DrawScaleTile_Position(TILE_ENEMY_MOVEDOWN, None, (int)objects[i].positionX, (int)objects[i].positionY, (int)objects[i].scaleX, (int)objects[i].scaleY,
+				(int)objects[i].anchorOffsetX, (int)objects[i].anchorOffsetY);
+		}
+		else if (objects[i].type == BlockerLeft && objects[i].isVisible == true)
+		{
+			/* Render: Render TILE_ENEMY_MOVELEFT*/
+			F_DrawScaleTile_Position(TILE_ENEMY_MOVELEFT, None, (int)objects[i].positionX, (int)objects[i].positionY, (int)objects[i].scaleX, (int)objects[i].scaleY,
+				(int)objects[i].anchorOffsetX, (int)objects[i].anchorOffsetY);
+		}
+		else if (objects[i].type == BlockerRight && objects[i].isVisible == true)
+		{
+			/* Render: Render TILE_ENEMY_MOVERIGHT*/
+			F_DrawScaleTile_Position(TILE_ENEMY_MOVERIGHT, None, (int)objects[i].positionX, (int)objects[i].positionY, (int)objects[i].scaleX, (int)objects[i].scaleY,
+				(int)objects[i].anchorOffsetX, (int)objects[i].anchorOffsetY);
+		}
+
 		/*Tracking the number of objects to draw*/
 		if (processed >= activeObjectCount)
 			break;

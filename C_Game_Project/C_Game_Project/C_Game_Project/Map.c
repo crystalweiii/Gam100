@@ -145,8 +145,27 @@ void F_Map_Set_And_Print(int index)
 		{
 			s_current_map.V_Map_Array[gh_generate][gw_generate] = s_map_db[s_map_index.v_selected].V_Map_Array[gh_generate][gw_generate];
 
-			if(s_current_map.V_Map_Array[gh_generate][gw_generate] != '~')
-				printf("%c", s_current_map.V_Map_Array[gh_generate][gw_generate]);
+			/* if csv width != d_game_width, 
+				we need this 'if' to prevent printing garbage data. This will enable dynamic map printing */
+			if (s_current_map.V_Map_Array[gh_generate][gw_generate] != '~')
+			{
+				/* Checks only during "GAMEPLAY"*/
+				if (index >= 2)
+				{
+					/* if detect ENEMY BLOCKER, print space instead */
+					if (s_current_map.V_Map_Array[gh_generate][gw_generate] == TILE_ENEMY_MOVEUP ||
+						s_current_map.V_Map_Array[gh_generate][gw_generate] == TILE_ENEMY_MOVEDOWN || 
+						s_current_map.V_Map_Array[gh_generate][gw_generate] == TILE_ENEMY_MOVELEFT || 
+						s_current_map.V_Map_Array[gh_generate][gw_generate] == TILE_ENEMY_MOVERIGHT)
+						printf(" ");
+					else
+						printf("%c", s_current_map.V_Map_Array[gh_generate][gw_generate]);
+
+				}
+				/* Checks during "NON-GAMEPLAY" state*/
+				else
+					printf("%c", s_current_map.V_Map_Array[gh_generate][gw_generate]);
+			}
 
 			/* Stores the position and type of tiles that bullets can go through in a list */
 			if (index >= 2)

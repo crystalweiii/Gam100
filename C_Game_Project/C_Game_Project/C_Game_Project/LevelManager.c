@@ -3,6 +3,7 @@
 #include "Map.h"
 #include "Input.h"
 #include "EnemyManager.h"
+#include "BlockerManager.h"
 
 /***********************
  * 	Private Variables
@@ -57,6 +58,8 @@ void F_LevelManager_ClearLevel()
 {
 	F_Map_EmptySlow();
 	F_EnemyManager_Exit();
+
+	F_BlockerManager_Exit();
 }
 
 void F_LevelManager_Exit()
