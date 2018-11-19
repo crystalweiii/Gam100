@@ -23,7 +23,7 @@ Gather all the Marco together, easier for us to tweak the values.
 #define d_game_width 120					/*Adjust: Gameplay map->size*/
 #define d_game_height 49					/*Adjust: Gameplay map->size*/
 
-#define d_game_height 40					/*Adjust: Gameplay map->size  
+#define d_game_height 40					/*Adjust: Gameplay map->size*/  
 #define d_border_offset_x 0					/*Adjust: Dont touch please*/
 #define d_border_offset_y 0					/*Adjust: Dont touch please*/
 
