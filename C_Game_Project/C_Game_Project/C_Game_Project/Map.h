@@ -40,6 +40,7 @@ struct S_MapIndex s_map_index;
 struct S_MapData /*to keep track of the maps*/
 {
 	char V_Map_Array[d_game_height][d_game_width];
+	int Background_Map_Array[d_game_height][d_game_width];
 };
 
 /*int V_current_map_index = 0;  to keep track of the current map*/
@@ -100,6 +101,9 @@ int F_MapManager_GetMapWidth();
 
 /* Get: Map playable height */
 int F_MapManager_GetMapHeight();
+
+/* Get: Tile Background Type */
+int F_Map_Get_Background_DataType(int x, int y);
 
 
 /*------------------------------------------------------

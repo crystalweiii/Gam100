@@ -10,6 +10,7 @@ Description/Features:
 #pragma once
 #include "Math.h"
 #include "Header.h"
+#include <stdbool.h>
 
 #define ObjectSize 9
 
@@ -17,6 +18,9 @@ Description/Features:
 typedef struct GameObject
 {
 	ObjectType type;
+
+	/* IsVisible*/
+	bool isVisible;
 
 	/* Scale */
 	int scaleX;

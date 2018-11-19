@@ -16,14 +16,13 @@ Gather all the Marco together, easier for us to tweak the values.
 #include <windows.h>
 #include <time.h>
 #include <dos.h>
+#include <stdbool.h>
 
 /*
  *  Map Macro:
  */
-#define d_game_width 120					/*Adjust: Gameplay map->size*/
-#define d_game_height 49					/*Adjust: Gameplay map->size*/
-
-#define d_game_height 40					/*Adjust: Gameplay map->size*/  
+#define d_game_width 170					/*Adjust: Gameplay map->size*/
+#define d_game_height 40					/*Adjust: Gameplay map->size*/
 #define d_border_offset_x 0					/*Adjust: Dont touch please*/
 #define d_border_offset_y 0					/*Adjust: Dont touch please*/
 
@@ -31,7 +30,7 @@ Gather all the Marco together, easier for us to tweak the values.
 #define d_map_offset_y 0					/*Adjust: Dont touch please*/
 
 #define d_instruction_width 35				/*Adjust: Instruction on the right side of gameplay map->size*/
-#define d_ui_height 10						/*Adjust: UI on the btm of gameplay map->size*/
+#define d_ui_height 8						/*Adjust: UI on the btm of gameplay map->size*/
 
  /*
   *  Spawner Macro:
@@ -67,6 +66,11 @@ Gather all the Marco together, easier for us to tweak the values.
 	 */
 #define d_MAX_BULLETS 50
 #define d_BULLET_SPEED 50
+	/*
+	 *  Blocker Properties:
+	 */
+#define d_MAX_BLOCKERS 50
+#define d_BLOCKER_IS_VISIBLE true
 
 	 /*
 	  *  Enemy Properties:
@@ -124,11 +128,15 @@ typedef enum
 	EnemyGreen,
 	BulletRed,
 	BulletBlue,
-	BulletGreen
+	BulletGreen,
+	BlockerUp,
+	BlockerDown,
+	BlockerLeft,
+	BlockerRight
 } ObjectType;
 
 /*
- *  ColorType: Use to change printf color
+ *  TextColorType: Use to change printf color
  */
 typedef enum {
 	BLACK = 0,
@@ -147,7 +155,29 @@ typedef enum {
 	LIGHTMAGENTA = 13,
 	YELLOW = 14,
 	WHITE = 15
-} ColorType;
+} TextColorType;
+
+/*
+ *  BackgroundColorType: Use to change background color
+ */
+typedef enum {
+	BKG_BLACK,
+	BKG_GREY,
+	BKG_LIGHT_RED,
+	BKG_LIGHT_BLUE,
+	BKG_LIGHT_GREEN,
+	BKG_LIGHT_YELLOW,
+	BKG_LIGHT_MAGENTA,
+	BKG_LIGHT_CYAN,
+	BKG_LIGHT_WHITE,
+	BKG_DARK_RED,
+	BKG_DARK_BLUE,
+	BKG_DARK_GREEN,
+	BKG_DARK_YELLOW,
+	BKG_DARK_MAGENTA,
+	BKG_DARK_CYAN,
+	BKG_DARK_WHITE,
+} BackgroundColorType;
 
 typedef struct
 {

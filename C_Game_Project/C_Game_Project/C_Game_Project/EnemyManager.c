@@ -159,6 +159,7 @@ void F_EnemyManager_SpawnEnemy(int laneToSpawn, ObjectType enemyType, float dirX
 	F_GameObjectManager_SetObjectDir(EnemyIndex, dirX, dirY);
 	F_GameObjectManager_SetObjectSpeed(EnemyIndex, d_ENEMY_SPEED);
 	F_GameObjectManager_SetObjectType(EnemyIndex, enemyType);
+	F_GameObjectManager_SetObjectVisible(EnemyIndex, true);
 }
 
 /* Destroy: Enemy */

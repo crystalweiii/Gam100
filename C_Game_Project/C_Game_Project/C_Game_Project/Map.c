@@ -35,7 +35,8 @@ static int numOfInvincibleTiles[d_map_amount];
 /*--------------------------------
 // Private Function Declaration
 --------------------------------*/
-void F_ReadFromCSVAndStore(char tempMap[d_game_height][d_game_width], int mapIndex);
+void F_ReadFromCSVAndStore_Map(char tempMap[d_game_height][d_game_width], int mapIndex);
+void F_ReadFromCSVAndStore_Background(int tempMap[d_game_height][d_game_width], int mapIndex);
 void RetrieveSpawnPositionFromData(float *spawnPlayer1PosX, float *spawnPlayer1PosY, float *spawnPlayer2PosX, float *spawnPlayer2PosY, float *spawnEnemyPosX, float *spawnEnemyPosY);
 
 
@@ -62,8 +63,12 @@ void F_Map_Init()
 
 	/* "Read" & "Store": from text file*/
 	F_ReadFromTextAndStore(txt_DGPLogo , s_map_db[0].V_Map_Array);	// Digipen logo
-	F_ReadFromCSVAndStore(s_map_db[2].V_Map_Array, Level_One);		// Level 1 level design
-	F_ReadFromCSVAndStore(s_map_db[3].V_Map_Array, Level_Two);		// Level 2 level design
+	F_ReadFromCSVAndStore_Map(s_map_db[2].V_Map_Array, Level_One);		// Level 1 level design
+	F_ReadFromCSVAndStore_Map(s_map_db[3].V_Map_Array, Level_Two);		// Level 2 level design
+
+	/* "Read" & "Store": Background color info */
+	F_ReadFromCSVAndStore_Background(s_map_db[2].Background_Map_Array, Level_One);
+
 
 	/* Draw: Main Menu */
 	F_Main_Menu_Print(s_map_db[1].V_Map_Array);
@@ -143,10 +148,34 @@ void F_Map_Set_And_Print(int index)
 		gotoxy(x, y);
 		for (int gw_generate = 0; gw_generate < d_game_width; gw_generate++)
 		{
+			/* Copy over: game [][] */
 			s_current_map.V_Map_Array[gh_generate][gw_generate] = s_map_db[s_map_index.v_selected].V_Map_Array[gh_generate][gw_generate];
 
-			if(s_current_map.V_Map_Array[gh_generate][gw_generate] != '~')
-				printf("%c", s_current_map.V_Map_Array[gh_generate][gw_generate]);
+			/* Copy over: Background [][] */
+			s_current_map.Background_Map_Array[gh_generate][gw_generate] = s_map_db[s_map_index.v_selected].Background_Map_Array[gh_generate][gw_generate];
+
+			/* if csv width != d_game_width, 
+				we need this 'if' to prevent printing garbage data. This will enable dynamic map printing */
+			if (s_current_map.V_Map_Array[gh_generate][gw_generate] != '~')
+			{
+				/* Checks only during "GAMEPLAY"*/
+				if (index >= 2)
+				{
+					///* if detect ENEMY BLOCKER, print space instead */
+					//if (s_current_map.V_Map_Array[gh_generate][gw_generate] == TILE_ENEMY_MOVEUP ||
+					//	s_current_map.V_Map_Array[gh_generate][gw_generate] == TILE_ENEMY_MOVEDOWN || 
+					//	s_current_map.V_Map_Array[gh_generate][gw_generate] == TILE_ENEMY_MOVELEFT || 
+					//	s_current_map.V_Map_Array[gh_generate][gw_generate] == TILE_ENEMY_MOVERIGHT)
+					//	printf(" ");
+					//else
+					//	printf("%c", s_current_map.V_Map_Array[gh_generate][gw_generate]);
+					F_DrawTile_Position(s_current_map.V_Map_Array[gh_generate][gw_generate], None, gw_generate, gh_generate);
+
+				}
+				/* Checks during "NON-GAMEPLAY" state*/
+				else
+					printf("%c", s_current_map.V_Map_Array[gh_generate][gw_generate]);
+			}
 
 			/* Stores the position and type of tiles that bullets can go through in a list */
 			if (index >= 2)
@@ -257,6 +286,12 @@ int F_MapManager_GetMapHeight()
 	return mapHeight;
 }
 
+/* Get: Tile Background Type */
+int F_Map_Get_Background_DataType(int x, int y)
+{
+	return s_current_map.Background_Map_Array[y][x];
+}
+
 
 
 
@@ -265,7 +300,7 @@ int F_MapManager_GetMapHeight()
 // Utility
 //----------------------------------------------------------------------------*/
 /* Function: Load from csv + Assign data*/
-void F_ReadFromCSVAndStore(char tempMap[d_game_height][d_game_width], int mapIndex)
+void F_ReadFromCSVAndStore_Map(char tempMap[d_game_height][d_game_width], int mapIndex)
 {
 	FILE *inFile;
 	int tempNum = 0;
@@ -355,6 +390,80 @@ void F_ReadFromCSVAndStore(char tempMap[d_game_height][d_game_width], int mapInd
 		printf_s("CHECK YOUR FILE NAME. FILE %d NOT FOUND\n", mapIndex);
 	}
 
+
+	fclose(inFile);
+}
+void F_ReadFromCSVAndStore_Background(int tempMap[d_game_height][d_game_width], int mapIndex)
+{
+	FILE *inFile;
+	int tempNum = 0;
+	int k = mapIndex;
+	char buffer[512]; // The filename buffer.
+	errno_t err;
+
+	bool stop = false; //Use to retrieve mapWidth;
+
+	snprintf(buffer, sizeof(char) * 64, "Background%i.csv", k);
+
+	err = fopen_s(&inFile, buffer, "r");
+	int x, y;
+	x = y = 0;
+
+	int xCounter = 0;
+
+	/*
+	 * Init: all map elements to 0
+	 */
+	for (y = 0; y < d_game_height; ++y)
+	{
+		for (x = 0; x < d_game_width; ++x)
+			tempMap[y][x] = -1;
+	}
+
+	if (err == 0)
+	{
+		char buffer[BUFSIZ], *ptr;
+		/*
+		 * Read each line from the file.
+		 */
+		for (y = 0; fgets(buffer, sizeof buffer, inFile); ++y)
+		{
+			/*
+			 * Parse the comma-separated values from each line into 'array'.
+			 */
+			for (x = 0, ptr = buffer; x < ARRAYSIZE(*tempMap); ++x, ++ptr)
+			{
+				/* Assign: map[y][x] = (int)TILE_??? */
+				tempMap[y][x] = (int)strtol(ptr, &ptr, 10);
+			}
+		}
+	}
+
+	//if (err == 0)
+	//{
+	//	/*
+	//	 * Read each line from the file.
+	//	 */
+	//	for (y = 0; fgets(buffer, sizeof buffer, inFile); ++y)
+	//	{
+	//		xCounter = 0;
+	//		for (x = 0; x < strlen(buffer); ++x)
+	//		{
+	//			if (buffer[x] != ',')
+	//			{
+	//				tempMap[y][xCounter] = (int*)atoi(&buffer[x]);
+	//				/*Need this for delimiter skipping*/
+	//				xCounter++;
+	//			}
+	//		}
+	//	}
+
+	//}
+	
+	else
+	{
+		printf_s("CHECK YOUR FILE NAME. FILE %d NOT FOUND\n", mapIndex);
+	}
 
 	fclose(inFile);
 }
