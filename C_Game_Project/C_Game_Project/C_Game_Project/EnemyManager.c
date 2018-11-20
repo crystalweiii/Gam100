@@ -20,6 +20,9 @@ int enemiesInUse;								/* Track: active bullets*/
 int enemyIndices[d_MAX_ENEMIES];				/* Track: bullets are essentially movingObject/s, hence we hold indices to the moving objects that are bullets*/
 float enemySpawnPosX[d_MAX_ENEMY_SPAWN_POINT];	/* Enemy Spawn Point(s): PositionX*/
 float enemySpawnPosY[d_MAX_ENEMY_SPAWN_POINT];	/* Enemy Spawn Point(s): PositionY*/
+float enemyDirX[d_MAX_ENEMY_SPAWN_POINT];	/* Enemy Direction: PositionX*/
+float enemyDirY[d_MAX_ENEMY_SPAWN_POINT];	/* Enemy Direction: PositionY*/
+int enemiesToKill;
 int noOfSpawnPoint = 0;							/* Track: noOfSpawnPoint*/
 float enemy_time_elasped = 0.0f;
 
