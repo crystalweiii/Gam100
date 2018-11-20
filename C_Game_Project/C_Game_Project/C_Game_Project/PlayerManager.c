@@ -127,6 +127,7 @@ void F_PlayerManager_CheckInput()
 /* Spawn: Bullet*/
 void CreateBullet(ObjectType type, int owner)
 {
+	int RandBType = GenerateRandNum(3);
 	/* Check: Still in shoot cooldown? */
 	if (time_elasped < d_RATE_OF_PLAYER_FIRE)
 		return;
@@ -139,8 +140,35 @@ void CreateBullet(ObjectType type, int owner)
 
 	/* Create: RED/BLUE/GREEN Bullet*/
 	if (owner == playerIndex1)
-		F_BulletManager_SpawnBullet(type, object.positionX + d_PLAYER_SHOOT_X_OFFSET, object.positionY, 1, 0);
+	{
+		switch (RandBType)
+		{
+		case 0:
+			F_BulletManager_SpawnBullet(BulletRed, object.positionX + d_PLAYER_SHOOT_X_OFFSET, object.positionY, 1, 0);
+			break;
+		case 1:
+			F_BulletManager_SpawnBullet(BulletBlue, object.positionX + d_PLAYER_SHOOT_X_OFFSET, object.positionY, 1, 0);
+			break;
+		case 2:
+			F_BulletManager_SpawnBullet(BulletGreen, object.positionX + d_PLAYER_SHOOT_X_OFFSET, object.positionY, 1, 0);
+			break;
+		}
+	}
 	else if (owner == playerIndex2)
-		F_BulletManager_SpawnBullet(type, object.positionX, object.positionY + d_PLAYER_SHOOT_Y_OFFSET, 0, -1);
+	{
+		switch (RandBType)
+		{
+		case 0:
+			F_BulletManager_SpawnBullet(BulletRed, object.positionX, object.positionY + d_PLAYER_SHOOT_Y_OFFSET, 0, -1);
+			break;
+		case 1:
+			F_BulletManager_SpawnBullet(BulletBlue, object.positionX, object.positionY + d_PLAYER_SHOOT_Y_OFFSET, 0, -1);
+			break;
+		case 2:
+			F_BulletManager_SpawnBullet(BulletGreen, object.positionX, object.positionY + d_PLAYER_SHOOT_Y_OFFSET, 0, -1);
+			break;
+		}
+	}
+
 
 }
