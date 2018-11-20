@@ -38,3 +38,8 @@ int F_EnemyManager_FindCollidedEnemyIndex_BoxCollision(float otherPosX, float ot
 
 /* Basic enemy initialization */
 void F_EnemyManager_StartOfLevelInit();
+
+/* Return enemies left to kill */
+int GetEnemiesToKill();
+/* Minus enemies left to kill count by 1*/
+void DecreaseEnemiesToKill();

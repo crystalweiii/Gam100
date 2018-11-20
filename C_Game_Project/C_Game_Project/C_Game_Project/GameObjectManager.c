@@ -164,6 +164,7 @@ void UpdateCollisionEvent_Bullet(int i)
 					F_DrawScaleTile_Position(TILE_EMPTY, None, (int)listOfGameObjects[hitEnemyIndex].positionX, (int)listOfGameObjects[hitEnemyIndex].positionY, (int)listOfGameObjects[hitEnemyIndex].scaleX, (int)listOfGameObjects[hitEnemyIndex].scaleY, (int)listOfGameObjects[hitEnemyIndex].anchorOffsetX, (int)listOfGameObjects[hitEnemyIndex].anchorOffsetY);
 					//Kill: Enemy
 					F_EnemyManager_KillEnemy(hitEnemyIndex);
+					DecreaseEnemiesToKill();
 					break;
 
 				case EnemyGreen:
@@ -200,6 +201,7 @@ void UpdateCollisionEvent_Bullet(int i)
 					F_DrawScaleTile_Position(TILE_EMPTY, None, (int)listOfGameObjects[hitEnemyIndex].positionX, (int)listOfGameObjects[hitEnemyIndex].positionY, (int)listOfGameObjects[hitEnemyIndex].scaleX, (int)listOfGameObjects[hitEnemyIndex].scaleY, (int)listOfGameObjects[hitEnemyIndex].anchorOffsetX, (int)listOfGameObjects[hitEnemyIndex].anchorOffsetY);
 					//Kill: Enemy
 					F_EnemyManager_KillEnemy(hitEnemyIndex);
+					DecreaseEnemiesToKill();
 					break;
 
 				case EnemyRed:
@@ -236,6 +238,7 @@ void UpdateCollisionEvent_Bullet(int i)
 					F_DrawScaleTile_Position(TILE_EMPTY, None, (int)listOfGameObjects[hitEnemyIndex].positionX, (int)listOfGameObjects[hitEnemyIndex].positionY, (int)listOfGameObjects[hitEnemyIndex].scaleX, (int)listOfGameObjects[hitEnemyIndex].scaleY, (int)listOfGameObjects[hitEnemyIndex].anchorOffsetX, (int)listOfGameObjects[hitEnemyIndex].anchorOffsetY);
 					//Kill: Enemy
 					F_EnemyManager_KillEnemy(hitEnemyIndex);
+					DecreaseEnemiesToKill();
 					break;
 
 				case EnemyGreen:
