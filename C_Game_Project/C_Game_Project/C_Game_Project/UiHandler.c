@@ -1,6 +1,7 @@
 #include "UiHandler.h"
 #include "Math.h"
 #include "Graphic.h"
+#include "GameObjectManager.h"
 
 COORD v_instr_startSpot;
 COORD v_gamUI_startSpot;
@@ -199,7 +200,7 @@ void F_UI_Game_Info_Right()
 	printf("Game Info:");
 
 	F_Pos_Assignment(v_gamUI_startSpot, &BI_Count);
-	printf("Score:OVER 9000" );
+	printf("Score:%d", score);
 
 	F_Pos_Assignment(v_gamUI_startSpot, &BI_Count);
 	printf("Level:OVER 3.14159");
