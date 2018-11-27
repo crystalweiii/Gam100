@@ -66,6 +66,7 @@ Gather all the Marco together, easier for us to tweak the values.
 	 */
 #define d_MAX_BULLETS 50
 #define d_BULLET_SPEED 50
+#define d_BULLET_INVENTORY 5
 	/*
 	 *  Blocker Properties:
 	 */
@@ -127,8 +128,8 @@ typedef enum
 	EnemyBlue,
 	EnemyGreen,
 	BulletRed,
-	BulletBlue,
 	BulletGreen,
+	BulletBlue,
 	BlockerUp,
 	BlockerDown,
 	BlockerLeft,

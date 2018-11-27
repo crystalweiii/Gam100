@@ -40,3 +40,6 @@ void WindowsHelper_ChangeColor(int foreground, int background);
 
 /* Reset: Back to original text and background color*/
 void WindowsHelper_Reset_DefaultColor();
+
+/* Draw: Color + Draw  + ResetColor */
+void WindowsHelper_Print_ChangeColor_And_Reset(int foreground, int background, char* printout);
