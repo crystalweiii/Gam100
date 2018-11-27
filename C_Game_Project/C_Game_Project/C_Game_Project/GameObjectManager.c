@@ -39,7 +39,7 @@ bool Check_TileCollision_With(char otherType, int index);
 /* Init */
 void F_GameObjectManager_Init()
 {
-	int i;
+	score = 0;
 	memset(listOfGameObjects, 0, sizeof(GameObj) * d_MAX_GAMEOBJECTS);
 }
 
@@ -164,6 +164,8 @@ void UpdateCollisionEvent_Bullet(int i)
 					F_DrawScaleTile_Position(TILE_EMPTY, None, (int)listOfGameObjects[hitEnemyIndex].positionX, (int)listOfGameObjects[hitEnemyIndex].positionY, (int)listOfGameObjects[hitEnemyIndex].scaleX, (int)listOfGameObjects[hitEnemyIndex].scaleY, (int)listOfGameObjects[hitEnemyIndex].anchorOffsetX, (int)listOfGameObjects[hitEnemyIndex].anchorOffsetY);
 					//Kill: Enemy
 					F_EnemyManager_KillEnemy(hitEnemyIndex);
+					DecreaseEnemiesToKill();
+					score += 10;
 					break;
 
 				case EnemyGreen:
@@ -200,6 +202,8 @@ void UpdateCollisionEvent_Bullet(int i)
 					F_DrawScaleTile_Position(TILE_EMPTY, None, (int)listOfGameObjects[hitEnemyIndex].positionX, (int)listOfGameObjects[hitEnemyIndex].positionY, (int)listOfGameObjects[hitEnemyIndex].scaleX, (int)listOfGameObjects[hitEnemyIndex].scaleY, (int)listOfGameObjects[hitEnemyIndex].anchorOffsetX, (int)listOfGameObjects[hitEnemyIndex].anchorOffsetY);
 					//Kill: Enemy
 					F_EnemyManager_KillEnemy(hitEnemyIndex);
+					DecreaseEnemiesToKill();
+					score += 10;
 					break;
 
 				case EnemyRed:
@@ -236,6 +240,8 @@ void UpdateCollisionEvent_Bullet(int i)
 					F_DrawScaleTile_Position(TILE_EMPTY, None, (int)listOfGameObjects[hitEnemyIndex].positionX, (int)listOfGameObjects[hitEnemyIndex].positionY, (int)listOfGameObjects[hitEnemyIndex].scaleX, (int)listOfGameObjects[hitEnemyIndex].scaleY, (int)listOfGameObjects[hitEnemyIndex].anchorOffsetX, (int)listOfGameObjects[hitEnemyIndex].anchorOffsetY);
 					//Kill: Enemy
 					F_EnemyManager_KillEnemy(hitEnemyIndex);
+					DecreaseEnemiesToKill();
+					score += 10;
 					break;
 
 				case EnemyGreen:
@@ -274,6 +280,7 @@ void UpdateCollisionEvent_Bullet(int i)
 }
 void UpdateCollisionEvent_Enemy(int i)
 {
+	int RandDir = GenerateRandNum(3);
 	/*-----------------------------------------------
 	// Handle Collision: Enemy XXX Player Defense
 	-----------------------------------------------*/
@@ -292,7 +299,18 @@ void UpdateCollisionEvent_Enemy(int i)
 
 	if (Check_TileCollision_With(TILE_ENEMY_MOVEDOWN, i))
 	{
-		F_GameObjectManager_SetObjectDir(i, 0, 1);
+		switch (RandDir)
+		{
+		case 0:
+			F_GameObjectManager_SetObjectDir(i, 0, 1);
+			break;
+		case 1:
+			F_GameObjectManager_SetObjectDir(i, -1, 0);
+			break;
+		case 2:
+			F_GameObjectManager_SetObjectDir(i, 0, -1);
+			break;
+		}
 	}
 
 	if (Check_TileCollision_With(TILE_ENEMY_MOVEUP, i))

@@ -57,7 +57,7 @@ Gather all the Marco together, easier for us to tweak the values.
 	*  Player Properties:
 	*/
 #define d_PLAYER_SPEED 15				//Player: move speed
-#define d_RATE_OF_PLAYER_FIRE 0.25f		//Player: shoot cooldown
+#define d_RATE_OF_PLAYER_FIRE 1.0f		//Player: shoot cooldown
 #define d_PLAYER_SHOOT_X_OFFSET 9		//Player: Bullet Spawn position
 #define d_PLAYER_SHOOT_Y_OFFSET -5		//Player: Bullet Spawn position
 
@@ -76,7 +76,7 @@ Gather all the Marco together, easier for us to tweak the values.
 	  *  Enemy Properties:
 	  */
 #define d_MAX_ENEMIES 30
-#define d_ENEMY_SPEED 2
+#define d_ENEMY_SPEED 5
 #define d_ENEMY_ANGRY_SPEED d_ENEMY_SPEED * 2
 #define d_RATE_OF_ENEMY_SPAWN 4.0f
   /*

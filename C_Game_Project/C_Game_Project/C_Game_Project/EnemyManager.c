@@ -20,6 +20,9 @@ int enemiesInUse;								/* Track: active bullets*/
 int enemyIndices[d_MAX_ENEMIES];				/* Track: bullets are essentially movingObject/s, hence we hold indices to the moving objects that are bullets*/
 float enemySpawnPosX[d_MAX_ENEMY_SPAWN_POINT];	/* Enemy Spawn Point(s): PositionX*/
 float enemySpawnPosY[d_MAX_ENEMY_SPAWN_POINT];	/* Enemy Spawn Point(s): PositionY*/
+float enemyDirX[d_MAX_ENEMY_SPAWN_POINT];	/* Enemy Direction: PositionX*/
+float enemyDirY[d_MAX_ENEMY_SPAWN_POINT];	/* Enemy Direction: PositionY*/
+int enemiesToKill;
 int noOfSpawnPoint = 0;							/* Track: noOfSpawnPoint*/
 float enemy_time_elasped = 0.0f;
 
@@ -57,7 +60,9 @@ void F_EnemyManager_Init()
 void F_EnemyManager_Update(float dt)
 {
 	int RandEType = GenerateRandNum(3);
-	//int RandLaneSpot = GenerateRandNum(4);
+	int RandLaneSpot = GenerateRandNum(noOfSpawnPoint);
+	int dirX = enemyDirX[RandLaneSpot];
+	int dirY = enemyDirY[RandLaneSpot];
 
 	enemy_time_elasped += dt;
 
@@ -71,16 +76,16 @@ void F_EnemyManager_Update(float dt)
 	switch (RandEType)
 	{
 	case 0:
-		F_EnemyManager_SpawnEnemy(0, EnemyRed, -1, 0);
+		F_EnemyManager_SpawnEnemy(RandLaneSpot, EnemyRed, dirX, dirY);
 		break;
 	case 1:
-		F_EnemyManager_SpawnEnemy(0, EnemyBlue, -1, 0);
+		F_EnemyManager_SpawnEnemy(RandLaneSpot, EnemyBlue, dirX, dirY);
 		break;
 	case 2:
-		F_EnemyManager_SpawnEnemy(0, EnemyGreen, -1, 0);
+		F_EnemyManager_SpawnEnemy(RandLaneSpot, EnemyGreen, dirX, dirY);
 		break;
 	default:
-		F_EnemyManager_SpawnEnemy(0, EnemyRed, -1, 0);
+		F_EnemyManager_SpawnEnemy(RandLaneSpot, EnemyRed, dirX, dirY);
 		break;
 	}
 }
@@ -108,15 +113,22 @@ void F_EnemyManager_StartOfLevelInit(int level)
 	switch (level)
 	{
 	case Level_One:
-		/*Tutorial Level: Spawn 2 enemies on 1 large lane*/
-		//F_EnemyManager_SpawnEnemy(0, EnemyRed, -1, 0);
-	//	F_EnemyManager_SpawnEnemy(1, EnemyBlue, -1, 0);
+		/* Declare your lane directions here */
+		enemyDirX[0] = -1;
+		enemyDirX[1] = -1;
+		enemyDirY[0] = 0;
+		enemyDirY[1] = 0;
+		enemiesToKill = 3;
 		break;
 	case Level_Two:
-		/* Level 1 spawn 3 enemies 1 vertical lane, 2 horizontal lanes*/
-		F_EnemyManager_SpawnEnemy(0, EnemyGreen, 0, 1);
-		F_EnemyManager_SpawnEnemy(1, EnemyBlue, -1, 0);
-		F_EnemyManager_SpawnEnemy(2, EnemyBlue, -1, 0);
+		/* Declare your lane directions here */
+		enemyDirX[0] = 0;
+		enemyDirX[1] = -1;
+		enemyDirX[2] = -1;
+		enemyDirY[0] = 1;
+		enemyDirY[1] = 0;
+		enemyDirY[2] = 0;
+		enemiesToKill = 3;
 		break;
 	}
 
@@ -205,7 +217,17 @@ float GetSpawnPositionY(int index)
 	return enemySpawnPosY[index];
 }
 
+/* Get Enemies left to kill */
+int GetEnemiesToKill()
+{
+	return enemiesToKill;
+}
 
+/* Minus enemies left to kill count by 1*/
+void DecreaseEnemiesToKill()
+{
+	--enemiesToKill;
+}
 
 /*------------------------------------------------------------------------------
 // Collision

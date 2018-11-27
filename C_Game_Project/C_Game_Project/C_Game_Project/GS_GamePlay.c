@@ -49,6 +49,7 @@ void GS_GamePlay_Init()
 
 void GS_GamePlay_Update(float dt) 
 {
+	F_UI_Print_Out_Index(PT_Game_Info_Right);
 	F_GameObjectManager_Update(dt);
 	F_PlayerManager_Update(dt);
 	F_EnemyManager_Update(dt);

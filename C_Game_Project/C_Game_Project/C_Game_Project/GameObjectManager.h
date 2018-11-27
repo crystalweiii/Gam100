@@ -72,5 +72,6 @@ GameObj *GetGameObjectList();
 int F_GameObjectManager_CreateObject();
 int F_GameObjectManager_GetNumberInUse();				   /* Number of active gameobjects */
 void GameObjectManager_ReturnMovingObjectIndex(int index); /* Send back the memory reserved for the object*/
+int score;
 
 

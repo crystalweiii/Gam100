@@ -66,7 +66,10 @@ void F_PlayerManager_Init()
 	F_GameObjectManager_SetObjectScale(playerIndex2, d_CHARACTER_SCALE_X, d_CHARACTER_SCALE_Y);
 	F_GameObjectManager_SetObjectImage(playerIndex2, playerImage);
 	F_GameObjectManager_SetObjectVisible(playerIndex2, true);
-
+	printf("Player1 x: %d player1 y: %d\n", F_MapManager_GetPlayer1SpawnPosition().X, F_MapManager_GetPlayer1SpawnPosition().Y);
+	printf("Player2 x: %d player2 y: %d\n", F_MapManager_GetPlayer2SpawnPosition().X, F_MapManager_GetPlayer2SpawnPosition().Y);
+	printf("Player1: %d player2: %d\n", playerIndex1, playerIndex2);
+	
 }
 void F_PlayerManager_Update(float dt)
 {
@@ -91,7 +94,7 @@ void F_PlayerManager_CheckInput()
 {
 	/* Press J */
 	if (f_Check_KeyDown(0x4A))
-		CreateBullet(BulletBlue, playerIndex1);
+		CreateBullet(BulletGreen, playerIndex1);
 	/* Press K */
 	else if (f_Check_KeyDown(0x4B))
 		CreateBullet(BulletBlue, playerIndex2);
@@ -127,6 +130,7 @@ void F_PlayerManager_CheckInput()
 /* Spawn: Bullet*/
 void CreateBullet(ObjectType type, int owner)
 {
+	int RandBType = GenerateRandNum(3);
 	/* Check: Still in shoot cooldown? */
 	if (time_elasped < d_RATE_OF_PLAYER_FIRE)
 		return;
@@ -139,8 +143,35 @@ void CreateBullet(ObjectType type, int owner)
 
 	/* Create: RED/BLUE/GREEN Bullet*/
 	if (owner == playerIndex1)
-		F_BulletManager_SpawnBullet(type, object.positionX + d_PLAYER_SHOOT_X_OFFSET, object.positionY, 1, 0);
+	{
+		switch (RandBType)
+		{
+		case 0:
+			F_BulletManager_SpawnBullet(BulletRed, object.positionX + d_PLAYER_SHOOT_X_OFFSET, object.positionY, 1, 0);
+			break;
+		case 1:
+			F_BulletManager_SpawnBullet(BulletBlue, object.positionX + d_PLAYER_SHOOT_X_OFFSET, object.positionY, 1, 0);
+			break;
+		case 2:
+			F_BulletManager_SpawnBullet(BulletGreen, object.positionX + d_PLAYER_SHOOT_X_OFFSET, object.positionY, 1, 0);
+			break;
+		}
+	}
 	else if (owner == playerIndex2)
-		F_BulletManager_SpawnBullet(type, object.positionX, object.positionY + d_PLAYER_SHOOT_Y_OFFSET, 0, -1);
+	{
+		switch (RandBType)
+		{
+		case 0:
+			F_BulletManager_SpawnBullet(BulletRed, object.positionX, object.positionY + d_PLAYER_SHOOT_Y_OFFSET, 0, -1);
+			break;
+		case 1:
+			F_BulletManager_SpawnBullet(BulletBlue, object.positionX, object.positionY + d_PLAYER_SHOOT_Y_OFFSET, 0, -1);
+			break;
+		case 2:
+			F_BulletManager_SpawnBullet(BulletGreen, object.positionX, object.positionY + d_PLAYER_SHOOT_Y_OFFSET, 0, -1);
+			break;
+		}
+	}
+
 
 }
