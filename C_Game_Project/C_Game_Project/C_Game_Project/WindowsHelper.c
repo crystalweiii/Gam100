@@ -98,6 +98,12 @@ void WindowsHelper_Reset_DefaultColor()
 	WindowsHelper_ChangeColor(FG_LIGHTGRAY, 0);
 }
 
+void WindowsHelper_Print_ChangeColor_And_Reset(int foreground, int background , char* printout) {
+	WindowsHelper_ChangeColor(foreground, background);
+	printf("%s", printout);
+	WindowsHelper_Reset_DefaultColor();
+}
+
 /* Change: Color of text and background */
 void WindowsHelper_ChangeColor(int foreground, int background)
 {
