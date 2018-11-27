@@ -19,7 +19,7 @@ void F_Graphic_Init()
 {
 	wHnd = GetStdHandle(STD_OUTPUT_HANDLE);
 	rHnd = GetStdHandle(STD_INPUT_HANDLE);
-	SetConsoleTitle(TEXT("NANIIIIIIIII"));
+	SetConsoleTitle(TEXT("COLOR INVADER!"));
 	/*
 	short lx,ly;
 	WindowsHelper_GetLargestConsoleWindowSize(&lx, &ly);
@@ -78,7 +78,7 @@ int F_ReadFromTextAndStore(char* url , char dc_array[d_game_height][d_game_width
 	return 0;
 }
 
-void F_Map_DrawBorder(COORD top, COORD btm)
+void F_Graphic_DrawBorder(COORD top, COORD btm)
 {
 	int j;
 
@@ -104,7 +104,7 @@ void F_Map_DrawBorder(COORD top, COORD btm)
 	printf("\n");
 }
 
-void F_Map_DrawBorder_Asc(COORD top, COORD btm, int ascicode)
+void F_Graphic_DrawBorder_Asc(COORD top, COORD btm, int ascicode)
 {
 	int j;
 	//Top border line...

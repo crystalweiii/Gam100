@@ -19,13 +19,13 @@ This is game state manager is to control and handle the flow of the whole progra
 #include "GS_Credit.h"
 
 
+/*For gamestate tracking*/
 int v_gs_current;
 int v_gs_previous;
 int v_gs_next;
-
-int currentScreenIndex = 0;
-
 int  v_running = 1;
+int v_gs_reset = 0;
+
 
 int temp_c_input = 0;
 
@@ -45,7 +45,6 @@ void F_GSManager_Init()
 	v_gs_previous = StartUp;
 	v_gs_next = StartUp;
 	
-	currentScreenIndex = 0;
 	v_running = 1;
 	temp_c_input = 0;
 
@@ -141,12 +140,13 @@ int F_GSManager_RunningStateMachine()
 	while (v_running)
 	{	
 		/*Check for valid gamestate*/
-		if (F_GSManager_CheckForChangeState())
+		if (F_GSManager_CheckForChangeState() || v_gs_reset)
 		{
 			v_gs_previous = v_gs_current;
 			F_GSManager_ExitState(v_gs_current);
 			v_gs_current = v_gs_next;
 			F_GSManager_InitState(v_gs_current);
+			v_gs_reset = 0;
 		}
 		/*Input check and updates here*/
 		F_GSManager_InputCheck();
@@ -182,7 +182,8 @@ void F_GSManager_InputCheck()
 	/*Check for R small and R caps*/
 	if (f_Check_KeyDown(0x72) || f_Check_KeyDown(0x52))
 	{
-		v_gs_next = currentScreenIndex;
+		v_gs_next = v_gs_current;
+		v_gs_reset = 1; /*Reset set to true*/
 	}
 
 }
