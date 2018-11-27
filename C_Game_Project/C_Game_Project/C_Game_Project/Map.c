@@ -54,7 +54,7 @@ void F_Map_Init()
 	
 	v_border_btm = v_temp_border_btm;
 
-	//F_Map_DrawBorder(v_border_top, v_border_btm);
+	//F_Graphic_DrawBorder(v_border_top, v_border_btm);
 
 	/* "Read" & "Store": from text file*/
 	F_ReadFromTextAndStore(txt_DGPLogo , s_map_db[0].V_Map_Array);	// Digipen logo

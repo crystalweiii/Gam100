@@ -62,7 +62,7 @@ void F_Map_Print();
 void F_Map_Set_And_Print(int index);
 
 /*Drawing border with specific ascicode*/
-/*void F_Map_DrawBorder(COORD top, COORD btm, int ascicode);*/
+/*void F_Graphic_DrawBorder(COORD top, COORD btm, int ascicode);*/
 
 void F_Map_Instruction_Printout();
 
