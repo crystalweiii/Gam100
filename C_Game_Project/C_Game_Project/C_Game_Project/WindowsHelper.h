@@ -35,10 +35,8 @@ void WindowsHelper_FullScreen();
 /* System: Clear screen*/
 void WindowsHelper_ClearScreen();
 
-/* Display: Change printf color*/
-void WindowsHelper_ChangeTextcolor(int color);
-
-/* Display: Change background color*/
-void WindowsHelper_ChangeBackgroundColor(BackgroundColorType type);
-
+/* Change: Color of text and background */
 void WindowsHelper_ChangeColor(int foreground, int background);
+
+/* Reset: Back to original text and background color*/
+void WindowsHelper_Reset_DefaultColor();
