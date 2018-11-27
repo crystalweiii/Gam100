@@ -14,6 +14,7 @@ It also contains function to print out ASCII characters.
 #include "GameObjectManager.h"
 #include "LevelManager.h"
 #include "WindowsHelper.h"
+#include "BulletManager.h"			// "F_BulletManager_GetBulletInventory_FirstIndex()"
 
 void F_Graphic_Init()
 {
@@ -223,10 +224,10 @@ void F_Graphic_Draw()
 		if (objects[i].type == Player)
 		{
 			/* Render: Render EMPTY at previous position*/
-			F_DrawScaleTile_Position(TILE_EMPTY, None, (int)objects[i].prevPositionX, (int)objects[i].prevPositionY, (int)objects[i].scaleX, (int)objects[i].scaleY,
+			F_DrawScaleTile_Position(TILE_EMPTY, None, objects[i].isVisible, (int)objects[i].prevPositionX, (int)objects[i].prevPositionY, (int)objects[i].scaleX, (int)objects[i].scaleY,
 													   (int)objects[i].anchorOffsetX, (int)objects[i].anchorOffsetY);
 			/* Remove: Render PLAYER at new position*/
-			F_DrawScaleTile_Position(TILE_PLAYER, objects[i].type, (int)objects[i].positionX, (int)objects[i].positionY, (int)objects[i].scaleX, (int)objects[i].scaleY,
+			F_DrawScaleTile_Position(TILE_PLAYER, objects[i].type, objects[i].isVisible, (int)objects[i].positionX, (int)objects[i].positionY, (int)objects[i].scaleX, (int)objects[i].scaleY,
 														(int)objects[i].anchorOffsetX, (int)objects[i].anchorOffsetY);
 
 			/*Tracking: To optimize checking*/
@@ -235,10 +236,10 @@ void F_Graphic_Draw()
 		else if (objects[i].type == EnemyRed || objects[i].type == EnemyGreen || objects[i].type == EnemyBlue)
 		{
 			/* Render: Render EMPTY at previous position*/
-			F_DrawScaleTile_Position(TILE_EMPTY, None, (int)objects[i].prevPositionX, (int)objects[i].prevPositionY, (int)objects[i].scaleX, (int)objects[i].scaleY,
+			F_DrawScaleTile_Position(TILE_EMPTY, None, objects[i].isVisible, (int)objects[i].prevPositionX, (int)objects[i].prevPositionY, (int)objects[i].scaleX, (int)objects[i].scaleY,
 													   (int)objects[i].anchorOffsetX, (int)objects[i].anchorOffsetY);
 			/* Remove: Render ENEMY at position*/
-			F_DrawScaleTile_Position(TILE_ENEMY, objects[i].type, (int)objects[i].positionX, (int)objects[i].positionY, (int)objects[i].scaleX, (int)objects[i].scaleY,
+			F_DrawScaleTile_Position(TILE_ENEMY, objects[i].type, objects[i].isVisible, (int)objects[i].positionX, (int)objects[i].positionY, (int)objects[i].scaleX, (int)objects[i].scaleY,
 																  (int)objects[i].anchorOffsetX, (int)objects[i].anchorOffsetY);
 
 			/*Tracking: To optimize checking*/
@@ -248,44 +249,56 @@ void F_Graphic_Draw()
 		else if (objects[i].type == BulletRed || objects[i].type == BulletGreen || objects[i].type == BulletBlue)
 		{
 			/* Render: Render EMPTY at previous position*/
-			F_DrawScaleTile_Position(TILE_EMPTY, None, (int)objects[i].prevPositionX, (int)objects[i].prevPositionY, (int)objects[i].scaleX, (int)objects[i].scaleY,
+			F_DrawScaleTile_Position(TILE_EMPTY, None, objects[i].isVisible, (int)objects[i].prevPositionX, (int)objects[i].prevPositionY, (int)objects[i].scaleX, (int)objects[i].scaleY,
 													   (int)objects[i].anchorOffsetX, (int)objects[i].anchorOffsetY);
 			/* Remove: Render ENEMY at position*/
 			if(objects[i].directionX == 1) /* render correct image according to direction */
-				F_DrawScaleTile_Position(TILE_BULLET_1, objects[i].type, (int)objects[i].positionX, (int)objects[i].positionY, (int)objects[i].scaleX, (int)objects[i].scaleY,
+				F_DrawScaleTile_Position(TILE_BULLET_1, objects[i].type, objects[i].isVisible, (int)objects[i].positionX, (int)objects[i].positionY, (int)objects[i].scaleX, (int)objects[i].scaleY,
 																(int)objects[i].anchorOffsetX, (int)objects[i].anchorOffsetY);
 
 			else if (objects[i].directionY == -1) /* render correct image according to direction */
-			F_DrawScaleTile_Position(TILE_BULLET_2, objects[i].type, (int)objects[i].positionX, (int)objects[i].positionY, (int)objects[i].scaleX, (int)objects[i].scaleY,
+			F_DrawScaleTile_Position(TILE_BULLET_2, objects[i].type, objects[i].isVisible, (int)objects[i].positionX, (int)objects[i].positionY, (int)objects[i].scaleX, (int)objects[i].scaleY,
 				(int)objects[i].anchorOffsetX, (int)objects[i].anchorOffsetY);
 
 			/*Tracking: To optimize checking*/
 			++processed;
 		}
 
-		else if (objects[i].type == BlockerUp && objects[i].isVisible == true)
+		else if (objects[i].type == BlockerUp)
 		{
 			/* Render: Render TILE_ENEMY_MOVEUP*/
-			F_DrawScaleTile_Position(TILE_ENEMY_MOVEUP, None, (int)objects[i].positionX, (int)objects[i].positionY, (int)objects[i].scaleX, (int)objects[i].scaleY,
+			F_DrawScaleTile_Position(TILE_ENEMY_MOVEUP, None, objects[i].isVisible, (int)objects[i].positionX, (int)objects[i].positionY, (int)objects[i].scaleX, (int)objects[i].scaleY,
 				(int)objects[i].anchorOffsetX, (int)objects[i].anchorOffsetY);
+
+			/*Tracking: To optimize checking*/
+			++processed;
 		}
-		else if (objects[i].type == BlockerDown && objects[i].isVisible == true)
+		else if (objects[i].type == BlockerDown)
 		{
 			/* Render: Render TILE_ENEMY_MOVEUP*/
-			F_DrawScaleTile_Position(TILE_ENEMY_MOVEDOWN, None, (int)objects[i].positionX, (int)objects[i].positionY, (int)objects[i].scaleX, (int)objects[i].scaleY,
+			F_DrawScaleTile_Position(TILE_ENEMY_MOVEDOWN, None, objects[i].isVisible, (int)objects[i].positionX, (int)objects[i].positionY, (int)objects[i].scaleX, (int)objects[i].scaleY,
 				(int)objects[i].anchorOffsetX, (int)objects[i].anchorOffsetY);
+
+			/*Tracking: To optimize checking*/
+			++processed;
 		}
-		else if (objects[i].type == BlockerLeft && objects[i].isVisible == true)
+		else if (objects[i].type == BlockerLeft)
 		{
 			/* Render: Render TILE_ENEMY_MOVELEFT*/
-			F_DrawScaleTile_Position(TILE_ENEMY_MOVELEFT, None, (int)objects[i].positionX, (int)objects[i].positionY, (int)objects[i].scaleX, (int)objects[i].scaleY,
+			F_DrawScaleTile_Position(TILE_ENEMY_MOVELEFT, None, objects[i].isVisible, (int)objects[i].positionX, (int)objects[i].positionY, (int)objects[i].scaleX, (int)objects[i].scaleY,
 				(int)objects[i].anchorOffsetX, (int)objects[i].anchorOffsetY);
+
+			/*Tracking: To optimize checking*/
+			++processed;
 		}
-		else if (objects[i].type == BlockerRight && objects[i].isVisible == true)
+		else if (objects[i].type == BlockerRight)
 		{
 			/* Render: Render TILE_ENEMY_MOVERIGHT*/
-			F_DrawScaleTile_Position(TILE_ENEMY_MOVERIGHT, None, (int)objects[i].positionX, (int)objects[i].positionY, (int)objects[i].scaleX, (int)objects[i].scaleY,
+			F_DrawScaleTile_Position(TILE_ENEMY_MOVERIGHT, None, objects[i].isVisible, (int)objects[i].positionX, (int)objects[i].positionY, (int)objects[i].scaleX, (int)objects[i].scaleY,
 				(int)objects[i].anchorOffsetX, (int)objects[i].anchorOffsetY);
+
+			/*Tracking: To optimize checking*/
+			++processed;
 		}
 
 		/*Tracking the number of objects to draw*/
@@ -305,7 +318,7 @@ void F_Graphic_Draw()
 //----------------------------------------------------------------------------*/
 
 /* Render: 1 tile to your desired position */
-void F_DrawTile_Position(char tileType, ObjectType objType, int posX, int posY)
+void F_DrawTile_Position(char tileType, ObjectType objType, bool isVisible, int posX, int posY)
 {
 	/*
 	 * Function Description: printf(ascii) and reassign map[y][x] = ? tileType
@@ -357,22 +370,33 @@ void F_DrawTile_Position(char tileType, ObjectType objType, int posX, int posY)
 	}
 	else if (objType == Player)
 	{
+		ObjectType nextBulletType = F_BulletManager_GetBulletInventory_FirstIndex();
+
 		fC = FG_LIGHTGRAY;
-		bC = BG_YELLOW;
+		
+		if(nextBulletType == BulletRed)
+			bC = BG_LIGHT_RED;
+		else if (nextBulletType == BulletGreen)
+			bC = BG_LIGHT_GREEN;
+		else if (nextBulletType == BulletBlue)
+			bC = BG_LIGHT_BLUE;
 	}
 
 	///* Change Color: to desired color */
 	WindowsHelper_ChangeColor(fC, bC);
 
 	/* Draw: ASCII */
-	printf_s("%c", tileType);
+	if(isVisible)
+		printf_s("%c", tileType);
+	else
+		printf_s(" ");
 
 	/* Change Color: reset to white */
 	WindowsHelper_ChangeColor(FG_LIGHTGRAY, 0);
 }
 
 /* Render: scaled tile to your desired position */
-void F_DrawScaleTile_Position(char tiletype, ObjectType objType, int posX, int posY, int scaleX, int scaleY, int anchorOffsetX, int anchorOffsetY)
+void F_DrawScaleTile_Position(char tiletype, ObjectType objType, bool isVisible, int posX, int posY, int scaleX, int scaleY, int anchorOffsetX, int anchorOffsetY)
 {
 	/*
 	 * Function Description: Draw a character of (e.g) 3x3
@@ -384,7 +408,7 @@ void F_DrawScaleTile_Position(char tiletype, ObjectType objType, int posX, int p
 	{
 		for (y = 0; y < scaleY; ++y)
 		{
-			F_DrawTile_Position(tiletype, objType, posX - anchorOffsetX + x, posY - anchorOffsetY + y);
+			F_DrawTile_Position(tiletype, objType, isVisible, posX - anchorOffsetX + x, posY - anchorOffsetY + y);
 		}
 	}
 }

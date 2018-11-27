@@ -119,7 +119,7 @@ void F_BlockerManager_SpawnBlocker(ObjectType type, float posX, float posY)
 		return;
 
 	/* Track: index we got from GameObjectManager*/
-	BulletManager_AddBulletIndex(blockerIndex);
+	BlockerManager_AddBlockerIndex(blockerIndex);
 
 	/* Set: bullet properties*/
 	F_GameObjectManager_SetObjectType(blockerIndex, type);

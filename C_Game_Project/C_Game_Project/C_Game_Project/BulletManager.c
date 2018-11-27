@@ -175,6 +175,9 @@ ObjectType BulletAlgorithm_GetNextBulletType()
 			bulletInventory[i] = bulletInventory[i+1];
 	}
 
+	/* Update the Bullet UI */
+	F_UI_Game_Info_Below();
+
 	return (ObjectType)firstType;
 }
 
@@ -188,4 +191,10 @@ int* F_BulletManager_GetBulletInventoryArray()
 int F_BulletManager_GetBulletInventorySize()
 {
 	return d_BULLET_INVENTORY;
+}
+
+/* Get: Bullet Inventory First Index*/
+ObjectType F_BulletManager_GetBulletInventory_FirstIndex()
+{
+	return (ObjectType) bulletInventory[0];
 }

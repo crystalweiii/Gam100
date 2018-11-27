@@ -33,3 +33,6 @@ int* F_BulletManager_GetBulletInventoryArray();
 
 /* Get: Bullet Inventory size */
 int F_BulletManager_GetBulletInventorySize();
+
+/* Get: Bullet Inventory First Index*/
+ObjectType F_BulletManager_GetBulletInventory_FirstIndex();

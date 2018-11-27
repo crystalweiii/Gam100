@@ -2,6 +2,9 @@
 #include "Math.h"
 #include "Graphic.h"
 #include "GameObjectManager.h"
+#include "BulletManager.h"			// "GetBulletInventoryArray()"
+#include "WindowsHelper.h"			// "WindowsHelper_Print_ChangeColor_And_Reset()"
+#include "PlayerManager.h"			// "GetPlayerLife();
 
 COORD v_instr_startSpot;
 COORD v_gamUI_startSpot;
@@ -212,30 +215,95 @@ void F_UI_Game_Info_Right()
 
 void F_UI_Game_Info_Below()
 {
+	int i = 0;
 	gotoxy(v_btmL_startSpot.X, v_btmL_startSpot.Y );
 	printf("Lifes:");
-	gotoxy(v_btmL_startSpot.X, v_btmL_startSpot.Y+1);
-	printf("&&  &&  &&");
-	gotoxy(v_btmL_startSpot.X, v_btmL_startSpot.Y + 2);
-	printf("&&  &&  &&");
+
+	int UI_LIFE_OFFSET = 10;
+	// Erase first
+	for (i = 0; i < d_PLAYER_LIFE; ++i)
+	{
+		gotoxy(v_btmL_startSpot.X + i * UI_LIFE_OFFSET, v_btmL_startSpot.Y + 1);
+		WindowsHelper_Print_ChangeColor_And_Reset(FG_LIGHTRED, BG_BLACK, "       ");
+		gotoxy(v_btmL_startSpot.X + i * UI_LIFE_OFFSET, v_btmL_startSpot.Y + 2);
+		WindowsHelper_Print_ChangeColor_And_Reset(FG_LIGHTRED, BG_BLACK, "       ");
+		gotoxy(v_btmL_startSpot.X + i * UI_LIFE_OFFSET, v_btmL_startSpot.Y + 3);
+		WindowsHelper_Print_ChangeColor_And_Reset(FG_LIGHTRED, BG_BLACK, "       ");
+	}
+
+	// Draw again
+	for (i = 0; i < F_PlayerManager_GetPlayerLife(); ++i)
+	{
+		gotoxy(v_btmL_startSpot.X + i * UI_LIFE_OFFSET, v_btmL_startSpot.Y + 1);
+		WindowsHelper_Print_ChangeColor_And_Reset(FG_LIGHTRED, BG_BLACK, "  _+_  ");
+		gotoxy(v_btmL_startSpot.X + i * UI_LIFE_OFFSET, v_btmL_startSpot.Y + 2);
+		WindowsHelper_Print_ChangeColor_And_Reset(FG_LIGHTRED, BG_BLACK, " (^_^)");
+		gotoxy(v_btmL_startSpot.X + i * UI_LIFE_OFFSET, v_btmL_startSpot.Y + 3);
+		WindowsHelper_Print_ChangeColor_And_Reset(FG_LIGHTRED, BG_BLACK, "<(___)>");
+	}
 
 
 	gotoxy(v_btmL_startSpot.X + 35, v_btmL_startSpot.Y);
 	printf("Bullets:");
-	gotoxy(v_btmL_startSpot.X + 35, v_btmL_startSpot.Y+1);
-	printf("RRR BBB GGG RRR BBB GGG BBB");
-	gotoxy(v_btmL_startSpot.X + 35, v_btmL_startSpot.Y + 2);
-	printf("RRR BBB GGG RRR BBB GGG BBB");
-	gotoxy(v_btmL_startSpot.X + 35, v_btmL_startSpot.Y + 3);
-	printf("RRR BBB GGG RRR BBB GGG BBB");
 
+	int BULLET_UI_GAP_OFFSET = 10;
+	int *bulletInventory = F_BulletManager_GetBulletInventoryArray();
+	for (i = 0; i < d_BULLET_INVENTORY; ++i)
+	{
+		if (bulletInventory[i] == BulletRed)
+		{
+			gotoxy(v_btmL_startSpot.X + 35 + i * BULLET_UI_GAP_OFFSET, v_btmL_startSpot.Y + 1);
+			WindowsHelper_Print_ChangeColor_And_Reset(FG_WHITE, BG_RED, ">>>>>");
+			gotoxy(v_btmL_startSpot.X + 35 + i * BULLET_UI_GAP_OFFSET, v_btmL_startSpot.Y + 2);
+			WindowsHelper_Print_ChangeColor_And_Reset(FG_WHITE, BG_RED, ">>>>>");
+			gotoxy(v_btmL_startSpot.X + 35 + i * BULLET_UI_GAP_OFFSET, v_btmL_startSpot.Y + 3);
+			WindowsHelper_Print_ChangeColor_And_Reset(FG_WHITE, BG_RED, ">>>>>");
+		}
+		else if (bulletInventory[i] == BulletGreen)
+		{
+			gotoxy(v_btmL_startSpot.X + 35 + i * BULLET_UI_GAP_OFFSET, v_btmL_startSpot.Y + 1);
+			WindowsHelper_Print_ChangeColor_And_Reset(FG_WHITE, BG_GREEN, ">>>>>");
+			gotoxy(v_btmL_startSpot.X + 35 + i * BULLET_UI_GAP_OFFSET, v_btmL_startSpot.Y + 2);
+			WindowsHelper_Print_ChangeColor_And_Reset(FG_WHITE, BG_GREEN, ">>>>>");
+			gotoxy(v_btmL_startSpot.X + 35 + i * BULLET_UI_GAP_OFFSET, v_btmL_startSpot.Y + 3);
+			WindowsHelper_Print_ChangeColor_And_Reset(FG_WHITE, BG_GREEN, ">>>>>");
+		}
+		else if (bulletInventory[i] == BulletBlue)
+		{
+			gotoxy(v_btmL_startSpot.X + 35 + i * BULLET_UI_GAP_OFFSET, v_btmL_startSpot.Y + 1);
+			WindowsHelper_Print_ChangeColor_And_Reset(FG_WHITE, BG_BLUE, ">>>>>");
+			gotoxy(v_btmL_startSpot.X + 35 + i * BULLET_UI_GAP_OFFSET, v_btmL_startSpot.Y + 2);
+			WindowsHelper_Print_ChangeColor_And_Reset(FG_WHITE, BG_BLUE, ">>>>>");
+			gotoxy(v_btmL_startSpot.X + 35 + i * BULLET_UI_GAP_OFFSET, v_btmL_startSpot.Y + 3);
+			WindowsHelper_Print_ChangeColor_And_Reset(FG_WHITE, BG_BLUE, ">>>>>");
+		}
+	}
+
+	// UI Arrow: Indicate which one is the next bullet
+	gotoxy(v_btmL_startSpot.X + 35, v_btmL_startSpot.Y + 4);
+	WindowsHelper_Print_ChangeColor_And_Reset(FG_YELLOW, BG_BLACK, "\\[^]/");
+
+	// UI Enemy
 	gotoxy(v_btmL_startSpot.X + 100, v_btmL_startSpot.Y);
 	printf("Enemy Type:");
-	gotoxy(v_btmL_startSpot.X + 100, v_btmL_startSpot.Y + 1);
-	printf("RRR BBB GGG");
-	gotoxy(v_btmL_startSpot.X + 100, v_btmL_startSpot.Y + 2);
-	printf("RRR BBB GGG");
-	gotoxy(v_btmL_startSpot.X + 100, v_btmL_startSpot.Y + 3);
-	printf("RRR BBB GGG");
+	gotoxy(v_btmL_startSpot.X + 100 + 0 * BULLET_UI_GAP_OFFSET, v_btmL_startSpot.Y + 1);
+	WindowsHelper_Print_ChangeColor_And_Reset(FG_LIGHTRED, BG_RED, "XXXXX");
+	gotoxy(v_btmL_startSpot.X + 100 + 0 * BULLET_UI_GAP_OFFSET, v_btmL_startSpot.Y + 2);
+	WindowsHelper_Print_ChangeColor_And_Reset(FG_LIGHTRED, BG_RED, "XXXXX");
+	gotoxy(v_btmL_startSpot.X + 100 + 0 * BULLET_UI_GAP_OFFSET, v_btmL_startSpot.Y + 3);
+	WindowsHelper_Print_ChangeColor_And_Reset(FG_LIGHTRED, BG_RED, "XXXXX");
 
+	gotoxy(v_btmL_startSpot.X + 100 + 1 * BULLET_UI_GAP_OFFSET, v_btmL_startSpot.Y + 1);
+	WindowsHelper_Print_ChangeColor_And_Reset(FG_LIGHTGREEN, BG_GREEN, "XXXXX");
+	gotoxy(v_btmL_startSpot.X + 100 + 1 * BULLET_UI_GAP_OFFSET, v_btmL_startSpot.Y + 2);
+	WindowsHelper_Print_ChangeColor_And_Reset(FG_LIGHTGREEN, BG_GREEN, "XXXXX");
+	gotoxy(v_btmL_startSpot.X + 100 + 1 * BULLET_UI_GAP_OFFSET, v_btmL_startSpot.Y + 3);
+	WindowsHelper_Print_ChangeColor_And_Reset(FG_LIGHTGREEN, BG_GREEN, "XXXXX");
+
+	gotoxy(v_btmL_startSpot.X + 100 + 2 * BULLET_UI_GAP_OFFSET, v_btmL_startSpot.Y + 1);
+	WindowsHelper_Print_ChangeColor_And_Reset(FG_LIGHTBLUE, BG_BLUE, "XXXXX");
+	gotoxy(v_btmL_startSpot.X + 100 + 2 * BULLET_UI_GAP_OFFSET, v_btmL_startSpot.Y + 2);
+	WindowsHelper_Print_ChangeColor_And_Reset(FG_LIGHTBLUE, BG_BLUE, "XXXXX");
+	gotoxy(v_btmL_startSpot.X + 100 + 2 * BULLET_UI_GAP_OFFSET, v_btmL_startSpot.Y + 3);
+	WindowsHelper_Print_ChangeColor_And_Reset(FG_LIGHTBLUE, BG_BLUE, "XXXXX");
 }
