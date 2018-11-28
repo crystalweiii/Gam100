@@ -19,6 +19,12 @@ Gather all the Marco together, easier for us to tweak the values.
 #include <stdbool.h>
 
 /*
+ *  Window Console Size:
+ */
+#define d_window_width 211					/* Guys, resize your console window to this size */
+#define d_window_height 49					/* Guys, resize your console window to this size */
+
+/*
  *  Map Macro:
  */
 #define d_game_width 170					/*Adjust: Gameplay map->size*/
@@ -60,7 +66,7 @@ Gather all the Marco together, easier for us to tweak the values.
 #define d_RATE_OF_PLAYER_FIRE 1.0f		//Player: shoot cooldown
 #define d_PLAYER_SHOOT_X_OFFSET 9		//Player: Bullet Spawn position
 #define d_PLAYER_SHOOT_Y_OFFSET -5		//Player: Bullet Spawn position
-
+#define d_PLAYER_LIFE 3
 	/*
 	 *  Bullet Properties:
 	 */
@@ -71,7 +77,7 @@ Gather all the Marco together, easier for us to tweak the values.
 	 *  Blocker Properties:
 	 */
 #define d_MAX_BLOCKERS 50
-#define d_BLOCKER_IS_VISIBLE true
+#define d_BLOCKER_IS_VISIBLE false
 
 	 /*
 	  *  Enemy Properties:
@@ -182,6 +188,9 @@ typedef enum {
 #define BG_GREY		BACKGROUND_INTENSITY
 #define BG_CYAN		BG_GREEN | BG_BLUE
 #define BG_YELLOW	BACKGROUND_RED | BACKGROUND_GREEN | BACKGROUND_INTENSITY
+#define BG_LIGHT_RED BACKGROUND_RED | BACKGROUND_INTENSITY
+#define BG_LIGHT_GREEN BACKGROUND_GREEN | BACKGROUND_INTENSITY
+#define BG_LIGHT_BLUE BACKGROUND_BLUE | BACKGROUND_INTENSITY
 
 typedef struct
 {

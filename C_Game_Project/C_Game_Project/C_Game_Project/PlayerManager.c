@@ -17,12 +17,14 @@ It contains function that handle player inputs during gameplay, and trigger even
 #include "Map.h"
 #include <conio.h>				/* _getch(), _kbhit()*/
 #include "BulletManager.h"
+#include "UiHandler.h"			// "F_UI_Game_Info_Below()"
 
 /*------------------------------------------------------------------------------
 // Private Variables Declaration
 //----------------------------------------------------------------------------*/
 float time_elasped = 0.0f;
 int playerIndex1, playerIndex2;
+int playerLife = d_PLAYER_LIFE;
 
 /*------------------------------------------------------------------------------
 // Private Function Declaration
@@ -36,6 +38,9 @@ void F_PlayerManager_Init()
 {
 	/* Init: Used for shoot cooldown */
 	time_elasped = 0.0f;
+
+	/* Reset: Player Life*/
+	playerLife = d_PLAYER_LIFE;
 
 	/* Need to read from csv */
 	int i = 0;
@@ -146,6 +151,20 @@ void CreateBullet(int owner)
 		F_BulletManager_SpawnBullet(object.positionX + d_PLAYER_SHOOT_X_OFFSET, object.positionY, 1, 0);
 	else if (owner == playerIndex2)
 		F_BulletManager_SpawnBullet(object.positionX, object.positionY + d_PLAYER_SHOOT_Y_OFFSET, 0, -1);
+
+
+}
+
+int F_PlayerManager_GetPlayerLife()
+{
+	return playerLife;
+}
+
+
+void F_PlayerManager_DecrementPlayerLife(int decrement)
+{
+	playerLife -= decrement;
+	F_UI_Game_Info_Below();
 
 
 }

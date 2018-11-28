@@ -13,6 +13,7 @@ It contains function that handle collision checking, response to collision, sett
 #include "Map.h"
 #include "BulletManager.h"
 #include "EnemyManager.h"
+#include "PlayerManager.h"
 
 /*------------------------------------------------------------------------------
 // Private Variables
@@ -160,8 +161,8 @@ void UpdateCollisionEvent_Bullet(int i)
 					// Destroy: Enemy
 					-----------------------------------------------*/
 					//Draw: EMPTY over Enemy
-					F_DrawScaleTile_Position(TILE_EMPTY, None, (int)listOfGameObjects[hitEnemyIndex].prevPositionX, (int)listOfGameObjects[hitEnemyIndex].prevPositionY, (int)listOfGameObjects[hitEnemyIndex].scaleX, (int)listOfGameObjects[hitEnemyIndex].scaleY, (int)listOfGameObjects[hitEnemyIndex].anchorOffsetX, (int)listOfGameObjects[hitEnemyIndex].anchorOffsetY);
-					F_DrawScaleTile_Position(TILE_EMPTY, None, (int)listOfGameObjects[hitEnemyIndex].positionX, (int)listOfGameObjects[hitEnemyIndex].positionY, (int)listOfGameObjects[hitEnemyIndex].scaleX, (int)listOfGameObjects[hitEnemyIndex].scaleY, (int)listOfGameObjects[hitEnemyIndex].anchorOffsetX, (int)listOfGameObjects[hitEnemyIndex].anchorOffsetY);
+					F_DrawScaleTile_Position(TILE_EMPTY, None, listOfGameObjects[hitEnemyIndex].isVisible, (int)listOfGameObjects[hitEnemyIndex].prevPositionX, (int)listOfGameObjects[hitEnemyIndex].prevPositionY, (int)listOfGameObjects[hitEnemyIndex].scaleX, (int)listOfGameObjects[hitEnemyIndex].scaleY, (int)listOfGameObjects[hitEnemyIndex].anchorOffsetX, (int)listOfGameObjects[hitEnemyIndex].anchorOffsetY);
+					F_DrawScaleTile_Position(TILE_EMPTY, None, listOfGameObjects[hitEnemyIndex].isVisible, (int)listOfGameObjects[hitEnemyIndex].positionX, (int)listOfGameObjects[hitEnemyIndex].positionY, (int)listOfGameObjects[hitEnemyIndex].scaleX, (int)listOfGameObjects[hitEnemyIndex].scaleY, (int)listOfGameObjects[hitEnemyIndex].anchorOffsetX, (int)listOfGameObjects[hitEnemyIndex].anchorOffsetY);
 					//Kill: Enemy
 					F_EnemyManager_KillEnemy(hitEnemyIndex);
 					DecreaseEnemiesToKill();
@@ -181,7 +182,7 @@ void UpdateCollisionEvent_Bullet(int i)
 				// Destroy: Bullet
 				-----------------------------------------------*/
 				//Draw: EMPTY over Bullet
-				F_DrawScaleTile_Position(TILE_EMPTY, None, (int)listOfGameObjects[i].positionX, (int)listOfGameObjects[i].positionY, (int)listOfGameObjects[i].scaleX, (int)listOfGameObjects[i].scaleY, (int)listOfGameObjects[i].anchorOffsetX, (int)listOfGameObjects[i].anchorOffsetY);
+				F_DrawScaleTile_Position(TILE_EMPTY, None, listOfGameObjects[i].isVisible, (int)listOfGameObjects[i].positionX, (int)listOfGameObjects[i].positionY, (int)listOfGameObjects[i].scaleX, (int)listOfGameObjects[i].scaleY, (int)listOfGameObjects[i].anchorOffsetX, (int)listOfGameObjects[i].anchorOffsetY);
 				//Kill: Bullet
 				F_BulletManager_KillBullet(i);
 			}
@@ -198,8 +199,8 @@ void UpdateCollisionEvent_Bullet(int i)
 					// Destroy: Enemy
 					-----------------------------------------------*/
 					//Draw: EMPTY over Enemy
-					F_DrawScaleTile_Position(TILE_EMPTY, None, (int)listOfGameObjects[hitEnemyIndex].prevPositionX, (int)listOfGameObjects[hitEnemyIndex].prevPositionY, (int)listOfGameObjects[hitEnemyIndex].scaleX, (int)listOfGameObjects[hitEnemyIndex].scaleY, (int)listOfGameObjects[hitEnemyIndex].anchorOffsetX, (int)listOfGameObjects[hitEnemyIndex].anchorOffsetY);
-					F_DrawScaleTile_Position(TILE_EMPTY, None, (int)listOfGameObjects[hitEnemyIndex].positionX, (int)listOfGameObjects[hitEnemyIndex].positionY, (int)listOfGameObjects[hitEnemyIndex].scaleX, (int)listOfGameObjects[hitEnemyIndex].scaleY, (int)listOfGameObjects[hitEnemyIndex].anchorOffsetX, (int)listOfGameObjects[hitEnemyIndex].anchorOffsetY);
+					F_DrawScaleTile_Position(TILE_EMPTY, None, listOfGameObjects[hitEnemyIndex].isVisible, (int)listOfGameObjects[hitEnemyIndex].prevPositionX, (int)listOfGameObjects[hitEnemyIndex].prevPositionY, (int)listOfGameObjects[hitEnemyIndex].scaleX, (int)listOfGameObjects[hitEnemyIndex].scaleY, (int)listOfGameObjects[hitEnemyIndex].anchorOffsetX, (int)listOfGameObjects[hitEnemyIndex].anchorOffsetY);
+					F_DrawScaleTile_Position(TILE_EMPTY, None, listOfGameObjects[hitEnemyIndex].isVisible, (int)listOfGameObjects[hitEnemyIndex].positionX, (int)listOfGameObjects[hitEnemyIndex].positionY, (int)listOfGameObjects[hitEnemyIndex].scaleX, (int)listOfGameObjects[hitEnemyIndex].scaleY, (int)listOfGameObjects[hitEnemyIndex].anchorOffsetX, (int)listOfGameObjects[hitEnemyIndex].anchorOffsetY);
 					//Kill: Enemy
 					F_EnemyManager_KillEnemy(hitEnemyIndex);
 					DecreaseEnemiesToKill();
@@ -219,7 +220,7 @@ void UpdateCollisionEvent_Bullet(int i)
 				// Destroy: Bullet
 				-----------------------------------------------*/
 				//Draw: EMPTY over Bullet
-				F_DrawScaleTile_Position(TILE_EMPTY, None, (int)listOfGameObjects[i].positionX, (int)listOfGameObjects[i].positionY, (int)listOfGameObjects[i].scaleX, (int)listOfGameObjects[i].scaleY, (int)listOfGameObjects[i].anchorOffsetX, (int)listOfGameObjects[i].anchorOffsetY);
+				F_DrawScaleTile_Position(TILE_EMPTY, None, listOfGameObjects[i].isVisible, (int)listOfGameObjects[i].positionX, (int)listOfGameObjects[i].positionY, (int)listOfGameObjects[i].scaleX, (int)listOfGameObjects[i].scaleY, (int)listOfGameObjects[i].anchorOffsetX, (int)listOfGameObjects[i].anchorOffsetY);
 				//Kill: Bullet
 				F_BulletManager_KillBullet(i);
 			}
@@ -236,8 +237,8 @@ void UpdateCollisionEvent_Bullet(int i)
 					// Destroy: Enemy
 					-----------------------------------------------*/
 					//Draw: EMPTY over Enemy
-					F_DrawScaleTile_Position(TILE_EMPTY, None, (int)listOfGameObjects[hitEnemyIndex].prevPositionX, (int)listOfGameObjects[hitEnemyIndex].prevPositionY, (int)listOfGameObjects[hitEnemyIndex].scaleX, (int)listOfGameObjects[hitEnemyIndex].scaleY, (int)listOfGameObjects[hitEnemyIndex].anchorOffsetX, (int)listOfGameObjects[hitEnemyIndex].anchorOffsetY);
-					F_DrawScaleTile_Position(TILE_EMPTY, None, (int)listOfGameObjects[hitEnemyIndex].positionX, (int)listOfGameObjects[hitEnemyIndex].positionY, (int)listOfGameObjects[hitEnemyIndex].scaleX, (int)listOfGameObjects[hitEnemyIndex].scaleY, (int)listOfGameObjects[hitEnemyIndex].anchorOffsetX, (int)listOfGameObjects[hitEnemyIndex].anchorOffsetY);
+					F_DrawScaleTile_Position(TILE_EMPTY, None, listOfGameObjects[hitEnemyIndex].isVisible, (int)listOfGameObjects[hitEnemyIndex].prevPositionX, (int)listOfGameObjects[hitEnemyIndex].prevPositionY, (int)listOfGameObjects[hitEnemyIndex].scaleX, (int)listOfGameObjects[hitEnemyIndex].scaleY, (int)listOfGameObjects[hitEnemyIndex].anchorOffsetX, (int)listOfGameObjects[hitEnemyIndex].anchorOffsetY);
+					F_DrawScaleTile_Position(TILE_EMPTY, None, listOfGameObjects[hitEnemyIndex].isVisible, (int)listOfGameObjects[hitEnemyIndex].positionX, (int)listOfGameObjects[hitEnemyIndex].positionY, (int)listOfGameObjects[hitEnemyIndex].scaleX, (int)listOfGameObjects[hitEnemyIndex].scaleY, (int)listOfGameObjects[hitEnemyIndex].anchorOffsetX, (int)listOfGameObjects[hitEnemyIndex].anchorOffsetY);
 					//Kill: Enemy
 					F_EnemyManager_KillEnemy(hitEnemyIndex);
 					DecreaseEnemiesToKill();
@@ -257,7 +258,7 @@ void UpdateCollisionEvent_Bullet(int i)
 				// Destroy: Bullet
 				-----------------------------------------------*/
 				//Draw: EMPTY over Bullet
-				F_DrawScaleTile_Position(TILE_EMPTY, None, (int)listOfGameObjects[i].positionX, (int)listOfGameObjects[i].positionY, (int)listOfGameObjects[i].scaleX, (int)listOfGameObjects[i].scaleY, (int)listOfGameObjects[i].anchorOffsetX, (int)listOfGameObjects[i].anchorOffsetY);
+				F_DrawScaleTile_Position(TILE_EMPTY, None, listOfGameObjects[i].isVisible, (int)listOfGameObjects[i].positionX, (int)listOfGameObjects[i].positionY, (int)listOfGameObjects[i].scaleX, (int)listOfGameObjects[i].scaleY, (int)listOfGameObjects[i].anchorOffsetX, (int)listOfGameObjects[i].anchorOffsetY);
 				//Kill: Bullet
 				F_BulletManager_KillBullet(i);
 			}
@@ -273,7 +274,7 @@ void UpdateCollisionEvent_Bullet(int i)
 		// Destroy: Bullet
 		-----------------------------------------------*/
 		//Draw: EMPTY over Bullet
-		F_DrawScaleTile_Position(TILE_EMPTY, None, (int)listOfGameObjects[i].positionX, (int)listOfGameObjects[i].positionY, (int)listOfGameObjects[i].scaleX, (int)listOfGameObjects[i].scaleY, (int)listOfGameObjects[i].anchorOffsetX, (int)listOfGameObjects[i].anchorOffsetY);
+		F_DrawScaleTile_Position(TILE_EMPTY, None, listOfGameObjects[i].isVisible, (int)listOfGameObjects[i].positionX, (int)listOfGameObjects[i].positionY, (int)listOfGameObjects[i].scaleX, (int)listOfGameObjects[i].scaleY, (int)listOfGameObjects[i].anchorOffsetX, (int)listOfGameObjects[i].anchorOffsetY);
 		//Kill: Bullet
 		F_BulletManager_KillBullet(i);
 	}
@@ -287,14 +288,14 @@ void UpdateCollisionEvent_Enemy(int i)
 	if (Check_TileCollision_With(TILE_WALL_V, i) || Check_TileCollision_With(TILE_WALL_H, i) || Check_TileCollision_With(TILE_PLAYER_DEFENSE, i))
 	{
 		/*Draw EMPTY over ENEMY*/
-		F_DrawScaleTile_Position(TILE_EMPTY, None, (int)listOfGameObjects[i].positionX, (int)listOfGameObjects[i].positionY, (int)listOfGameObjects[i].scaleX,
+		F_DrawScaleTile_Position(TILE_EMPTY, None, listOfGameObjects[i].isVisible, (int)listOfGameObjects[i].positionX, (int)listOfGameObjects[i].positionY, (int)listOfGameObjects[i].scaleX,
 			                                       (int)listOfGameObjects[i].scaleY, (int)listOfGameObjects[i].anchorOffsetX, (int)listOfGameObjects[i].anchorOffsetY);
 
 		/*Enemy Die*/
 		F_EnemyManager_KillEnemy(i);
 
 		/*Player HP--*/
-		//.....
+		F_PlayerManager_DecrementPlayerLife(1);
 	}
 
 	if (Check_TileCollision_With(TILE_ENEMY_MOVEDOWN, i))

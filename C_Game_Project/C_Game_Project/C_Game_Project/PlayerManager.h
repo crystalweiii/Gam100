@@ -18,7 +18,11 @@ void F_PlayerManager_Init();
 void F_PlayerManager_Update(float dt);
 void F_PlayerManager_Exit();
 
-
+/*------------------------------------------------------------------------------
+// Getter Function
+//----------------------------------------------------------------------------*/
+int F_PlayerManager_GetPlayerLife();
+void F_PlayerManager_DecrementPlayerLife(int decrement);
 
 /*------------------------------------------------------------------------------
 // Others

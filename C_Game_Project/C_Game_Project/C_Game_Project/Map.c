@@ -166,8 +166,13 @@ void F_Map_Set_And_Print(int index)
 					//	printf(" ");
 					//else
 					//	printf("%c", s_current_map.V_Map_Array[gh_generate][gw_generate]);
-					F_DrawTile_Position(s_current_map.V_Map_Array[gh_generate][gw_generate], None, gw_generate, gh_generate);
-
+					if (s_current_map.V_Map_Array[gh_generate][gw_generate] == TILE_ENEMY_MOVEUP ||
+						s_current_map.V_Map_Array[gh_generate][gw_generate] == TILE_ENEMY_MOVEDOWN || 
+						s_current_map.V_Map_Array[gh_generate][gw_generate] == TILE_ENEMY_MOVELEFT || 
+						s_current_map.V_Map_Array[gh_generate][gw_generate] == TILE_ENEMY_MOVERIGHT)
+						F_DrawTile_Position(s_current_map.V_Map_Array[gh_generate][gw_generate], None, false, gw_generate, gh_generate);
+					else
+						F_DrawTile_Position(s_current_map.V_Map_Array[gh_generate][gw_generate], None, true, gw_generate, gh_generate);
 				}
 				/* Checks during "NON-GAMEPLAY" state*/
 				else
@@ -485,7 +490,7 @@ void RetrieveSpawnPositionFromData(float *spawnPlayer1PosX, float *spawnPlayer1P
 
 				/* Remove: remove spawner on the map[][], after retrieving the spawn position, we dont want it to be display out*/
 				s_current_map.V_Map_Array[y][x] = TILE_EMPTY;
-				F_DrawTile_Position(TILE_EMPTY, None, x, y);
+				F_DrawTile_Position(TILE_EMPTY, None, true, x, y);
 			}
 
 			/* Finding: Tile that represent "Player Spawn Point"*/
@@ -497,7 +502,7 @@ void RetrieveSpawnPositionFromData(float *spawnPlayer1PosX, float *spawnPlayer1P
 
 				/* Remove: remove spawner on the map[][], after retrieving the spawn position, we dont want it to be display out*/
 				s_current_map.V_Map_Array[y][x] = TILE_EMPTY;
-				F_DrawTile_Position(TILE_EMPTY, None, x, y);
+				F_DrawTile_Position(TILE_EMPTY, None, true, x, y);
 			}
 
 			/* Finding: Tile that represent "Enemy Spawn Point"*/
@@ -517,7 +522,7 @@ void RetrieveSpawnPositionFromData(float *spawnPlayer1PosX, float *spawnPlayer1P
 
 				/* Remove: remove spawner on the map[][], after retrieving the spawn position, we dont want it to be display out*/
 				s_current_map.V_Map_Array[y][x] = TILE_EMPTY;
-				F_DrawTile_Position(TILE_EMPTY, None, x, y);
+				F_DrawTile_Position(TILE_EMPTY, None, true, x, y);
 			}
 		}
 	}
