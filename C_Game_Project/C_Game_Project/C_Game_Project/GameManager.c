@@ -17,6 +17,7 @@ This is game state manager is to control and handle the flow of the whole progra
 #include "GS_MainMenu.h"
 #include "GS_GamePlay.h"
 #include "GS_Credit.h"
+#include "GS_GameOver.h"
 
 
 /*For gamestate tracking*/
@@ -74,6 +75,9 @@ void F_GSManager_InitState(int state)
 	case Credit:
 		GS_Credit_Init();
 		break;
+	case GameOver:
+		GS_GameOver_Init();
+		break;
 	case Pause:
 		F_GSManager_ChangeState(End);
 		break;
@@ -100,6 +104,9 @@ void F_GSManager_UpdateState(int state, float dt) {
 		case Credit:
 			GS_Credit_Update(dt);
 			break;
+		case GameOver:
+			GS_GameOver_Update(dt);
+			break;
 		case Pause:
 			v_running = 0;
 			break;
@@ -124,6 +131,9 @@ void F_GSManager_ExitState(int state) {
 		break;
 	case Credit:
 		GS_Credit_Exit();
+		break;
+	case GameOver:
+		GS_GameOver_Exit();
 		break;
 	case Pause:
 		v_running = 0;

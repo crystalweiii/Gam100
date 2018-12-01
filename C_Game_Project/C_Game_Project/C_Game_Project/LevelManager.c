@@ -32,7 +32,7 @@ void F_LevelManager_Update()
 
 	if (currentLevel == nextLevel)
 	{
-		if(currentLevel == d_map_amount - 2)
+		if(currentLevel == d_map_amount - 3)
 		{
 			F_LevelManager_Exit();
 			win = 0;
@@ -87,11 +87,10 @@ void F_LevelManager_ClearLevel()
 
 void F_LevelManager_Exit()
 {
-	score = 0;
-	currentLevel = Level_One;
-	nextLevel = Level_Two;
+	currentLevel = Level_Five;
+	nextLevel = Level_Five;
 	F_LevelManager_ClearLevel();
-	F_GSManager_ChangeState(MainMenu);
+	F_GSManager_ChangeState(GameOver);
 }
 
 int F_LevelManager_CheckIfWin()

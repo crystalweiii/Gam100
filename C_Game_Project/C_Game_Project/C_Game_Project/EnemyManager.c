@@ -157,6 +157,8 @@ void F_EnemyManager_StartOfLevelInit(int level)
 		enemiesToKill = 3;
 	case Level_Five:
 		enemiesToKill = 3;
+	case Level_GameOver:
+		enemiesToKill = 3;
 		break;
 	}
 

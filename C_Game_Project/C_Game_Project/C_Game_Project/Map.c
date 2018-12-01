@@ -71,6 +71,7 @@ void F_Map_Init()
 	F_ReadFromCSVAndStore_Background(s_map_db[4].Background_Map_Array, Level_Three);// Level 3 background
 	F_ReadFromCSVAndStore_Background(s_map_db[5].Background_Map_Array, Level_Four); // Level 4 background
 	F_ReadFromCSVAndStore_Background(s_map_db[6].Background_Map_Array, Level_Five); // Level 5 background
+	F_ReadFromTextAndStore(txt_Gameover, s_map_db[7].V_Map_Array);		// Digipen logo
 
 
 	/* Draw: Main Menu */
