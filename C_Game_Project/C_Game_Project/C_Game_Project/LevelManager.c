@@ -6,6 +6,7 @@
 #include "EnemyManager.h"
 #include "BlockerManager.h"
 #include "GameManager.h"
+#include "GameObjectManager.h"
 
 /***********************
  * 	Private Variables
@@ -17,6 +18,7 @@ void F_LevelManager_Init()
 {
 	currentLevel = Level_One;
 	nextLevel = Level_Two;
+	F_UI_Game_Info_Right();
 	F_MapManager_Gameplay_Init(currentLevel);
 	F_LevelManager_InitEnemies(currentLevel);
 }
@@ -58,11 +60,14 @@ int F_LevelManager_GetCurrentLevel()
 	return currentLevel;
 }
 
-/* Load enxt level */
+/* Load next level */
 void LoadLevel(int level)
 {
 	F_MapManager_Gameplay_Init(level);
 	F_LevelManager_InitEnemies(level);
+	F_BlockerManager_Init();
+	F_PlayerManager_RestartPlayerLife();
+	F_UI_Game_Info_Right();
 }
 
 void F_LevelManager_InitEnemies(int level)
@@ -77,10 +82,12 @@ void F_LevelManager_ClearLevel()
 	F_EnemyManager_Exit();
 	F_BlockerManager_Exit();
 	F_BulletManager_Exit();
+	F_GameObjectManager_KillAllMapTile();
 }
 
 void F_LevelManager_Exit()
 {
+	score = 0;
 	currentLevel = Level_One;
 	nextLevel = Level_Two;
 	F_LevelManager_ClearLevel();

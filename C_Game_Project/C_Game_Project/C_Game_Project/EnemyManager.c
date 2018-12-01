@@ -16,14 +16,19 @@ It contains functions to random spawn, kill enemy, check collison.
 /*------------------------------------------------------------------------------
 // Private Variables:
 //----------------------------------------------------------------------------*/
-int enemiesInUse;								/* Track: active bullets*/
-int enemyIndices[d_MAX_ENEMIES];				/* Track: bullets are essentially movingObject/s, hence we hold indices to the moving objects that are bullets*/
-float enemySpawnPosX[d_MAX_ENEMY_SPAWN_POINT];	/* Enemy Spawn Point(s): PositionX*/
-float enemySpawnPosY[d_MAX_ENEMY_SPAWN_POINT];	/* Enemy Spawn Point(s): PositionY*/
-float enemyDirX[d_MAX_ENEMY_SPAWN_POINT];	/* Enemy Direction: PositionX*/
-float enemyDirY[d_MAX_ENEMY_SPAWN_POINT];	/* Enemy Direction: PositionY*/
+int enemiesInUse;									/* Track: active enemies*/
+int enemyIndices[d_MAX_ENEMIES];					/* Track: movingObject/s, hence we hold indices to the moving objects that are enemies*/
+
+//Spawn Variables
+float enemySpawnPosX[d_MAX_ENEMY_SPAWN_POINT];		/* Enemy Spawn Point(s): PositionX*/
+float enemySpawnPosY[d_MAX_ENEMY_SPAWN_POINT];		/* Enemy Spawn Point(s): PositionY*/
+FaceDir enemySpawnFaceDir[d_MAX_ENEMY_SPAWN_POINT]; /* Track: spawn face dir */
+int noOfSpawnPoint = 0;								/* Track: noOfSpawnPoint */
+
+//Movement
+float enemyDirX[d_MAX_ENEMY_SPAWN_POINT];			/* Enemy Direction: PositionX*/
+float enemyDirY[d_MAX_ENEMY_SPAWN_POINT];			/* Enemy Direction: PositionY*/
 int enemiesToKill;
-int noOfSpawnPoint = 0;							/* Track: noOfSpawnPoint*/
 float enemy_time_elasped = 0.0f;
 
 
@@ -59,10 +64,31 @@ void F_EnemyManager_Init()
 
 void F_EnemyManager_Update(float dt)
 {
-	int RandEType = GenerateRandNum(3);
-	int RandLaneSpot = GenerateRandNum(noOfSpawnPoint);
-	int dirX = enemyDirX[RandLaneSpot];
-	int dirY = enemyDirY[RandLaneSpot];
+	int RandEType = GenerateRandNum(3);						// Random: enemytype
+	int RandLaneSpot = GenerateRandNum(noOfSpawnPoint);		// Random: spawn position
+	int dirX = 0; // enemyDirX[RandLaneSpot];				
+	int dirY = 0; // enemyDirY[RandLaneSpot];
+
+	/*[Get]: Enemy->Spawn FaceDir*/
+	switch (enemySpawnFaceDir[RandLaneSpot])				// Assign: Spawn Enemy Move Dir
+	{
+		case FACE_DOWN:
+			dirX = 0;
+			dirY = 1;
+			break;
+		case FACE_LEFT:
+			dirX = -1;
+			dirY = 0;
+			break;
+		case FACE_UP_LEFT:
+			dirX = -1;
+			dirY = -1;
+			break;
+		case FACE_DOWN_LEFT:
+			dirX = -1;
+			dirY = 1;
+			break;
+	}		
 
 	enemy_time_elasped += dt;
 
@@ -113,21 +139,23 @@ void F_EnemyManager_StartOfLevelInit(int level)
 	switch (level)
 	{
 	case Level_One:
-		/* Declare your lane directions here */
-		enemyDirX[0] = -1;
-		enemyDirX[1] = -1;
-		enemyDirY[0] = 0;
-		enemyDirY[1] = 0;
 		enemiesToKill = 3;
 		break;
 	case Level_Two:
 		/* Declare your lane directions here */
-		enemyDirX[0] = 0;
+		/*enemyDirX[0] = 0;
 		enemyDirX[1] = -1;
 		enemyDirX[2] = -1;
 		enemyDirY[0] = 1;
 		enemyDirY[1] = 0;
-		enemyDirY[2] = 0;
+		enemyDirY[2] = 0;*/
+		enemiesToKill = 3;
+		break;
+	case Level_Three:
+		enemiesToKill = 3;
+	case Level_Four:
+		enemiesToKill = 3;
+	case Level_Five:
 		enemiesToKill = 3;
 		break;
 	}
@@ -139,6 +167,13 @@ void F_EnemyManager_StartOfLevelInit(int level)
 	{
 		enemySpawnPosX[i] = *(tmpX + i);
 		enemySpawnPosY[i] = *(tmpY + i);
+	}
+
+	/*Get: Enemy Spawn Face Dir*/
+	FaceDir* tmpFaceDir = F_MapManager_GetEnemySpawnFaceDir();
+	for (i = 0; i < noOfSpawnPoint; ++i)
+	{
+		enemySpawnFaceDir[i] = tmpFaceDir[i];
 	}
 }
 
@@ -227,6 +262,9 @@ int GetEnemiesToKill()
 void DecreaseEnemiesToKill()
 {
 	--enemiesToKill;
+
+	// Update UI: Enemies To kill 
+	F_UI_Game_Info_Right();
 }
 
 /*------------------------------------------------------------------------------

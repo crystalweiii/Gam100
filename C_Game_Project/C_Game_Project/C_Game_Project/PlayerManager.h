@@ -28,3 +28,4 @@ void F_PlayerManager_DecrementPlayerLife(int decrement);
 // Others
 //----------------------------------------------------------------------------*/
 void F_PlayerManager_CheckInput();
+void F_PlayerManager_RestartPlayerLife();

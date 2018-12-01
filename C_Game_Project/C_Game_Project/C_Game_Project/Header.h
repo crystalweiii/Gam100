@@ -46,7 +46,7 @@ Gather all the Marco together, easier for us to tweak the values.
   /*
    *  GameObject Macro:
    */
-#define d_MAX_GAMEOBJECTS 200
+#define d_MAX_GAMEOBJECTS 400
 
    /*
 	*  Invincible tiles Macro:
@@ -76,7 +76,7 @@ Gather all the Marco together, easier for us to tweak the values.
 	/*
 	 *  Blocker Properties:
 	 */
-#define d_MAX_BLOCKERS 50
+#define d_MAX_BLOCKERS 150
 #define d_BLOCKER_IS_VISIBLE false
 
 	 /*
@@ -91,7 +91,7 @@ Gather all the Marco together, easier for us to tweak the values.
    */
 #define d_maxchar 1000
 
-#define d_map_amount 4
+#define d_map_amount 7
 #define txt_DGPLogo "txt_file/DigipenLogo.txt"
 #define txt_Map1 "txt_file/Map1.txt"
  
@@ -101,16 +101,32 @@ Gather all the Marco together, easier for us to tweak the values.
 typedef enum {
 	Level_One,
 	Level_Two,
-	Level_Three
+	Level_Three,
+	Level_Four,
+	Level_Five,
 } LevelType;
 
+/*
+ *  FaceDirType: enemy face dir during spawning
+ */
+typedef enum {
+	FACE_LEFT,
+	FACE_DOWN,
+	FACE_DOWN_LEFT,
+	FACE_UP_LEFT
+} FaceDir;
 
 static char TILE_EMPTY = ' ';
 static char TILE_WALL_H = '-';
 static char TILE_WALL_V = '|';
 static char TILE_PLAYER_SPAWNER = 'P';
 static char TILE_PLAYER_SPAWNER_2 = 'D';
-static char TILE_ENEMY_SPAWNER = 'E';
+
+static char TILE_ENEMY_SPAWNER_DOWN = 'E';
+static char TILE_ENEMY_SPAWNER_LEFT = 'F';
+static char TILE_ENEMY_SPAWNER_DOWN_LEFT = 'G';  
+static char TILE_ENEMY_SPAWNER_UP_LEFT = 'H';
+
 static char TILE_PLAYER = '$';
 static char TILE_ENEMY = 'X';
 static char TILE_BULLET_1 = '>';
@@ -122,6 +138,9 @@ static char TILE_ENEMY_MOVEUP = 'U';
 static char TILE_ENEMY_MOVEDOWN = 'V';
 static char TILE_ENEMY_MOVELEFT = 'L';
 static char TILE_ENEMY_MOVERIGHT = 'R';
+static char TILE_ENEMY_MOVE_DOWNLEFT = 'T';
+static char TILE_ENEMY_MOVE_UPLEFT = 'Y';
+static char TILE_ENEMY_MOVE_THREEDIR = 'S';
 /*
  *  ObjectType: Use to differentiate which is "active GameObject" & differentiate color GameObject
  */
@@ -139,7 +158,10 @@ typedef enum
 	BlockerUp,
 	BlockerDown,
 	BlockerLeft,
-	BlockerRight
+	BlockerRight,
+	BlockerUpLeft,
+	BlockerDownLeft,
+	BlockerThreeDir,
 } ObjectType;
 
 /*

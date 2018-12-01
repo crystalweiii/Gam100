@@ -112,6 +112,7 @@ int F_Map_Get_Background_DataType(int x, int y);
 float* F_MapManager_GetEnemySpawnPositionX();
 float* F_MapManager_GetEnemySpawnPositionY();
 int F_MapManager_GetEnemyTotalSpawnPoint();
+FaceDir* F_MapManager_GetEnemySpawnFaceDir();
 
 /*------------------------------------------------------------------------------
 // Invincible tiles use
