@@ -87,11 +87,16 @@ void F_LevelManager_ClearLevel()
 
 void F_LevelManager_Exit()
 {
-	currentLevel = Level_Five;
-	nextLevel = Level_Five;
 	F_LevelManager_ClearLevel();
 	F_GSManager_ChangeState(GameOver);
 }
+
+void F_LevelManager_Lost()
+{
+	F_LevelManager_Exit();
+	win = 0;
+}
+
 
 int F_LevelManager_CheckIfWin()
 {

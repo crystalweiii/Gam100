@@ -100,7 +100,8 @@ void WindowsHelper_Reset_DefaultColor()
 
 void WindowsHelper_Print_ChangeColor_And_Reset(int foreground, int background , char* printout) {
 	WindowsHelper_ChangeColor(foreground, background);
-	printf("%s", printout);
+	if(printout)
+		printf("%s", printout);
 	WindowsHelper_Reset_DefaultColor();
 }
 

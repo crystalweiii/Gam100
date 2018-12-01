@@ -174,5 +174,6 @@ void F_PlayerManager_DecrementPlayerLife(int decrement)
 	playerLife -= decrement;
 	F_UI_Game_Info_Below();
 
-
+	if (playerLife == 0)
+		F_LevelManager_Lost();
 }

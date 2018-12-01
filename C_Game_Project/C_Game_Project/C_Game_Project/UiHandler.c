@@ -110,19 +110,6 @@ void F_UI_Border_PO()
 	v_gamUI_startSpot.X = v_gamUI_borderStart.X + 5;
 	v_gamUI_startSpot.Y = v_gamUI_borderStart.Y + v_gamUI_borderEnd.Y / 4 ;
 	
-	/*Btm right*/
-	/*
-	v_btmR_borderStart.X = d_game_width;
-	v_btmR_borderStart.Y = (d_game_height + d_ui_height) * 2 / 3;
-
-	v_btmR_borderEnd.X = d_instruction_width;
-	v_btmR_borderEnd.Y = (d_game_height + d_ui_height) / 3 ;
-	F_Graphic_DrawBorder(v_btmR_borderStart, v_btmR_borderEnd);
-	*/
-	/*
-	v_btmR_startSpot.X = v_btmR_borderStart.X + 5;
-	v_btmR_startSpot.Y = v_btmR_borderStart.Y + v_btmR_borderEnd.Y / 4;
- */
 	v_btmL_borderStart.X = 0;
 	v_btmL_borderStart.Y = d_game_height;
 	
@@ -146,19 +133,19 @@ void F_UI_Basic_Instru() {
 	It will automatically place in the right spot
 	*/
 	F_Pos_Assignment(v_instr_startSpot, &BI_Count);
-	printf("Info Key:");
+	WindowsHelper_Print_ChangeColor_And_Reset(FG_LIGHTRED, BKG_BLUE, "Info Key:");
 
 	F_Pos_Assignment(v_instr_startSpot, &BI_Count);
-	printf("'Q' to quit");
+	WindowsHelper_Print_ChangeColor_And_Reset(FG_BLUE, BKG_GREY, "'Q' to quit");
 
 	F_Pos_Assignment(v_instr_startSpot, &BI_Count);
-	printf("'R' to reset");
+	WindowsHelper_Print_ChangeColor_And_Reset(FG_BLUE, BKG_GREY, "'R' to reset");
 
 	F_Pos_Assignment(v_instr_startSpot, &BI_Count);
-	printf("'Space' to Enter");
+	WindowsHelper_Print_ChangeColor_And_Reset(FG_BLUE, BKG_GREY, "'Space' to Enter");
 
 	F_Pos_Assignment(v_instr_startSpot, &BI_Count);
-	printf("<^> for direction");
+	WindowsHelper_Print_ChangeColor_And_Reset(FG_BLUE, BKG_GREY, "<^> for direction");
 
 }
 
@@ -172,19 +159,20 @@ void F_UI_Game_Instru(){
 	It will automatically place in the right spot
 	*/
 	F_Pos_Assignment(v_instr_startSpot, &BI_Count);
-	printf("Game Key:");
+	WindowsHelper_Print_ChangeColor_And_Reset(FG_LIGHTRED, BKG_BLUE, "Game Key:");
+
 
 	F_Pos_Assignment(v_instr_startSpot, &BI_Count);
-	printf("'Q' to quit");
+	WindowsHelper_Print_ChangeColor_And_Reset(FG_BLUE, BKG_GREY, "'Q' to quit");
 
 	F_Pos_Assignment(v_instr_startSpot, &BI_Count);
-	printf("'R' to reset");
+	WindowsHelper_Print_ChangeColor_And_Reset(FG_BLUE, BKG_GREY, "'R' to reset");
 
 	F_Pos_Assignment(v_instr_startSpot, &BI_Count);
-	printf("'Space' to shoot");
+	WindowsHelper_Print_ChangeColor_And_Reset(FG_BLUE, BKG_GREY, "'Space' to shoot");
 
 	F_Pos_Assignment(v_instr_startSpot, &BI_Count);
-	printf("<^>  for direction");
+	WindowsHelper_Print_ChangeColor_And_Reset(FG_BLUE, BKG_GREY, "<^>  for direction");
 
 }
 
@@ -200,16 +188,19 @@ void F_UI_Game_Info_Right()
 	It will automatically place in the right spot
 	*/
 	F_Pos_Assignment(v_gamUI_startSpot, &BI_Count);
-	printf("Game Info:");
+	WindowsHelper_Print_ChangeColor_And_Reset(FG_LIGHTRED, BKG_BLUE, "Game Info: ");
 
 	F_Pos_Assignment(v_gamUI_startSpot, &BI_Count);
-	printf("Score:%d", score);
+	WindowsHelper_Print_ChangeColor_And_Reset(FG_BLUE, BKG_GREY, "Score: ");
+	printf("%d", score);
 
 	F_Pos_Assignment(v_gamUI_startSpot, &BI_Count);
-	printf("Level: %d", F_LevelManager_GetCurrentLevel()+1);
+	WindowsHelper_Print_ChangeColor_And_Reset(FG_BLUE, BKG_GREY, "Level: ");
+	printf("%d", F_LevelManager_GetCurrentLevel()+1);
 
 	F_Pos_Assignment(v_gamUI_startSpot, &BI_Count);
-	printf("Enemy Left to win: %d", GetEnemiesToKill());
+	WindowsHelper_Print_ChangeColor_And_Reset(FG_BLUE, BKG_GREY, "Enemy Left to win: ");
+	printf(" %d", GetEnemiesToKill());
 }
 
 
