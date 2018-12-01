@@ -37,7 +37,7 @@ int F_EnemyManager_FindCollidedEnemyIndex_CircleCollision(float collidedPosX, fl
 int F_EnemyManager_FindCollidedEnemyIndex_BoxCollision(float otherPosX, float otherPosY, float otherScaleX, float otherScaleY);
 
 /* Basic enemy initialization */
-void F_EnemyManager_StartOfLevelInit();
+void F_EnemyManager_StartOfLevelInit(int level);
 
 /* Return enemies left to kill */
 int GetEnemiesToKill();

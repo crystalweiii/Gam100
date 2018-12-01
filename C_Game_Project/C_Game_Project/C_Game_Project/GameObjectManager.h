@@ -52,6 +52,7 @@ void F_GameObjectManager_SetObjectVelocity(int index, float x, float y);
 /* How character looks like */
 void F_GameObjectManager_SetObjectType(int index, ObjectType type);
 void F_GameObjectManager_SetObjectImage(int index, char image[ObjectSize]);
+void F_GameObjectManager_KillAllMapTile();
 
 /* Corner Position */
 float F_GameObjectManager_GetObjectPositionX_Min(int index);

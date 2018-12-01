@@ -206,10 +206,10 @@ void F_UI_Game_Info_Right()
 	printf("Score:%d", score);
 
 	F_Pos_Assignment(v_gamUI_startSpot, &BI_Count);
-	printf("Level:OVER 3.14159");
+	printf("Level: %d", F_LevelManager_GetCurrentLevel()+1);
 
 	F_Pos_Assignment(v_gamUI_startSpot, &BI_Count);
-	printf("Enemy Left to win: 10");
+	printf("Enemy Left to win: %d", GetEnemiesToKill());
 }
 
 

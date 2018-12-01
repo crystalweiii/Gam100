@@ -159,6 +159,14 @@ int F_PlayerManager_GetPlayerLife()
 {
 	return playerLife;
 }
+void F_PlayerManager_RestartPlayerLife()
+{
+	/* Reset: Player Life*/
+	playerLife = d_PLAYER_LIFE;
+
+	/* Update UI*/
+	F_UI_Game_Info_Below();
+}
 
 
 void F_PlayerManager_DecrementPlayerLife(int decrement)

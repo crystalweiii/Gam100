@@ -300,18 +300,7 @@ void UpdateCollisionEvent_Enemy(int i)
 
 	if (Check_TileCollision_With(TILE_ENEMY_MOVEDOWN, i))
 	{
-		switch (RandDir)
-		{
-		case 0:
-			F_GameObjectManager_SetObjectDir(i, 0, 1);
-			break;
-		case 1:
-			F_GameObjectManager_SetObjectDir(i, -1, 0);
-			break;
-		case 2:
-			F_GameObjectManager_SetObjectDir(i, 0, -1);
-			break;
-		}
+		F_GameObjectManager_SetObjectDir(i, 0, 1);
 	}
 
 	if (Check_TileCollision_With(TILE_ENEMY_MOVEUP, i))
@@ -323,6 +312,30 @@ void UpdateCollisionEvent_Enemy(int i)
 	{
 		F_GameObjectManager_SetObjectDir(i, -1, 0);
 	}
+	if (Check_TileCollision_With(TILE_ENEMY_MOVE_DOWNLEFT, i))
+	{
+		F_GameObjectManager_SetObjectDir(i, -1, 1);
+	}
+	if (Check_TileCollision_With(TILE_ENEMY_MOVE_UPLEFT, i))
+	{
+		F_GameObjectManager_SetObjectDir(i, -1, -1);
+	}
+	if (Check_TileCollision_With(TILE_ENEMY_MOVE_THREEDIR, i))
+	{
+		switch (RandDir)
+		{
+		case 0:
+			F_GameObjectManager_SetObjectDir(i, -1, 0);		//Left
+			break;
+		case 1:
+			F_GameObjectManager_SetObjectDir(i, -1, -1);	//Left Up
+			break;
+		case 2:
+			F_GameObjectManager_SetObjectDir(i, -1, 1);		//Left Down
+			break;
+		}
+	}
+	
 }
 
 
@@ -521,7 +534,17 @@ void F_GameObjectManager_SetObjectImage(int index, char image[ObjectSize])
 	}
 }
 
-
+void F_GameObjectManager_KillAllMapTile()
+{
+	int i = 0;
+	for (i = 0; i < d_MAX_GAMEOBJECTS; ++i)
+	{
+		if (listOfGameObjects[i].type != Player)
+		{
+			memset(&listOfGameObjects[i], 0, sizeof(GameObj));
+		}
+	}
+}
 
 /*------------------------------------------------------------------------------
 // Collision
