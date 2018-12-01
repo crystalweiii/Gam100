@@ -21,6 +21,7 @@ CONSOLE_CURSOR_INFO cursorInfo;
 void F_Graphic_Init();
 
 int F_ReadFromTextAndStore(char* url, char dc_array[d_game_width][d_game_height]);
+void F_ReadFromTextAndPrint(char* url, COORD position);
 
 void gotoxy(int x, int y);
 void hideCursor();

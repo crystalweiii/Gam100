@@ -79,6 +79,36 @@ int F_ReadFromTextAndStore(char* url , char dc_array[d_game_height][d_game_width
 	return 0;
 }
 
+
+void F_ReadFromTextAndPrint(char* url , COORD position) {
+	errno_t err;
+	FILE *fp;
+	char str[d_maxchar];
+	char* filename = url;
+
+	int t_widthCount = 0, t_heightCount = 0;
+
+	err = fopen_s(&fp, filename, "r");
+	if (err != 0) //if (err != NULL) <-- warning 
+	{
+		printf("Could not open file %s", filename);
+		return 1;
+	}
+	while (fgets(str, d_maxchar, fp) != NULL)
+	{
+		gotoxy(position.X, position.Y+ t_heightCount);
+		int t_gw = 0;
+		for (t_gw = 0; t_gw < strlen(str); t_gw++)//for (t_gw = 0; t_gw < d_game_width; t_gw++)
+		{
+			WindowsHelper_Print_ChangeColor_And_Reset(FG_RED, BG_BLUE, 0);
+			printf("%c", str[t_gw]);
+		}
+
+		t_heightCount++;
+	}
+	fclose(fp);
+}
+
 void F_Graphic_DrawBorder(COORD top, COORD btm)
 {
 	int j;

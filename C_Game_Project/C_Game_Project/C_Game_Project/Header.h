@@ -92,9 +92,9 @@ Gather all the Marco together, easier for us to tweak the values.
 #define d_maxchar 1000
 
 #define d_map_amount 7
-#define txt_DGPLogo "txt_file/DigipenLogo.txt"
-#define txt_Map1 "txt_file/Map1.txt"
- 
+#define txt_DGPLogo  "txt_file/DigipenLogo.txt"
+#define txt_Map1     "txt_file/Map1.txt"
+#define txt_GameLogo "txt_file/GameLogo.txt"
  /*
   *  LevelType: Use to generate correct map [e.g "Map%d.csv", levelType]
   */

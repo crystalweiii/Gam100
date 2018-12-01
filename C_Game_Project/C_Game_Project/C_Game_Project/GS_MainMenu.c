@@ -14,7 +14,7 @@ This is the main menu page which will be use to transition to game play page, cr
 #include "UiHandler.h"
 
 /*Private var*/
-COORD AlignPoint = { d_game_width / 2.5f , d_game_height / 3 };
+COORD AlignPoint = { d_game_width / 2.5f , d_game_height / 2.5f };
 
 #define Word_Amount 3
 
@@ -40,12 +40,18 @@ void GS_MainMenu_Init()
 
 
 	F_UI_Print_Out_Index(PT_Basic_Instruction);
+	
+	COORD top_pos = { d_game_width/6,2 };
+	F_ReadFromTextAndPrint(txt_GameLogo, top_pos);
+
 }
 
 
 void GS_MainMenu_Update()
 {
 	GS_MainMenu_InputCheck();
+
+
 }
 
 void GS_MainMenu_Exit()
@@ -121,7 +127,6 @@ void F_Main_Menu_Print(char dc_array[d_game_height][d_game_width])
 	char play[] = "play";
 	char credit[] = "credit";
 	char exit[] = "exit";
-
 
 	Word_Pos_Top[0].X = AlignPoint.X - 1;
 	Word_Pos_Top[0].Y = AlignPoint.Y - 1;
