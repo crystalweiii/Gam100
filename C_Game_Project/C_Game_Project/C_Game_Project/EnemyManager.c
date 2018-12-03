@@ -11,6 +11,7 @@ It contains functions to random spawn, kill enemy, check collison.
 #include "EnemyManager.h"
 #include "GameObjectManager.h"
 #include "Map.h"
+#include "LevelManager.h"
 
 
 /*------------------------------------------------------------------------------
@@ -93,7 +94,7 @@ void F_EnemyManager_Update(float dt)
 	enemy_time_elasped += dt;
 
 	/* Check: Still in spawn cd*/
-	if (enemy_time_elasped < d_RATE_OF_ENEMY_SPAWN)
+	if (enemy_time_elasped < d_RATE_OF_ENEMY_SPAWN + F_LevelManager_GetCurrentLevel() * 0.2f)
 		return;
 
 	/* Reset: spawn timer */
@@ -139,7 +140,7 @@ void F_EnemyManager_StartOfLevelInit(int level)
 	switch (level)
 	{
 	case Level_One:
-		enemiesToKill = 3;
+		enemiesToKill = 5;
 		break;
 	case Level_Two:
 		/* Declare your lane directions here */
@@ -149,14 +150,17 @@ void F_EnemyManager_StartOfLevelInit(int level)
 		enemyDirY[0] = 1;
 		enemyDirY[1] = 0;
 		enemyDirY[2] = 0;*/
-		enemiesToKill = 3;
+		enemiesToKill = 5;
 		break;
 	case Level_Three:
-		enemiesToKill = 3;
+		enemiesToKill = 7;
+		break;
 	case Level_Four:
-		enemiesToKill = 3;
+		enemiesToKill = 5;
+		break;
 	case Level_Five:
-		enemiesToKill = 3;
+		enemiesToKill = 9;
+		break;
 	case Level_GameOver:
 		enemiesToKill = 3;
 		break;
@@ -206,7 +210,7 @@ void F_EnemyManager_SpawnEnemy(int laneToSpawn, ObjectType enemyType, float dirX
 	F_GameObjectManager_SetObjectPrevPosition(EnemyIndex, GetSpawnPositionX(RandSpawnSpot), GetSpawnPositionY(RandSpawnSpot));
 	F_GameObjectManager_SetObjectScale(EnemyIndex, d_CHARACTER_SCALE_X, d_CHARACTER_SCALE_Y);
 	F_GameObjectManager_SetObjectDir(EnemyIndex, dirX, dirY);
-	F_GameObjectManager_SetObjectSpeed(EnemyIndex, d_ENEMY_SPEED);
+	F_GameObjectManager_SetObjectSpeed(EnemyIndex, d_ENEMY_SPEED + 2);
 	F_GameObjectManager_SetObjectType(EnemyIndex, enemyType);
 	F_GameObjectManager_SetObjectVisible(EnemyIndex, true);
 }

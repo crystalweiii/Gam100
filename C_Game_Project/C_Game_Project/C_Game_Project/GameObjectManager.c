@@ -177,7 +177,7 @@ void UpdateCollisionEvent_Bullet(int i)
 					F_GameObjectManager_SetObjectSpeed(hitEnemyIndex, d_ENEMY_ANGRY_SPEED);
 					break;
 				}
-
+			
 				/*-----------------------------------------------
 				// Destroy: Bullet
 				-----------------------------------------------*/
@@ -253,7 +253,7 @@ void UpdateCollisionEvent_Bullet(int i)
 					F_GameObjectManager_SetObjectSpeed(hitEnemyIndex, d_ENEMY_ANGRY_SPEED);
 					break;
 				}
-
+				
 				/*-----------------------------------------------
 				// Destroy: Bullet
 				-----------------------------------------------*/
@@ -264,7 +264,7 @@ void UpdateCollisionEvent_Bullet(int i)
 			}
 		}
 	}
-
+	
 	/*-----------------------------------------------
 	// Handle Collision: Bullet XXX Wall
 	-----------------------------------------------*/
