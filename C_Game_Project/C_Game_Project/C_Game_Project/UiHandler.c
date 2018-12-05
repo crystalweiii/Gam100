@@ -159,7 +159,7 @@ void F_UI_Game_Instru(){
 	It will automatically place in the right spot
 	*/
 	F_Pos_Assignment(v_instr_startSpot, &BI_Count);
-	WindowsHelper_Print_ChangeColor_And_Reset(FG_LIGHTRED, BKG_BLUE, "Game Key:");
+	WindowsHelper_Print_ChangeColor_And_Reset(FG_LIGHTRED, BKG_GREEN, "Game Key:");
 
 
 	F_Pos_Assignment(v_instr_startSpot, &BI_Count);
@@ -169,7 +169,10 @@ void F_UI_Game_Instru(){
 	WindowsHelper_Print_ChangeColor_And_Reset(FG_BLUE, BKG_GREY, "'R' to reset");
 
 	F_Pos_Assignment(v_instr_startSpot, &BI_Count);
-	WindowsHelper_Print_ChangeColor_And_Reset(FG_BLUE, BKG_GREY, "'Space' to shoot");
+	WindowsHelper_Print_ChangeColor_And_Reset(FG_BLUE, BKG_GREY, "'Z' to horizontal shooting");
+
+	F_Pos_Assignment(v_instr_startSpot, &BI_Count);
+	WindowsHelper_Print_ChangeColor_And_Reset(FG_BLUE, BKG_GREY, "'X' to Vertical shooting ");
 
 	F_Pos_Assignment(v_instr_startSpot, &BI_Count);
 	WindowsHelper_Print_ChangeColor_And_Reset(FG_BLUE, BKG_GREY, "<^>  for direction");

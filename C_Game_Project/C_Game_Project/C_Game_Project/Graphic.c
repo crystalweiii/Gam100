@@ -21,6 +21,8 @@ void F_Graphic_Init()
 	wHnd = GetStdHandle(STD_OUTPUT_HANDLE);
 	rHnd = GetStdHandle(STD_INPUT_HANDLE);
 	SetConsoleTitle(TEXT("COLOR INVADER!"));
+
+	hideCursor();
 	/*
 	short lx,ly;
 	WindowsHelper_GetLargestConsoleWindowSize(&lx, &ly);

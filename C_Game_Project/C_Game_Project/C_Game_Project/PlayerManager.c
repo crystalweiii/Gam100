@@ -71,9 +71,9 @@ void F_PlayerManager_Init()
 	F_GameObjectManager_SetObjectScale(playerIndex2, d_CHARACTER_SCALE_X, d_CHARACTER_SCALE_Y);
 	F_GameObjectManager_SetObjectImage(playerIndex2, playerImage);
 	F_GameObjectManager_SetObjectVisible(playerIndex2, true);
-	printf("Player1 x: %d player1 y: %d\n", F_MapManager_GetPlayer1SpawnPosition().X, F_MapManager_GetPlayer1SpawnPosition().Y);
+	/*printf("Player1 x: %d player1 y: %d\n", F_MapManager_GetPlayer1SpawnPosition().X, F_MapManager_GetPlayer1SpawnPosition().Y);
 	printf("Player2 x: %d player2 y: %d\n", F_MapManager_GetPlayer2SpawnPosition().X, F_MapManager_GetPlayer2SpawnPosition().Y);
-	printf("Player1: %d player2: %d\n", playerIndex1, playerIndex2);
+	printf("Player1: %d player2: %d\n", playerIndex1, playerIndex2);*/
 	
 }
 void F_PlayerManager_Update(float dt)

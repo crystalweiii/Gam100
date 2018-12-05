@@ -44,7 +44,7 @@ void GS_Credit_Print()
 	printf("Level Designer/Programmer: Darren Low");
 
 	gotoxy(startPT.X, startPT.Y + 12);
-	printf("Backend Programmer: Ngian");
+	printf("Ui Programmer: Ngian Teck Wei");
 
 
 	COORD trollStartPt = { d_game_width / 8, d_game_height / 6 };
