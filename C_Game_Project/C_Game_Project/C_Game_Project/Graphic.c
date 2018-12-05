@@ -137,6 +137,41 @@ void F_Graphic_DrawBorder(COORD top, COORD btm)
 	printf("\n");
 }
 
+void F_Graphic_DrawBorder_With_Text(COORD top, COORD btm , char* text)
+{
+	int j = 0 , i = 0;
+
+	//Top border line...
+	gotoxy(top.X, top.Y);
+	for (j = 0; j <= btm.X; j++)
+		printf("%c", 223);
+
+	//Bottom border line... 
+	gotoxy(top.X, top.Y + btm.Y);
+	for (j = 0; j <= btm.X; j++)
+		printf("%c", 223);
+
+	//Left and Right border line...
+	for (j = 0; j < btm.Y; j++)
+	{
+		gotoxy(top.X, top.Y + j);
+		printf("%c", 219);
+
+		gotoxy(top.X + btm.X, top.Y + j);
+		printf("%c", 219);
+
+		for (i = 1; i < btm.X; i++)
+		{
+			gotoxy(top.X + i, top.Y + j);
+			printf("%c", ' ');
+		}
+	}
+
+	gotoxy(top.X + (i/2.5), top.Y + (j/2));
+	printf( "%s", text);
+}
+
+
 void F_Graphic_DrawBorder_Asc(COORD top, COORD btm, int ascicode)
 {
 	int j;
