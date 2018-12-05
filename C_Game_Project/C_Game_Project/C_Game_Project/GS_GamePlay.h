@@ -13,3 +13,6 @@ extern void GS_GamePlay_Update(float dt);
 
 extern void GS_GamePlay_Exit();
 
+/* Game paused or running toggle */
+int GS_GetGamePaused();
+void GS_SetGamePaused(int value);

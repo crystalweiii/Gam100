@@ -18,6 +18,9 @@ This is for the gameplay state, where others will then link up with their gamepl
 #include "BlockerManager.h"
 #include "UiHandler.h"
 
+/* gamePaused "boolean */
+static int gamePaused = 0;
+
 void GS_GamePlay_Init()
 {
 	/* Window: Make sure its full screen  */
@@ -50,10 +53,13 @@ void GS_GamePlay_Init()
 void GS_GamePlay_Update(float dt) 
 {
 	F_UI_Print_Out_Index(PT_Game_Info_Right);
-	F_GameObjectManager_Update(dt);
-	F_PlayerManager_Update(dt);
-	F_EnemyManager_Update(dt);
-	F_LevelManager_Update();
+	if (!gamePaused)
+	{
+		F_GameObjectManager_Update(dt);
+		F_PlayerManager_Update(dt);
+		F_EnemyManager_Update(dt);
+		F_LevelManager_Update();
+	}
 	F_Graphic_Draw();
 }
 
@@ -70,3 +76,12 @@ void GS_GamePlay_Exit()
 	F_BlockerManager_Exit();
 }
 
+int GS_GetGamePaused()
+{
+	return gamePaused;
+}
+
+void GS_SetGamePaused(int value)
+{
+	gamePaused = value;
+}

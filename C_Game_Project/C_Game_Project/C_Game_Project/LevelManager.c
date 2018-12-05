@@ -6,7 +6,9 @@
 #include "EnemyManager.h"
 #include "BlockerManager.h"
 #include "GameManager.h"
+#include "GS_GamePlay.h"
 #include "GameObjectManager.h"
+#include "UiHandler.h"
 
 /***********************
  * 	Private Variables
@@ -26,9 +28,14 @@ void F_LevelManager_Init()
 void F_LevelManager_Update()
 {
 	F_LevelManager_CheckIfWin();
-
+	
 	if (win)
-		currentLevel++;
+	{
+		PrintContinueInstruction();
+		GS_SetGamePaused(1);
+		/* Call the transition instruction here */
+		//currentLevel++;
+	}
 
 	if (currentLevel == nextLevel)
 	{
@@ -97,10 +104,14 @@ void F_LevelManager_Lost()
 	win = 0;
 }
 
-
 int F_LevelManager_CheckIfWin()
 {
 	if (GetEnemiesToKill() <= 0)
 		win = 1;
 	return win;
+}
+
+void PrintContinueInstruction()
+{
+	F_UI_Game_Continue_Instru();
 }

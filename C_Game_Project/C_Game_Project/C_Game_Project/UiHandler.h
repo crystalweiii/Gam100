@@ -57,3 +57,4 @@ void F_UI_Basic_Instru();
 void F_UI_Game_Instru();
 void F_UI_Game_Info_Right();
 void F_UI_Game_Info_Below();
+void F_UI_Game_Continue_Instru();

@@ -304,3 +304,22 @@ void F_UI_Game_Info_Below()
 	gotoxy(v_btmL_startSpot.X + 100 + 2 * BULLET_UI_GAP_OFFSET, v_btmL_startSpot.Y + 3);
 	WindowsHelper_Print_ChangeColor_And_Reset(FG_LIGHTBLUE, BG_BLUE, "XXXXX");
 }
+
+void F_UI_Game_Continue_Instru()
+{
+	v_instr_borderStart.X = d_game_width / 3.2;
+	v_instr_borderStart.Y = d_game_height / 2.7;
+
+	v_instr_borderEnd.X = 50;
+	v_instr_borderEnd.Y = 10;
+	F_Graphic_DrawBorder(v_instr_borderStart, v_instr_borderEnd);
+
+	gotoxy(d_game_width / 2.3, d_game_height / 2.5);
+	printf("%s", "*******************");
+	gotoxy(d_game_width / 2.3, d_game_height / 2.3);
+	printf("%s", "*     YOU WIN     *");
+	gotoxy(d_game_width / 2.3, d_game_height / 2.2);
+	printf("%s", "*******************");
+	gotoxy(d_game_width / 2.8, d_game_height / 1.8);
+	printf("%s", "press space to continue to next level...");
+}

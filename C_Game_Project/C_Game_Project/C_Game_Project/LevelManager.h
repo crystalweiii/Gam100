@@ -12,4 +12,7 @@ int F_LevelManager_GetCurrentLevel();
 int F_LevelManager_CheckIfWin();
 void F_LevelManager_Lost();
 
+/* Printing the transition screen */
+void PrintContinueInstruction();
+
 int win;
