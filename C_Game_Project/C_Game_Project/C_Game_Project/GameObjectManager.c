@@ -335,7 +335,34 @@ void UpdateCollisionEvent_Enemy(int i)
 			break;
 		}
 	}
-	
+
+	if (Check_TileCollision_With(TILE_ENEMY_MOVE_TWODIR_LEFT_TOPLEFT, i))
+	{
+		switch (RandDir)
+		{
+		case 0:
+			F_GameObjectManager_SetObjectDir(i, -1, 0);		//Left
+			break;
+		case 1:
+		case 2:
+			F_GameObjectManager_SetObjectDir(i, -1, -1);	//Left Up
+			break;
+		}
+	}
+
+	if (Check_TileCollision_With(TILE_ENEMY_MOVE_TWODIR_LEFT_BTMLEFT, i))
+	{
+		switch (RandDir)
+		{
+		case 0:
+			F_GameObjectManager_SetObjectDir(i, -1, 0);		//Left
+			break;
+		case 1:
+		case 2:
+			F_GameObjectManager_SetObjectDir(i, -1, 1);	//Left Down
+			break;
+		}
+	}
 }
 
 

@@ -203,7 +203,10 @@ void F_UI_Game_Info_Right()
 
 	F_Pos_Assignment(v_gamUI_startSpot, &BI_Count);
 	WindowsHelper_Print_ChangeColor_And_Reset(FG_BLUE, BKG_GREY, "Enemy Left to win: ");
-	printf(" %d", GetEnemiesToKill());
+	if(GetEnemiesToKill() < 10)
+		printf("0%d", GetEnemiesToKill());
+	else
+		printf("%d", GetEnemiesToKill());
 }
 
 

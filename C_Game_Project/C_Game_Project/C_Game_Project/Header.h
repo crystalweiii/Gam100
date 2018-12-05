@@ -84,8 +84,8 @@ Gather all the Marco together, easier for us to tweak the values.
 	  */
 #define d_MAX_ENEMIES 30
 #define d_ENEMY_SPEED 2
-#define d_ENEMY_ANGRY_SPEED d_ENEMY_SPEED * 2
-#define d_RATE_OF_ENEMY_SPAWN 4.0f
+#define d_ENEMY_ANGRY_SPEED d_ENEMY_SPEED * 6
+#define d_RATE_OF_ENEMY_SPAWN 2.0f
   /*
    *  Textfile Macro:
    */
@@ -144,6 +144,8 @@ static char TILE_ENEMY_MOVERIGHT = 'R';
 static char TILE_ENEMY_MOVE_DOWNLEFT = 'T';
 static char TILE_ENEMY_MOVE_UPLEFT = 'Y';
 static char TILE_ENEMY_MOVE_THREEDIR = 'S';
+static char TILE_ENEMY_MOVE_TWODIR_LEFT_TOPLEFT = 'I';
+static char TILE_ENEMY_MOVE_TWODIR_LEFT_BTMLEFT = 'O';
 /*
  *  ObjectType: Use to differentiate which is "active GameObject" & differentiate color GameObject
  */
@@ -165,6 +167,8 @@ typedef enum
 	BlockerUpLeft,
 	BlockerDownLeft,
 	BlockerThreeDir,
+	BlockerTwoDir_Left_TopLeft,
+	BlockerTwoDir_Left_BtmLeft,
 } ObjectType;
 
 /*

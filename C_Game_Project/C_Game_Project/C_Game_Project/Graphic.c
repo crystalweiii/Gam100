@@ -361,6 +361,26 @@ void F_Graphic_Draw()
 			++processed;
 		}
 
+		else if (objects[i].type == BlockerTwoDir_Left_TopLeft)
+		{
+			/* Render: Render TILE_ENEMY_MOVERIGHT*/
+			F_DrawScaleTile_Position(TILE_ENEMY_MOVE_TWODIR_LEFT_TOPLEFT, None, objects[i].isVisible, (int)objects[i].positionX, (int)objects[i].positionY, (int)objects[i].scaleX, (int)objects[i].scaleY,
+				(int)objects[i].anchorOffsetX, (int)objects[i].anchorOffsetY);
+
+			/*Tracking: To optimize checking*/
+			++processed;
+		}
+		else if (objects[i].type == BlockerTwoDir_Left_BtmLeft)
+		{
+			/* Render: Render TILE_ENEMY_MOVERIGHT*/
+			F_DrawScaleTile_Position(TILE_ENEMY_MOVE_TWODIR_LEFT_BTMLEFT, None, objects[i].isVisible, (int)objects[i].positionX, (int)objects[i].positionY, (int)objects[i].scaleX, (int)objects[i].scaleY,
+				(int)objects[i].anchorOffsetX, (int)objects[i].anchorOffsetY);
+
+			/*Tracking: To optimize checking*/
+			++processed;
+		}
+
+
 		/*Tracking the number of objects to draw*/
 		if (processed >= activeObjectCount)
 			break;

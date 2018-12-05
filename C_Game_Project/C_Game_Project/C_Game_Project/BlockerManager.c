@@ -89,6 +89,12 @@ void RetrieveData_And_SpawnBlocker()
 
 			else if (s_current_map.V_Map_Array[y][x] == TILE_ENEMY_MOVE_THREEDIR)
 				F_BlockerManager_SpawnBlocker(BlockerThreeDir, x, y);
+
+			else if (s_current_map.V_Map_Array[y][x] == TILE_ENEMY_MOVE_TWODIR_LEFT_TOPLEFT)
+				F_BlockerManager_SpawnBlocker(BlockerTwoDir_Left_TopLeft, x, y);
+
+			else if (s_current_map.V_Map_Array[y][x] == TILE_ENEMY_MOVE_TWODIR_LEFT_BTMLEFT)
+				F_BlockerManager_SpawnBlocker(BlockerTwoDir_Left_BtmLeft, x, y);
 		}
 	}
 }
