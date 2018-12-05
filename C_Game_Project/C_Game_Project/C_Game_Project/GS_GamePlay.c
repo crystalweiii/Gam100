@@ -17,6 +17,7 @@ This is for the gameplay state, where others will then link up with their gamepl
 #include "EnemyManager.h"
 #include "BlockerManager.h"
 #include "UiHandler.h"
+#include "Input.h"
 
 /* gamePaused "boolean */
 static int gamePaused = 0;
@@ -59,8 +60,9 @@ void GS_GamePlay_Update(float dt)
 		F_PlayerManager_Update(dt);
 		F_EnemyManager_Update(dt);
 		F_LevelManager_Update();
+		F_Graphic_Draw();
 	}
-	F_Graphic_Draw();
+	GS_HandlePause();
 }
 
 void GS_GamePlay_Exit()
@@ -74,6 +76,14 @@ void GS_GamePlay_Exit()
 	F_EnemyManager_Exit();
 	F_LevelManager_Exit();
 	F_BlockerManager_Exit();
+}
+
+void GS_HandlePause()
+{
+	if (f_Check_KeyDown(0x20))
+	{
+		GS_SetGamePaused(0);
+	}
 }
 
 int GS_GetGamePaused()

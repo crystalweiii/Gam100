@@ -1,4 +1,3 @@
-#include "LevelManager.h"
 #include "Header.h"
 #include "Map.h"
 #include "Input.h"
@@ -9,6 +8,7 @@
 #include "GS_GamePlay.h"
 #include "GameObjectManager.h"
 #include "UiHandler.h"
+#include "LevelManager.h"
 
 /***********************
  * 	Private Variables
@@ -26,15 +26,14 @@ void F_LevelManager_Init()
 }
 
 void F_LevelManager_Update()
-{
-	F_LevelManager_CheckIfWin();
-	
+{	
 	if (win)
 	{
-		PrintContinueInstruction();
 		GS_SetGamePaused(1);
-		/* Call the transition instruction here */
-		//currentLevel++;
+		win = 0;
+		currentLevel++;
+		PrintContinueInstruction();
+		return;
 	}
 
 	if (currentLevel == nextLevel)
@@ -53,6 +52,7 @@ void F_LevelManager_Update()
 		}
 	}
 	
+	F_LevelManager_CheckIfWin();
 
 	/* Test press L to restart to mainmenu */
 	if (f_Check_KeyDown(0x4C))
@@ -67,9 +67,15 @@ int F_LevelManager_GetCurrentLevel()
 	return currentLevel;
 }
 
+void F_LevelManager_SetCurrentLevel(int level)
+{
+	currentLevel = level;
+}
+
 /* Load next level */
 void LoadLevel(int level)
 {
+	//F_PlayerManager_Init();
 	F_MapManager_Gameplay_Init(level);
 	F_LevelManager_InitEnemies(level);
 	F_BlockerManager_Init();
@@ -86,6 +92,7 @@ void F_LevelManager_InitEnemies(int level)
 void F_LevelManager_ClearLevel()
 {
 	F_Map_EmptySlow();
+	//F_PlayerManager_Exit();
 	F_EnemyManager_Exit();
 	F_BlockerManager_Exit();
 	F_BulletManager_Exit();
@@ -113,5 +120,6 @@ int F_LevelManager_CheckIfWin()
 
 void PrintContinueInstruction()
 {
+	F_LevelManager_ClearLevel();
 	F_UI_Game_Continue_Instru();
 }

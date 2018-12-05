@@ -312,6 +312,8 @@ void F_UI_Game_Continue_Instru()
 
 	v_instr_borderEnd.X = 50;
 	v_instr_borderEnd.Y = 10;
+	
+	F_Graphic_DrawBorder_With_Text(v_instr_borderStart, v_instr_borderEnd, " ");
 	F_Graphic_DrawBorder(v_instr_borderStart, v_instr_borderEnd);
 
 	gotoxy(d_game_width / 2.3, d_game_height / 2.5);

@@ -16,3 +16,4 @@ extern void GS_GamePlay_Exit();
 /* Game paused or running toggle */
 int GS_GetGamePaused();
 void GS_SetGamePaused(int value);
+void GS_HandlePause();

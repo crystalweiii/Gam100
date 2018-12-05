@@ -9,6 +9,7 @@ void LoadLevel(int level);
 void F_LevelManager_InitEnemies(int level);
 
 int F_LevelManager_GetCurrentLevel();
+void F_LevelManager_SetCurrentLevel(int level);
 int F_LevelManager_CheckIfWin();
 void F_LevelManager_Lost();
 
