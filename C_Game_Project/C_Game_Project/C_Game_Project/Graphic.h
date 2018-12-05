@@ -29,6 +29,7 @@ void hideCursor();
 /*Drawing border, Using top and btm coordinate only*/
 void F_Graphic_DrawBorder(COORD top, COORD btm);
 void F_Graphic_DrawBorder_Asc(COORD btm, COORD top, int ascicode);
+void F_Graphic_DrawBorder_With_Text(COORD top, COORD btm, char* text);
 
 /*Draw Square using same ascii*/
 void F_Graphic_DrawSquare_Asc(COORD top, COORD btm, int ascicode);
