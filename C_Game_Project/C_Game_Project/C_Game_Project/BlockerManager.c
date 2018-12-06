@@ -120,7 +120,7 @@ void F_BlockerManager_KillBlocker(int index)
 }
 
 /* Spawn: Red/Blue/Green bullet */
-void F_BlockerManager_SpawnBlocker(ObjectType type, float posX, float posY)
+void F_BlockerManager_SpawnBlocker(ObjectType type, int posX, int posY)
 {
 	/* Check: Did we max out bullet */
 	if (blockersInUse >= d_MAX_BLOCKERS)
@@ -138,11 +138,11 @@ void F_BlockerManager_SpawnBlocker(ObjectType type, float posX, float posY)
 
 	/* Set: bullet properties*/
 	F_GameObjectManager_SetObjectType(blockerIndex, type);
-	F_GameObjectManager_SetObjectPosition(blockerIndex, posX, posY);
-	F_GameObjectManager_SetObjectPrevPosition(blockerIndex, posX, posY);
-	F_GameObjectManager_SetObjectDir(blockerIndex, 0, 0);
+	F_GameObjectManager_SetObjectPosition(blockerIndex, (float)posX, (float)posY);
+	F_GameObjectManager_SetObjectPrevPosition(blockerIndex, (float)posX, (float)posY);
+	F_GameObjectManager_SetObjectDir(blockerIndex, 0.0f, 0.0f);
 	F_GameObjectManager_SetObjectScale(blockerIndex, 1, 1);
-	F_GameObjectManager_SetObjectSpeed(blockerIndex, 0);
+	F_GameObjectManager_SetObjectSpeed(blockerIndex, 0.0f);
 	F_GameObjectManager_SetObjectVisible(blockerIndex, d_BLOCKER_IS_VISIBLE);
 }
 

@@ -12,6 +12,8 @@ It contains functions to random spawn, kill enemy, check collison.
 #include "GameObjectManager.h"
 #include "Map.h"
 #include "LevelManager.h"
+#include "RandNumManager.h"
+#include "UiHandler.h"
 
 
 /*------------------------------------------------------------------------------
@@ -67,27 +69,27 @@ void F_EnemyManager_Update(float dt)
 {
 	int RandEType = GenerateRandNum(3);						// Random: enemytype
 	int RandLaneSpot = GenerateRandNum(noOfSpawnPoint);		// Random: spawn position
-	int dirX = 0; // enemyDirX[RandLaneSpot];				
-	int dirY = 0; // enemyDirY[RandLaneSpot];
+	float dirX = 0.0f; 		
+	float dirY = 0.0f;
 
 	/*[Get]: Enemy->Spawn FaceDir*/
 	switch (enemySpawnFaceDir[RandLaneSpot])				// Assign: Spawn Enemy Move Dir
 	{
 		case FACE_DOWN:
-			dirX = 0;
-			dirY = 1;
+			dirX = 0.0f;
+			dirY = 1.0f;
 			break;
 		case FACE_LEFT:
-			dirX = -1;
-			dirY = 0;
+			dirX = -1.0f;
+			dirY = 0.0f;
 			break;
 		case FACE_UP_LEFT:
-			dirX = -1;
-			dirY = -1;
+			dirX = -1.0f;
+			dirY = -1.0f;
 			break;
 		case FACE_DOWN_LEFT:
-			dirX = -1;
-			dirY = 1;
+			dirX = -1.0f;
+			dirY = 1.0f;
 			break;
 	}		
 
@@ -102,18 +104,18 @@ void F_EnemyManager_Update(float dt)
 
 	switch (RandEType)
 	{
-	case 0:
-		F_EnemyManager_SpawnEnemy(RandLaneSpot, EnemyRed, dirX, dirY);
-		break;
-	case 1:
-		F_EnemyManager_SpawnEnemy(RandLaneSpot, EnemyBlue, dirX, dirY);
-		break;
-	case 2:
-		F_EnemyManager_SpawnEnemy(RandLaneSpot, EnemyGreen, dirX, dirY);
-		break;
-	default:
-		F_EnemyManager_SpawnEnemy(RandLaneSpot, EnemyRed, dirX, dirY);
-		break;
+		case 0:
+			F_EnemyManager_SpawnEnemy(RandLaneSpot, EnemyRed, dirX, dirY);
+			break;
+		case 1:
+			F_EnemyManager_SpawnEnemy(RandLaneSpot, EnemyBlue, dirX, dirY);
+			break;
+		case 2:
+			F_EnemyManager_SpawnEnemy(RandLaneSpot, EnemyGreen, dirX, dirY);
+			break;
+		default:
+			F_EnemyManager_SpawnEnemy(RandLaneSpot, EnemyRed, dirX, dirY);
+			break;
 	}
 }
 
@@ -143,13 +145,6 @@ void F_EnemyManager_StartOfLevelInit(int level)
 		enemiesToKill = 5;
 		break;
 	case Level_Two:
-		/* Declare your lane directions here */
-		/*enemyDirX[0] = 0;
-		enemyDirX[1] = -1;
-		enemyDirX[2] = -1;
-		enemyDirY[0] = 1;
-		enemyDirY[1] = 0;
-		enemyDirY[2] = 0;*/
 		enemiesToKill = 5;
 		break;
 	case Level_Three:
@@ -210,7 +205,7 @@ void F_EnemyManager_SpawnEnemy(int laneToSpawn, ObjectType enemyType, float dirX
 	F_GameObjectManager_SetObjectPrevPosition(EnemyIndex, GetSpawnPositionX(RandSpawnSpot), GetSpawnPositionY(RandSpawnSpot));
 	F_GameObjectManager_SetObjectScale(EnemyIndex, d_CHARACTER_SCALE_X, d_CHARACTER_SCALE_Y);
 	F_GameObjectManager_SetObjectDir(EnemyIndex, dirX, dirY);
-	F_GameObjectManager_SetObjectSpeed(EnemyIndex, d_ENEMY_SPEED + 2);
+	F_GameObjectManager_SetObjectSpeed(EnemyIndex, (float)(d_ENEMY_SPEED + 2));
 	F_GameObjectManager_SetObjectType(EnemyIndex, enemyType);
 	F_GameObjectManager_SetObjectVisible(EnemyIndex, true);
 }
@@ -299,7 +294,7 @@ int F_EnemyManager_FindCollidedEnemyIndex_CircleCollision(float collidedPosX, fl
 }
 
 /* Collision: Box Collision */
-int F_EnemyManager_FindCollidedEnemyIndex_BoxCollision(float otherPosX, float otherPosY, float otherScaleX, float otherScaleY)
+int F_EnemyManager_FindCollidedEnemyIndex_BoxCollision(float otherPosX, float otherPosY, int otherScaleX, int otherScaleY)
 {
 	int i = 0;
 	GameObj* movingObjectList = GetGameObjectList();

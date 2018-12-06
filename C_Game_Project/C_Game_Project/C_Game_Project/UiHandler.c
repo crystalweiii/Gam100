@@ -5,6 +5,8 @@
 #include "BulletManager.h"			// "GetBulletInventoryArray()"
 #include "WindowsHelper.h"			// "WindowsHelper_Print_ChangeColor_And_Reset()"
 #include "PlayerManager.h"			// "GetPlayerLife();
+#include "LevelManager.h"
+#include "EnemyManager.h"
 
 COORD v_instr_startSpot;
 COORD v_gamUI_startSpot;
@@ -91,7 +93,7 @@ void F_UI_Border_PO()
 
 	/* Retrieve: Total height: game map height + ui height*/
 	v_instr_borderEnd.X = d_instruction_width;
-	v_instr_borderEnd.Y = (d_game_height + d_ui_height) / 2.4;
+	v_instr_borderEnd.Y = (SHORT)((d_game_height + d_ui_height) / 2.4f);
 	F_Graphic_DrawBorder(v_instr_borderStart, v_instr_borderEnd);
 
 	v_instr_startSpot.X = v_instr_borderStart.X + 5;
@@ -100,11 +102,11 @@ void F_UI_Border_PO()
 	/*Middle Right*/
 	/* Retrieve: Position X right next to game map */
 	v_gamUI_borderStart.X = d_game_width;
-	v_gamUI_borderStart.Y = (d_game_height + d_ui_height) / 2.4;
+	v_gamUI_borderStart.Y = (SHORT)((d_game_height + d_ui_height) / 2.4f);
 
 	/* Retrieve: Total height: game map height + ui height*/
 	v_gamUI_borderEnd.X = d_instruction_width;
-	v_gamUI_borderEnd.Y = (d_game_height + d_ui_height) / 2.4;
+	v_gamUI_borderEnd.Y = (SHORT)((d_game_height + d_ui_height) / 2.4f);
 	F_Graphic_DrawBorder(v_gamUI_borderStart, v_gamUI_borderEnd);
 
 	v_gamUI_startSpot.X = v_gamUI_borderStart.X + 5;
@@ -307,8 +309,8 @@ void F_UI_Game_Info_Below()
 
 void F_UI_Game_Continue_Instru()
 {
-	v_instr_borderStart.X = d_game_width / 3.2;
-	v_instr_borderStart.Y = d_game_height / 2.7;
+	v_instr_borderStart.X = (SHORT)(d_game_width / 3.2f);
+	v_instr_borderStart.Y = (SHORT)(d_game_height / 2.7f);
 
 	v_instr_borderEnd.X = 50;
 	v_instr_borderEnd.Y = 10;
@@ -316,12 +318,12 @@ void F_UI_Game_Continue_Instru()
 	F_Graphic_DrawBorder_With_Text(v_instr_borderStart, v_instr_borderEnd, " ");
 	F_Graphic_DrawBorder(v_instr_borderStart, v_instr_borderEnd);
 
-	gotoxy(d_game_width / 2.3, d_game_height / 2.5);
+	gotoxy((int)(d_game_width / 2.3f), (int)(d_game_height / 2.5f));
 	printf("%s", "*******************");
-	gotoxy(d_game_width / 2.3, d_game_height / 2.3);
+	gotoxy((int)(d_game_width / 2.3f), (int)(d_game_height / 2.3));
 	printf("%s", "*     YOU WIN     *");
-	gotoxy(d_game_width / 2.3, d_game_height / 2.2);
+	gotoxy((int)(d_game_width / 2.3f), (int)(d_game_height / 2.2f));
 	printf("%s", "*******************");
-	gotoxy(d_game_width / 2.8, d_game_height / 1.8);
+	gotoxy((int)(d_game_width / 2.8f), (int)(d_game_height / 1.8f));
 	printf("%s", "press space to continue to next level...");
 }

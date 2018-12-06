@@ -12,9 +12,10 @@ This is the main menu page which will be use to transition to game play page, cr
 #include "Menu.h"
 #include "GameManager.h"
 #include "UiHandler.h"
+#include "Input.h"
 
 /*Private var*/
-COORD AlignPoint = { d_game_width / 2.5f , d_game_height / 2.5f };
+COORD AlignPoint = { (SHORT)(d_game_width / 2.5f) , (SHORT)(d_game_height / 2.5f) };
 
 #define Word_Amount 3
 
@@ -120,7 +121,6 @@ void F_MainMenu_Select(int dir)
 /*Coding out the main menu and the intended choices*/
 void F_Main_Menu_Print(char dc_array[d_game_height][d_game_width])
 {
-	char* Spaceneed[25]; /*25 max char*/
 	int count;
 	int space_between_char = 4;
 

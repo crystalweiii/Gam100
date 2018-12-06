@@ -9,6 +9,7 @@
 #include "GameObjectManager.h"
 #include "UiHandler.h"
 #include "LevelManager.h"
+#include "BulletManager.h"
 
 /***********************
  * 	Private Variables

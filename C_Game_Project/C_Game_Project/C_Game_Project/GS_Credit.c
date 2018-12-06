@@ -3,6 +3,7 @@
 #include "Map.h"
 #include "GameManager.h"
 #include "Graphic.h"
+#include "Input.h"
 
 void GS_Credit_Init()
 {
@@ -52,13 +53,13 @@ void GS_Credit_Print()
 	F_Graphic_DrawSquare_Asc(trollStartPt, trollEndPt, '#');
 
 
-	COORD trollStartPt2 = { d_game_width / 1.5, d_game_height / 6 };
+	COORD trollStartPt2 = { (SHORT)(d_game_width / 1.5f), d_game_height / 6 };
 	F_Graphic_DrawSquare_Asc(trollStartPt2, trollEndPt, '@');
 
-	COORD trollStartPt3 = { d_game_width / 8, d_game_height / 1.5 };
+	COORD trollStartPt3 = { d_game_width / 8, (SHORT)(d_game_height / 1.5f) };
 	F_Graphic_DrawSquare_Asc(trollStartPt3, trollEndPt, '$');
 
 
-	COORD trollStartPt4 = { d_game_width / 1.5, d_game_height / 1.5 };
+	COORD trollStartPt4 = { (SHORT)(d_game_width / 1.5f), (SHORT)(d_game_height / 1.5f) };
 	F_Graphic_DrawSquare_Asc(trollStartPt4, trollEndPt, '%');
 }

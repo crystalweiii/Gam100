@@ -10,6 +10,10 @@ The basic start up of the program.
 
 #include "Header.h"
 #include "GameBase.h"
+#include "Graphic.h"
+#include "Map.h"
+#include "UiHandler.h"
+#include "GameManager.h"
 
 void F_Game_Init()
 {

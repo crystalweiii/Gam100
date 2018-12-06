@@ -44,7 +44,7 @@ void F_Insert_Print_Out() {
 	
 }
 */
-
+void F_UI_Init();
 void F_UI_Print_Out();
 
 void F_UI_Print_Out_Index(int index);

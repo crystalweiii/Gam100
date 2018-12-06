@@ -83,9 +83,9 @@ Gather all the Marco together, easier for us to tweak the values.
 	  *  Enemy Properties:
 	  */
 #define d_MAX_ENEMIES 30
-#define d_ENEMY_SPEED 2
-#define d_ENEMY_ANGRY_SPEED d_ENEMY_SPEED * 6
-#define d_RATE_OF_ENEMY_SPAWN 2.0f
+#define d_ENEMY_SPEED 8
+#define d_ENEMY_ANGRY_SPEED d_ENEMY_SPEED * 2.0f
+#define d_RATE_OF_ENEMY_SPAWN 1.0f
   /*
    *  Textfile Macro:
    */

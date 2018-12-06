@@ -102,7 +102,7 @@ void F_GSManager_UpdateState(int state, float dt) {
 			GS_GamePlay_Update(dt);
 			break;
 		case Credit:
-			GS_Credit_Update(dt);
+			GS_Credit_Update();
 			break;
 		case GameOver:
 			GS_GameOver_Update(dt);

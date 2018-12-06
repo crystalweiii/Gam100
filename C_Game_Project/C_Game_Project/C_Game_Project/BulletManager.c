@@ -12,6 +12,7 @@ It contains functions to spawn, kill bullets
 #include "BulletManager.h"
 #include "GameObjectManager.h"
 #include <time.h>
+#include "UiHandler.h"
 
 /*------------------------------------------------------------------------------
 // Private Variables:

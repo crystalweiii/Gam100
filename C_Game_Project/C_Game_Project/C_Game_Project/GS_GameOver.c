@@ -12,9 +12,10 @@ This is the gameover page which will be use to display score, transition to main
 #include "Menu.h"
 #include "GameManager.h"
 #include "UiHandler.h"
+#include "Input.h"
 
 /*Private var*/
-COORD AlignPoint2 = { d_game_width / 2.5f , d_game_height / 3 };
+COORD AlignPoint2 = { (SHORT) (d_game_width / 2.5f) , (SHORT) (d_game_height / 3) };
 
 #define gameover_ui_size 10
 #define Word_Amount2 3
