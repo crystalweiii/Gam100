@@ -6,13 +6,13 @@ Login(s) : o.jiaquanjoel(100%)
 Description/Features:
 This is the gameover page which will be use to display score, transition to main menu page or restart
 **********************************************************************************************************************/
-
 #include "GS_GameOver.h"
 #include "Map.h"
 #include "Menu.h"
 #include "GameManager.h"
 #include "UiHandler.h"
 #include "Input.h"
+#include "LevelManager.h"
 
 /*Private var*/
 COORD AlignPoint2 = { (SHORT) (d_game_width / 2.5f) , (SHORT) (d_game_height / 3) };
@@ -36,7 +36,11 @@ void GS_GameOver_Init()
 	selector_ptr = 0;
 
 	/* Print GameOver, restart, menu, exit */
-	F_Map_Set_And_Print(7);
+	if(win)
+		F_Map_Set_And_Print(8);
+	else
+		F_Map_Set_And_Print(7);
+
 
 	/* Make all box same size*/
 	Word_Pos_Btm[0].X = Word_Pos_Btm[1].X;
@@ -48,6 +52,7 @@ void GS_GameOver_Init()
 	F_Menu_Select(top_position, btm_position);
 
 	/* Draw instruction*/
+	F_UI_Clear_Index(PT_Game_Info_Right);
 	F_UI_Print_Out_Index(PT_Basic_Instruction);
 	F_UI_Print_Out_Index(PT_Game_Info_Right);
 	

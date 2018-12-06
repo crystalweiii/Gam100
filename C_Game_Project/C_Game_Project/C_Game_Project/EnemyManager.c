@@ -159,6 +159,9 @@ void F_EnemyManager_StartOfLevelInit(int level)
 	case Level_GameOver:
 		enemiesToKill = 3;
 		break;
+	case Level_Win:
+		enemiesToKill = 0;
+		break;
 	}
 
 	/*Get: Enemy Spawn Position*/

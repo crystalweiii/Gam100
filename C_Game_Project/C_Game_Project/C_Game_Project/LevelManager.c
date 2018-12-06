@@ -19,6 +19,7 @@ int nextLevel = Level_Two;
 
 void F_LevelManager_Init()
 {
+	win = 0;
 	currentLevel = Level_One;
 	nextLevel = Level_Two;
 	F_UI_Game_Info_Right();
@@ -39,10 +40,10 @@ void F_LevelManager_Update()
 
 	if (currentLevel == nextLevel)
 	{
-		if(currentLevel == d_map_amount - 3)
+		if(currentLevel == d_map_amount - 4)
 		{
+			win = 1;
 			F_LevelManager_Exit();
-			win = 0;
 		}
 		else
 		{

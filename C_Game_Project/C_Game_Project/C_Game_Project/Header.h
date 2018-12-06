@@ -62,8 +62,8 @@ Gather all the Marco together, easier for us to tweak the values.
    /*
 	*  Player Properties:
 	*/
-#define d_PLAYER_SPEED 25				//Player: move speed
-#define d_RATE_OF_PLAYER_FIRE 1.0f		//Player: shoot cooldown
+#define d_PLAYER_SPEED 30				//Player: move speed
+#define d_RATE_OF_PLAYER_FIRE 0.73f		//Player: shoot cooldown
 #define d_PLAYER_SHOOT_X_OFFSET 9		//Player: Bullet Spawn position
 #define d_PLAYER_SHOOT_Y_OFFSET -5		//Player: Bullet Spawn position
 #define d_PLAYER_LIFE 3
@@ -71,7 +71,7 @@ Gather all the Marco together, easier for us to tweak the values.
 	 *  Bullet Properties:
 	 */
 #define d_MAX_BULLETS 50
-#define d_BULLET_SPEED 20
+#define d_BULLET_SPEED 35
 #define d_BULLET_INVENTORY 5
 	/*
 	 *  Blocker Properties:
@@ -85,18 +85,18 @@ Gather all the Marco together, easier for us to tweak the values.
 #define d_MAX_ENEMIES 30
 #define d_ENEMY_SPEED 8
 #define d_ENEMY_ANGRY_SPEED d_ENEMY_SPEED * 2.0f
-#define d_RATE_OF_ENEMY_SPAWN 1.0f
+#define d_RATE_OF_ENEMY_SPAWN 1.45f
   /*
    *  Textfile Macro:
    */
 #define d_maxchar 1000
 
-//#define d_map_amount 7
-#define d_map_amount 8
+#define d_map_amount 9
 #define txt_Map1 "txt_file/Map1.txt"
 #define txt_GameLogo "txt_file/GameLogo.txt" 
 #define txt_Gameover "txt_file/GameOver.txt"
 #define txt_DGPLogo "txt_file/DigipenLogo.txt"
+#define txt_Win "txt_file/Win.txt"
  /*
   *  LevelType: Use to generate correct map [e.g "Map%d.csv", levelType]
   */
@@ -107,6 +107,7 @@ typedef enum {
 	Level_Four,
 	Level_Five,
 	Level_GameOver,
+	Level_Win,
 } LevelType;
 
 /*
